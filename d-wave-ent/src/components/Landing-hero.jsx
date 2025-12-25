@@ -1,4 +1,4 @@
-function Hero () {
+function LandingHero () {
   return (
     <>
       <header className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -39,4 +39,4 @@ function Hero () {
   )
 }
 
-export default Hero;
+export default LandingHero;
