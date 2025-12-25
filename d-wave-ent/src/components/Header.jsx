@@ -1,13 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 
 function Header () {
+  const navigate = useNavigate();
+
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-light/80 dark:bg-background-dark/80 border-b border-gray-200 dark:border-white/10">
           <div className="layout-container flex h-full grow flex-col">
           <div className="px-4 md:px-10 lg:px-40 flex justify-center">
           <div className="layout-content-container flex w-full max-w-[1200px] items-center justify-between py-4">
-          <div className="flex items-center gap-4 text-slate-900 dark:text-white">
+          <div className="flex items-center gap-4 text-slate-900 dark:text-white" onClick={
+           () => {navigate("/")}
+          }>
               <div className="size-8 text-primary">
                   <span className="material-symbols-outlined text-[32px]">equalizer</span>
               </div>
@@ -16,7 +20,7 @@ function Header () {
           <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
               <div className="flex items-center gap-9">
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" href="#events">Events</NavLink>
-                  <NavLink className="text-sm font-medium hover:text-primary transition-colors" href="#artists">About Us</NavLink>
+                  <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/about-us">About Us</NavLink>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</NavLink>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/contact">Contact</NavLink>
               </div>

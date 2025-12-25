@@ -3,7 +3,9 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg'
 import Landingpage from './pages/Landing-page';
 import Contact from './pages/contact.jsx';
+import AboutUs from './pages/AboutUs.jsx';
 import { Route, Routes } from "react-router-dom";
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,6 +14,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Landingpage />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/about-us" element={<AboutUs />} />
+      <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
     </Routes>
   )
 }
