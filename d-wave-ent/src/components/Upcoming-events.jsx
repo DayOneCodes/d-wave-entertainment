@@ -1,9 +1,10 @@
 import Eventcard from "./Event-cards";
+import { forwardRef } from "react";
 
-function UpcomingEvents () {
+const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   return (
     <> 
-      <section className="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="events">
+      <section className="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="events" ref={ref}>
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
@@ -46,6 +47,6 @@ function UpcomingEvents () {
       </section>
     </>
   )
-}
+})
 
 export default UpcomingEvents;

@@ -1,7 +1,9 @@
 import { NavLink, useNavigate} from "react-router-dom";
 
-function Header () {
+
+function Header ({ onScrollToEvents, onScrollToServices }) {
   const navigate = useNavigate();
+
 
   return (
     <>
@@ -19,9 +21,9 @@ function Header () {
           </div>
           <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
               <div className="flex items-center gap-9">
-                  <NavLink className="text-sm font-medium hover:text-primary transition-colors" href="#events">Events</NavLink>
+                  <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToEvents()}>Events</a>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/about-us">About Us</NavLink>
-                  <NavLink className="text-sm font-medium hover:text-primary transition-colors" href="#services">Services</NavLink>
+                  <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToServices()}>Services</a>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/contact">Contact</NavLink>
               </div>
               <button className="bg-primary hover:bg-primary/90 transition-all text-white text-sm font-bold h-10 px-6 rounded-lg shadow-[0_0_15px_rgba(166,13,242,0.5)] hover:shadow-[0_0_25px_rgba(166,13,242,0.7)]">

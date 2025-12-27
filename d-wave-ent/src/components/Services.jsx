@@ -1,7 +1,9 @@
-function Services () {
+import { forwardRef } from "react";
+
+const Services = forwardRef(function Services (props, ref) {
   return (
     <>
-      <section className="py-24 px-4 md:px-10 lg:px-40 bg-white dark:bg-[#150c1a]" id="services">
+      <section className="py-24 px-4 md:px-10 lg:px-40 bg-white dark:bg-[#150c1a]" id="services" ref={ref}>
           <div className="max-w-[1200px] mx-auto">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
@@ -60,6 +62,6 @@ function Services () {
       </section>
     </>
   )
-}
+})
 
 export default Services;
