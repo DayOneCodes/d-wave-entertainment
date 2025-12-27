@@ -1,6 +1,8 @@
-function Eventcard ({ month, date, location, category, title, imageUrl }) {
+function Eventcard ({ month, date, location, category, title, imageUrl, ticketUrl }) {
   return (
-      <div className="group bg-white dark:bg-[#2a1d30] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-white/5">
+      <div className="group bg-white dark:bg-[#2a1d30] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 dark:border-white/5" onClick={
+        () => {window.open(`https://${ticketUrl}`, '_blank')}
+      }>
           <div className="relative h-64 overflow-hidden">
               <div className="absolute top-4 left-4 bg-white/90 dark:bg-black/80 backdrop-blur text-center p-2 rounded-lg z-10 shadow-lg min-w-[60px]">
                   <span className="block text-xs font-bold uppercase text-slate-500 dark:text-gray-400">{month}</span>

@@ -71,7 +71,7 @@ function MainContentContact () {
 </div>
 <div className="flex flex-col">
 <span className="text-[#b09cba] text-xs font-medium uppercase tracking-wider">Phone</span>
-<a className="text-white text-base font-medium hover:text-primary transition-colors" href="tel:+15551234567">+1 (555) 123-4567</a>
+<a className="text-white text-base font-medium hover:text-primary transition-colors" href="tel:+15551234567">+44 7888 642492</a>
 <span className="text-[#b09cba] text-sm">Mon-Fri, 9am - 6pm EST</span>
 </div>
 </div>

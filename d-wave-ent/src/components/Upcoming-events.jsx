@@ -16,29 +16,31 @@ function UpcomingEvents () {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Eventcard 
-            month="OCT"
+            month="DEC"
             date="27"
-            location="Downtown"
+            location="Catch twenty two Night club"
             category="Club Night"
-            title="Neon Nights: DJ Set"
+            title="Secret Saturday: Santa's Party"
             imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuCGmOJ0WNuVr9qkwMesI1_5_4hXBSE9Y282Xr-twuYqnK9VLON2EUnoq_mVG7Kk3SZZBGKFSfOkh--ga3tABtFvqaDp5uA9XjdRi3cKmar_VSbe4qwK1AGanxxnuviFEp45U4jhABmDbqOhBRZ4mBY5cyivshwon3_Q1N6DlBRsJxytMnjsTDx_2kTNsasWHijZSfOv3jnV3pZJNFfa3gHykAK1yYwYhFVHZzChYGkYmra0yzPhZODX8JyFKuKaZQZ6q1X4nC0m0V4"
+            ticketUrl="Fatsoma.com/auranbeats."
           />
           <Eventcard 
-            month="NOV"
-            date="03"
-            location="The Arena"
-            category="Live Concert"
-            title="Midnight Bass Drop"
-            imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tP0bwWopqHaJPyGprO_FeEyNvb8ztZOjUv2FzMwn4v2ZMLuK9o5shZiIDBRN4EOP6deelF5ir7vHAcJcXvvEW8Z2PtCjvOlETAd8IRB3pkc1BOBnCWdrcZeNy2AQU-68SuPIO4T4u3MXNKtQcZ-bg8g_Dk4Pf0au2ML7c7mNrsJNHDUoJh1m3gC94u_UWFXa4gdXYL6uGKra0D4B-D-ncXx05tdL9ybVhRMGDhmnfpcUYxgnzwop4_f6uL6b8s-3grz6p7bhHaI"
-          />
-          <Eventcard 
-            month="NOV"
-            date="15"
-            location="Sky Lounge"
-            category="VIP Exclusive"
-            title="Rooftop Sunset Session"
+            month="DEC"
+            date="06"
+            location="Players"
+            category="All white Party"
+            title="The winter soiÉe"
             imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuA-85zTV_uDzWkljqqX1cEpmrMXO9YD5hMhczL0SNJZvP8wjCeER1beag4XSCpSiJFR4iso0E4xPhfC017tfaSwbsGtpdgLhaubXbWKsw5jmnKt_wY8xKf5IThr9BuUzCXnNQ9YzccwIeMG6w9lweo1XtJEFTQG2QwWdbBfn_jAggkwMCCRulMWvZleFqtc4jNUhSyj7kA2yDDNQEDZNwA2K-wLMVYdzkHJ-kCh4GvHzPaa2DF8h4-Fdhsvp0daG0gSp7cXXRAiuVo"
           />
+          <Eventcard 
+            month="NOV"
+            date="22"
+            location="Junction 1ten night club"
+            category="After Party"
+            title="The Gist: Sodom & Gomorrah"
+            imageUrl="https://lh3.googleusercontent.com/aida-public/AB6AXuC4tP0bwWopqHaJPyGprO_FeEyNvb8ztZOjUv2FzMwn4v2ZMLuK9o5shZiIDBRN4EOP6deelF5ir7vHAcJcXvvEW8Z2PtCjvOlETAd8IRB3pkc1BOBnCWdrcZeNy2AQU-68SuPIO4T4u3MXNKtQcZ-bg8g_Dk4Pf0au2ML7c7mNrsJNHDUoJh1m3gC94u_UWFXa4gdXYL6uGKra0D4B-D-ncXx05tdL9ybVhRMGDhmnfpcUYxgnzwop4_f6uL6b8s-3grz6p7bhHaI"
+          />
+
           </div>
         </div>
       </section>

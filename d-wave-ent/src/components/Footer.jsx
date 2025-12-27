@@ -8,7 +8,7 @@ function Footer () {
 <div className="flex flex-col gap-4">
 <div className="flex items-center gap-2 text-white mb-2">
 <span className="material-symbols-outlined text-primary text-3xl">equalizer</span>
-<span className="text-xl font-bold uppercase tracking-tight">VIBE.INC</span>
+<span className="text-xl font-bold uppercase tracking-tight">D WAVE ENTERTAINMENT</span>
 </div>
 <p className="text-gray-400 text-sm leading-relaxed">
                             Premier entertainment brand and artist management agency creating unforgettable experiences worldwide.
@@ -31,7 +31,7 @@ function Footer () {
 <div className="flex flex-col gap-4">
 <h4 className="font-bold text-lg mb-2">Contact</h4>
 <p className="text-gray-400 text-sm">123 Music Row<br/>Los Angeles, CA 90028</p>
-<p className="text-gray-400 text-sm">hello@vibeinc.com<br/>+1 (555) 123-4567</p>
+<p className="text-gray-400 text-sm">hello@vibeinc.com<br/>+44 7888 642492</p>
 <div className="flex gap-4 mt-2">
 <a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">public</i></a>
 <a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">alternate_email</i></a>
