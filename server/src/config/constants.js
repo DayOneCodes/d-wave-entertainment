@@ -1,0 +1,1 @@
+export const DB_NAME = "d_wave_entertainment";

@@ -21,7 +21,7 @@ function Header ({ onScrollToEvents, onScrollToServices }) {
           </div>
           <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
               <div className="flex items-center gap-9">
-                  <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToEvents()}>Events</a>
+                  <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToEvents()}>Upcoming Events</a>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/about-us">About Us</NavLink>
                   <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToServices()}>Services</a>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/contact">Contact</NavLink>

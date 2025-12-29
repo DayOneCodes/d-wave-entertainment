@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards";
 import { forwardRef } from "react";
 
@@ -11,9 +12,9 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
           <h2 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">Upcoming Events</h2>
           <p className="text-slate-600 dark:text-gray-400">Don't miss out on the hottest parties in the city.</p>
           </div>
-          <a className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all" href="#">
+          <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all"   to={"/full-calendar"}>
           View Full Calendar <span className="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
+          </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <Eventcard 
