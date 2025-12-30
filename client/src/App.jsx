@@ -2,7 +2,7 @@ import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import Landingpage from './pages/Landing-page';
-import Contact from './pages/contact.jsx';
+import Contact from './pages/Contact.jsx';
 import AboutUs from './pages/AboutUs.jsx';
 import FullCalendar from './pages/FullCalendar.jsx';
 import { Route, Routes } from "react-router-dom";
