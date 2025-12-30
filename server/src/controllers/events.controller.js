@@ -10,7 +10,7 @@ const createEvent = async (req, res) => {
       })
     };
     
-    const event = Event.create({
+    const event = await Event.create({
       title,
       date,
       location,
