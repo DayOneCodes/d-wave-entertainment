@@ -1,4 +1,4 @@
-import Header from "../components/header.jsx";
+import Header from "../components/Header.jsx";
 import LandingHero from "../components/Landing-hero.jsx";
 import Footer from "../components/Footer.jsx";
 import UpcomingEvents from "../components/Upcoming-events.jsx";
