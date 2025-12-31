@@ -5,6 +5,7 @@ import Landingpage from './pages/Landing-page';
 import Contact from './pages/Contact.jsx';
 import AboutUs from './pages/AboutUs.jsx';
 import FullCalendar from './pages/FullCalendar.jsx';
+import Admin from './pages/Admin.jsx';
 import { Route, Routes } from "react-router-dom";
 
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/full-calendar" element={<FullCalendar />}/>
+      <Route path="/admin" element={<Admin />}/>
       <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
     </Routes>
   )

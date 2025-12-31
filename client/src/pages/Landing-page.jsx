@@ -4,7 +4,7 @@ import Footer from "../components/Footer.jsx";
 import UpcomingEvents from "../components/Upcoming-events.jsx";
 import Services from "../components/Services.jsx";
 import Newsletter from "../components/Newsletter.jsx";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 function Landingpage () {
@@ -39,11 +39,28 @@ function Landingpage () {
  }
 
   window.history.replaceState({}, document.title)
- }, [location]) 
+ }, [location])  
+
+ const [scrollData, setScrollData] = useState(0);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const { scrollTop } = document.documentElement;
+    setScrollData(
+      scrollTop);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  handleScroll(); 
+
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  }
+}, [])
 
   return (
   <>
-        <Header onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
+        <Header scrollTop={scrollData} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
         <LandingHero />
         <UpcomingEvents ref={scrollEvent} />
         <Services ref={scrollService} />

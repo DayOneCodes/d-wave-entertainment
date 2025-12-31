@@ -4,6 +4,7 @@ import MainContentContact from '../components/Main-content-contact.jsx';
 import FAQSection from '../components/FAQ.jsx';
 import Footer from '../components/Footer.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function Contact () {
   const navigate = useNavigate();
@@ -20,9 +21,26 @@ function Contact () {
     })
   }
 
+  const [scrollData, setScrollData] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollTop } = document.documentElement;
+      setScrollData(
+        scrollTop);
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); 
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    }
+  }, [])
+
   return (
     <>
-      <Header onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
+      <Header scrollTop={scrollData} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
       <ContactHero />
       <MainContentContact />
       <FAQSection />

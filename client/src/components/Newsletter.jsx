@@ -7,7 +7,7 @@ function Newsletter () {
 <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-6">
 <span className="material-symbols-outlined text-3xl">mail</span>
 </div>
-<h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">Never Miss a Beat</h2>
+<h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-4">Be the First to Know</h2>
 <p className="text-slate-600 dark:text-gray-400 mb-8 text-lg">Join our exclusive guest list to get early access to tickets, artist announcements, and VIP offers.</p>
 <form className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto">
 <input className="flex-1 bg-background-light dark:bg-[#231b27] border border-gray-300 dark:border-white/10 rounded-lg px-6 py-4 text-slate-900 dark:text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your email address" type="email"/>

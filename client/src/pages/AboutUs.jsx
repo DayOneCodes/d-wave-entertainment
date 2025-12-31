@@ -5,6 +5,7 @@ import Stats from '../components/Stats.jsx';
 import MissionSection from '../components/Mission.jsx';
 import CTA from '../components/CTA.jsx';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 function AbooutUs () {
   const navigate = useNavigate();
@@ -20,11 +21,28 @@ function AbooutUs () {
       state: { scrollTo: "services"}
     })
   }
+
+  const [scrollData, setScrollData] = useState(0);
+    
+  useEffect(() => {
+      const handleScroll = () => {
+        const { scrollTop } = document.documentElement;
+        setScrollData(
+          scrollTop);
+      };
+    
+      window.addEventListener('scroll', handleScroll);
+      handleScroll(); 
+    
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      }
+    }, [])
   
   return (
     <>
       <main>
-      <Header onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
+      <Header scrollTop={scrollData} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
       <AboutUsHero />
       <Stats />
       <MissionSection />

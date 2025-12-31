@@ -5,12 +5,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "#a60df2",
+        "primary": "#3D55EE",
         "background-light": "#f7f5f8",
         "background-dark": "#1c1022",
       },
       fontFamily: {
          "display": ["Be Vietnam Pro", "sans-serif"],
+         "montserrat": ["Montserrat", "sans-serif"],
+         "poppins": ["Poppins", "sans-serif"],
          "body": ["Noto Sans", "sans-serif"],
       },
       borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},

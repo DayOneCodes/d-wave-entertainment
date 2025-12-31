@@ -17,10 +17,10 @@ function AboutUsHero() {
                                   </h2>
                               </div>
                               <div className="relative z-10 flex gap-4 mt-4">
-                                  <button className="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
+                                  <button className="flex text-sm min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-primary text-white md:text-base font-bold leading-normal tracking-[0.015em] hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
                                      Our Story
                                   </button>
-                                  <button className="flex min-w-[84px] cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-[#332839] text-white text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#403247] transition-all">
+                                  <button className="flex min-w-[84px] text-sm cursor-pointer items-center justify-center rounded-lg h-12 px-6 bg-[#332839] text-white md:text-base font-bold leading-normal tracking-[0.015em] hover:bg-[#403247] transition-all">
                                       View Roster
                                   </button>
                               </div>
