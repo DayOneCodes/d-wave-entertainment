@@ -10,6 +10,7 @@ import { useLocation } from "react-router-dom";
 function Landingpage () {
   const scrollEvent = useRef(null);
   const scrollService = useRef(null);
+  
 
  const onScrollToEvents = () => {
   scrollEvent.current?.scrollIntoView({
@@ -61,7 +62,7 @@ useEffect(() => {
   return (
   <>
         <Header scrollTop={scrollData} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
-        <LandingHero />
+        <LandingHero onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
         <UpcomingEvents ref={scrollEvent} />
         <Services ref={scrollService} />
         <Newsletter />

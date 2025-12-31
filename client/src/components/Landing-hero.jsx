@@ -1,4 +1,4 @@
-function LandingHero () {
+function LandingHero ({onScrollToEvents, onScrollToServices}) {
   return (
     <>
       <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
@@ -23,11 +23,14 @@ function LandingHero () {
           We curate world-class events and manage top-tier talent. Join the movement where music meets lifestyle.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-6">
-              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white  text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(0,112,242,0.4)] hover:shadow-[0_0_30px_rgba(0,112,242,0.6)] transition-all flex items-center justify-center gap-2">
+              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white  text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(0,112,242,0.4)] hover:shadow-[0_0_30px_rgba(0,112,242,0.6)] transition-all flex items-center justify-center gap-2" onClick={() => onScrollToEvents()
+              }>
                  <span className="material-symbols-outlined">confirmation_number</span>
                   View Events
               </button>
-              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 text-base font-bold h-14 px-8 rounded-lg transition-all flex items-center justify-center gap-2">
+              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 text-base font-bold h-14 px-8 rounded-lg transition-all flex items-center justify-center gap-2" onClick={
+                () => onScrollToServices()
+              }>
                   <span className="material-symbols-outlined">mic_external_on</span>
                   Artist Services
               </button>

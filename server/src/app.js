@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,6 +8,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+     "https://d-wave-entertainment.vercel.app"
+    ]
+}));
+
 app.use(express.json());
 
 app.use("/api/events", eventRouter);
@@ -20,5 +29,7 @@ app.get(/.*/, (req,res) => {
     path.join(__dirname, "../../client/dist/index.html")
   )
 });
+
+
 
 export default app;

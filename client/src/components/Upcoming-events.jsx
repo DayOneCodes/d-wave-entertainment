@@ -1,8 +1,25 @@
 import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards";
-import { forwardRef } from "react";
+import { forwardRef, useState, useEffect } from "react";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  useEffect(() => {
+    async function fetchEvents () {
+      try {
+        const res = await fetch("https://d-wave-ent.onrender.com/api/events");
+        const data = await res.json();
+        setUpcomingEvents(data);
+        console.log("Fetched upcoming events:", data);
+      } catch (error) {
+      console.error("Error fetching upcoming events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, [])
+
   return (
     <> 
       <section className="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="events" ref={ref}>
