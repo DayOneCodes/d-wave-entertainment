@@ -7,12 +7,12 @@ function MissionSection  () {
 <div className="w-full max-w-[960px]">
 <div className="flex flex-col gap-10 px-4 py-10">
 <div className="flex flex-col gap-4">
-<div className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
-<span className="w-8 h-[2px] bg-primary"></span>
+<div className="flex items-center gap-2 text-white font-bold uppercase tracking-widest text-sm">
+<span className="w-8 h-[2px] bg-white"></span>
                                     Our Mission
                                 </div>
 <h2 className="text-white tracking-light text-[32px] font-bold leading-tight md:text-4xl lg:text-5xl max-w-[720px]">
-                                    Two Worlds, <span className="text-transparent bg-clip-text bg-primary">One Vision</span>
+                                    Two Worlds, <span className="text-transparent bg-clip-text bg-white">One Vision</span>
 </h2>
 <p className="text-white text-lg font-normal leading-relaxed max-w-[720px]">
                                     We are the nexus where chaotic creativity meets structured success. From throwing the wildest underground parties to guiding the careers of top-tier talent, we do it all with passion and precision.

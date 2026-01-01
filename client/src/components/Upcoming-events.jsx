@@ -8,7 +8,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   useEffect(() => {
     async function fetchEvents () {
       try {
-        const res = await fetch("https://d-wave-ent.onrender.com/api/events");
+        const res = await fetch("https://d-wave-entertainment.onrender.com/api/events/");
         const data = await res.json();
         setUpcomingEvents(data);
         console.log("Fetched upcoming events:", data);

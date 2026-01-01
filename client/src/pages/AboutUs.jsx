@@ -46,7 +46,7 @@ function AbooutUs () {
       <AboutUsHero />
       <Stats />
       <MissionSection />
-      <CTA />
+      <CTA onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
       </main>
       <Footer />
     </>
