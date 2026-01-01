@@ -15,6 +15,7 @@ const createEvent = async (req, res) => {
       date,
       location,
       month,
+      year,
       category,
       imageUrl,
       ticketUrl
@@ -42,9 +43,31 @@ const readEvents = async (req, res) => {
       message: `Server Error: ${err.message}`
     })
   }
-}
+};
+
+const deleteEvent = async (req, res) => {
+  try {
+    const deleted = await Event.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {return res.status(404).json({
+      message: "Error event not found"
+    })
+    }
+
+    return res.status(200).json({
+      message: "Event Deleted Successfully",
+      event: deleted
+    })
+  }
+  catch (err) {
+   return res.status(500).json({
+    message: `Server: ${err.message}`
+   })
+  }
+};
 
 export { 
   createEvent,
-  readEvents
+  readEvents,
+  deleteEvent
  };

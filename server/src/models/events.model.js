@@ -12,19 +12,28 @@ const eventSchema = new Schema({
     type: Number,
     required: true,
     min: 1,
-    max: 31
+    max: 31,
+    trim: true
   },
   location: {
     type: String,
     required: true,
+    trim: true
   },
   month: {
     type: String,
     required: true,
+    trim: true
+  },
+  year: {
+    type: String,
+    required: true,
+    trim: true
   },
   category: {
     type: String,
     required: true,
+    trim: true
   },
   imageUrl: {
     type: String,
