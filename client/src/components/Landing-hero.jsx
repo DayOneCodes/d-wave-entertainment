@@ -1,4 +1,4 @@
-import bgLandingPage from "../assets/shot.png";
+import bgLandingPage from "../assets/club-ii.jpg";
 
 function LandingHero ({onScrollToEvents, onScrollToServices}) {
   return (

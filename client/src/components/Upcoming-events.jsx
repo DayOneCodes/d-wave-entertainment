@@ -10,8 +10,12 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
       try {
         const res = await fetch("https://d-wave-entertainment.onrender.com/api/events/");
         const data = await res.json();
-        setUpcomingEvents(data);
-        console.log("Fetched upcoming events:", data);
+
+        const eventsCronological = data.reverse();
+        // UPDATE TO CARRY OUT: Sort event cronological by dates instead of simply reversing the data, because admin may not input the events in an organised manner, leading to a bug/error.
+
+        setUpcomingEvents(eventsCronological.slice(0, 3));
+        console.log("Fetched upcoming events:", eventsCronological.slice(0, 3));
       } catch (error) {
       console.error("Error fetching upcoming events:", error);
       }
@@ -34,32 +38,22 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
           </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Eventcard 
-            month="DEC"
-            date="27"
-            location="Catch twenty two"
-            category="Club Night"
-            title="Secret Saturday: Santa's Party"
-            imageUrl=""
-            ticketUrl="Fatsoma.com/auranbeats."
-          />
-          <Eventcard 
-            month="DEC"
-            date="06"
-            location="Players"
-            category="All white Party"
-            title="The winter soiée"
-            imageUrl=""
-          />
-          <Eventcard 
-            month="NOV"
-            date="22"
-            location="Junction 1ten"
-            category="After Party"
-            title="The Gist: Sodom & Gomorrah"
-            imageUrl=""
-          />
-
+            {
+              upcomingEvents.map((event,_) => {
+                
+                return (
+                  <Eventcard 
+                    month={event.month.slice(0,3)}
+                    date={event.date}
+                    location={event.location}
+                    category={event.category}
+                    title={event.title}
+                    imageUrl={event.imageUrl}
+                    ticketUrl={event.ticketUrl}
+                  />
+                )
+              })
+            }
           </div>
         </div>
       </section>
