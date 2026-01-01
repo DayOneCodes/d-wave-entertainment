@@ -2,9 +2,9 @@ import { Event } from "../models/events.model.js";
 
 const createEvent = async (req, res) => {
   try {
-    const { title, date, location, month, category, imageUrl, ticketUrl } = req.body;
+    const { title, date, location, month, year, category, imageUrl, ticketUrl } = req.body;
 
-    if (!title || !date || !location || !month || !category || !imageUrl || !ticketUrl) {
+    if (!title || !date || !location || !month || !category || !imageUrl || !ticketUrl || !year ) {
       return res.status(400).json({
         message: "All fields are required."
       })
