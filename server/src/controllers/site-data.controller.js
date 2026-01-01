@@ -2,7 +2,7 @@ import { SiteData } from "../models/site-data.model.js";
 
 const readSiteData = async (req, res) => {
   try {
-    const siteData = await siteData.find();
+    const siteData = await SiteData.find();
     return res.status(200).json({
       message: "Site data fetched successfully"
     })
