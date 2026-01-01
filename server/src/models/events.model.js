@@ -37,11 +37,11 @@ const eventSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    required: true,
+    required: false,
   },
   ticketUrl: {
     type: String,
-    required: true,
+    required: false,
   }
 }, {
   timestamps: true
