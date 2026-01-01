@@ -26,7 +26,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
-          <h2 className="text-4xl font-bold tracking-tight text-slate-900 dark:text-white mb-2">Upcoming Events</h2>
+          <h2 className="text-4xl font-bold tracking-tight text-primary mb-2">Upcoming Events</h2>
           <p className="text-slate-600 dark:text-gray-400">Don't miss out on the hottest parties in the city.</p>
           </div>
           <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all"   to={"/full-calendar"}>

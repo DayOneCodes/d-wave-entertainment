@@ -35,7 +35,7 @@ useEffect(() => {
                   <a className="text-sm font-medium hover:text-primary transition-colors" onClick={() => onScrollToServices()}>Services</a>
                   <NavLink className="text-sm font-medium hover:text-primary transition-colors" to="/contact">Contact</NavLink>
               </div>
-              <button className="bg-primary hover:bg-primary/90 transition-all text-white text-sm font-bold h-10 px-6 rounded-lg shadow-[0_0_20px_rgba(0,112,242,0.4)] hover:shadow-[0_0_30px_rgba(0,112,242,0.6)]">
+              <button className="bg-primary hover:bg-primary/90 transition-all text-white text-sm font-bold h-10 px-6 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_rgba(40,24,40,0.6)]">
                                         Book Now
               </button>
           </div>
