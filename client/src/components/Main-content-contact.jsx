@@ -5,27 +5,27 @@ function MainContentContact () {
 {/* <!-- Left Column: Contact Form --> */}
 <div className="flex flex-col flex-1 gap-6">
 <div className="flex flex-col gap-2">
-<h3 className="text-white text-2xl font-bold">Send us a message</h3>
+<h3 className="text-primary text-2xl font-bold">Send us a message</h3>
 <p className="text-[#b09cba] text-base">Fill out the form below and our team will get back to you within 24 hours.</p>
 </div>
 <form className="flex flex-col gap-5">
 <div className="flex flex-col md:flex-row gap-5">
 <label className="flex flex-col flex-1">
-<p className="text-white text-sm font-medium leading-normal pb-2">Name</p>
+<p className="text-primary text-sm font-medium leading-normal pb-2">Name</p>
 <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#4c3b54] bg-[#231b27] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="Your full name"/>
 </label>
 <label className="flex flex-col flex-1">
-<p className="text-white text-sm font-medium leading-normal pb-2">Email</p>
+<p className="text-primary text-sm font-medium leading-normal pb-2">Email</p>
 <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#4c3b54] bg-[#231b27] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="name@example.com" type="email"/>
 </label>
 </div>
 <div className="flex flex-col md:flex-row gap-5">
 <label className="flex flex-col flex-1">
-<p className="text-white text-sm font-medium leading-normal pb-2">Phone (Optional)</p>
+<p className="text-primary text-sm font-medium leading-normal pb-2">Phone (Optional)</p>
 <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#4c3b54] bg-[#231b27] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
 </label>
 <label className="flex flex-col flex-1">
-<p className="text-white text-sm font-medium leading-normal pb-2">Inquiry Type</p>
+<p className="text-primary text-sm font-medium leading-normal pb-2">Inquiry Type</p>
 <div className="relative">
 <select className="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#4c3b54] bg-[#231b27] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] pr-10 text-base font-normal leading-normal transition-all appearance-none">
 <option disabled="" selected="" value="">Select an option</option>
@@ -41,7 +41,7 @@ function MainContentContact () {
 </label>
 </div>
 <label className="flex flex-col flex-1">
-<p className="text-white text-sm font-medium leading-normal pb-2">Message</p>
+<p className="text-primary text-sm font-medium leading-normal pb-2">Message</p>
 <textarea className="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#4c3b54] bg-[#231b27] focus:border-primary min-h-[160px] placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="Tell us about your event or inquiry..."></textarea>
 </label>
 <button className="flex w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[#8e0bcf] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors mt-2 shadow-[0_0_20px_rgba(166,13,242,0.3)]">
@@ -53,20 +53,20 @@ function MainContentContact () {
 <div className="flex flex-col w-full lg:w-[400px] gap-8">
 {/* <!-- Info Cards --> */}
 <div className="flex flex-col gap-4">
-<h3 className="text-white text-2xl font-bold">Contact Info</h3>
+<h3 className="text-primary text-2xl font-bold">Contact Info</h3>
 <div className="flex flex-col gap-4">
 <div className="flex items-start gap-4 p-4 rounded-xl bg-[#231b27] border border-[#4c3b54]/50">
-<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-white">
 <span className="material-symbols-outlined">mail</span>
 </div>
 <div className="flex flex-col">
 <span className="text-[#b09cba] text-xs font-medium uppercase tracking-wider">Email</span>
-<a className="text-white text-base font-medium hover:text-primary transition-colors" href="mailto:hello@vibeparty.com">hello@vibeparty.com</a>
-<a className="text-white text-sm opacity-80 hover:text-primary transition-colors" href="mailto:booking@vibeparty.com">booking@vibeparty.com</a>
+<a className="text-white text-base font-medium hover:text-primary transition-colors" href="mailto:hello@vibeparty.com">hello@dwave.com</a>
+<a className="text-white text-sm opacity-80 hover:text-primary transition-colors" href="mailto:booking@vibeparty.com">booking@dwave.com</a>
 </div>
 </div>
 <div className="flex items-start gap-4 p-4 rounded-xl bg-[#231b27] border border-[#4c3b54]/50">
-<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-white">
 <span className="material-symbols-outlined">call</span>
 </div>
 <div className="flex flex-col">
@@ -76,19 +76,19 @@ function MainContentContact () {
 </div>
 </div>
 <div className="flex items-start gap-4 p-4 rounded-xl bg-[#231b27] border border-[#4c3b54]/50">
-<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+<div className="size-10 rounded-full bg-primary/20 flex items-center justify-center shrink-0 text-white">
 <span className="material-symbols-outlined">location_on</span>
 </div>
 <div className="flex flex-col">
 <span className="text-[#b09cba] text-xs font-medium uppercase tracking-wider">Headquarters</span>
-<p className="text-white text-base font-medium">123 Nightlife Blvd,<br/>Party District, NY 10012</p>
+<p className="text-white text-base font-medium">Coventry,<br/> UK ZIPCODE</p>
 </div>
 </div>
 </div>
 </div>
 {/* <!-- Socials --> */}
 <div className="flex flex-col gap-3">
-<h4 className="text-white text-lg font-bold">Follow Us</h4>
+<h4 className="text-primary text-lg font-bold">Follow Us</h4>
 <div className="flex gap-3">
 <a className="size-10 rounded-lg bg-[#231b27] border border-[#4c3b54] flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all group" href="#">
 {/* <!-- Using a generic generic icon for social representation as specific brand icons aren't in material symbols -->   */}
@@ -106,15 +106,6 @@ function MainContentContact () {
 </div>
 </div>
 {/* <!-- Map --> */}
-<div className="w-full h-48 rounded-xl overflow-hidden border border-[#4c3b54] relative group">
-<div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors z-10 pointer-events-none"></div>
-<div className="w-full h-full bg-cover bg-center grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Map showing location in New York City" data-location="New York, USA" style={{backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuDFKxB8WgB_n20LU0qKkexa3Hfz2L0puTGBIIpnlVdQIFjRajMmoFxL164ntKwYVeacqv0BrtbJWjBUbB3ZJGpCj8-wVnjJX6UTB8Z1FvdmMkyoOE1nn-gUTo4aidHpmbiNnS-LjrV-0REl9svs9LwsN6yfumJJINgrVfc2mq1__rpemfgArzoMoyRWqUujBay1uaayAE4c7G7REnsZpBsJKQfYDXICLtcjpU414YOp36f_NsHuXg4ksxcRn9PL2aWzzWeTKwwJ3Bo")`
-}}>
-</div>
-<div className="absolute bottom-3 right-3 z-20">
-<button className="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded shadow-lg hover:bg-[#8e0bcf]">Open Map</button>
-</div>
-</div>
 </div>
 </div>
 </div>
