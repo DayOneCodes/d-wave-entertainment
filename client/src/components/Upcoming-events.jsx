@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards";
 import { forwardRef, useState, useEffect } from "react";
+import { useEventData } from "../contexts/EventDataContext.jsx";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -22,6 +23,8 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
     };
 
     fetchEvents();
+
+    console.log(useEventData().eventData)
   }, [])
 
   return (
