@@ -5,6 +5,6 @@ const router = Router();
 
 router.route("/").get(readEvents);
 router.route("/create-event").post(createEvent);
-router.route("/delete-event:id").delete(deleteEvent)
+router.route("/delete-event/:id").delete(deleteEvent)
 
 export default router;
