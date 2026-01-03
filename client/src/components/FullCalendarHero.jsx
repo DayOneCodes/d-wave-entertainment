@@ -1,12 +1,13 @@
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
+import backgroundImage from "../assets/club-ii.jpg"
 
 function FullCalendarHero() {
   const {eventsChronological} = useChronologicalEvents();
 
   return (
     <>
-      <div className="w-full relative">
-<div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: 'linear-gradient(to top, #221022 0%, rgba(34, 16, 34, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%), url("")'}}>
+<div className="w-full relative mt-12 md:mt-0">
+<div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: `url(${backgroundImage})`}}>
 <div className="layout-content-container max-w-[1200px] w-full px-4 sm:px-10 flex flex-col md:flex-row items-end md:items-center justify-between gap-8">
 <div className="flex flex-col gap-4 max-w-2xl">
 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/40 w-fit backdrop-blur-sm">
@@ -29,7 +30,7 @@ function FullCalendarHero() {
                                 Join us for an unforgettable night of sound and light featuring birthday celebration from SKY, spinning deep house and techno until sunrise.
                             </p>
 <div className="flex gap-4 mt-2">
-<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-primary hover:bg-primary/90 text-white text-base font-bold shadow-[0_0_20px_rgba(0,112,242,0.4)] transition-all transform hover:scale-105">
+<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white hover:white/90 text-primary text-base font-bold shadow-[0_0_30px_rgba(40,24,40,0.6)] transition-all transform hover:scale-105">
                                     Get Tickets
                                 </button>
 <button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-base font-bold transition-all">

@@ -1,6 +1,9 @@
 import { forwardRef } from "react";
-import bottles from "../assets/club-iv.jpg"
-import girls from "../assets/girls.jpeg"
+import photoUn from "../assets/service-I.jpg";
+import photoDeux from "../assets/service-II.jpg";
+import photoTrois from "../assets/service-III.jpg";
+import photoQuatre from "../assets/service-IV.jpg";
+
 
 const Services = forwardRef(function Services (props, ref) {
   return (
@@ -50,12 +53,12 @@ const Services = forwardRef(function Services (props, ref) {
           <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl"></div>
           <div className="relative grid grid-cols-2 gap-4">
           <div className="space-y-4 translate-y-8">
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Female singer performing on stage" style={{backgroundImage: `url(${bottles})`}}></div>
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url()`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Female singer performing on stage" style={{backgroundImage: `url(${photoDeux})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(${photoUn})`}}></div>
           </div>
           <div className="space-y-4">
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Backstage pass and equipment" style={{backgroundImage: "url()"}}></div>
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Crowd cheering at a concert" style={{backgroundImage: `url(${girls})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Backstage pass and equipment" style={{backgroundImage: `url(${photoTrois})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Crowd cheering at a concert" style={{backgroundImage: `url(${photoQuatre})`}}></div>
           </div>
           </div>
           </div>

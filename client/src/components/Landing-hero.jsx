@@ -6,12 +6,7 @@ function LandingHero ({onScrollToEvents, onScrollToServices}) {
       <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
 
       <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed" data-alt="Crowd at a concert with purple lighting and confetti" style={{
-          backgroundImage: `linear-gradient(
-          to bottom,
-          rgba(28, 16, 34, 0.4) 0%,
-          rgba(28, 16, 34, 0.9) 90%,
-          rgba(28, 16, 34, 1) 100%
-          ), url("${bgLandingPage}")
+          backgroundImage: `url("${bgLandingPage}")
           `,
           }}>
       </div>

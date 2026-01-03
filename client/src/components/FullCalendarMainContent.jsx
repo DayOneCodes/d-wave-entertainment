@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
+import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
 
 
 function FullCalendarMainContent() {
+  const { eventsChronological, thisMonthEvent } = useChronologicalEvents();
+
   const todayDate = new Date();
   const daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const lesMoins = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const ceMoinIndex = todayDate.getMonth();
-
-
+  const [ceMoinIndex, setCeMoinIndex] = useState(todayDate.getMonth());
   const [currentDate, setCurrentDate] = useState(0);
   const [daysInMonth, setDaysInMonth] = useState(0);
   const [firstDay, setFirstDay] = useState(0);
@@ -59,8 +60,8 @@ function FullCalendarMainContent() {
       const numberOfDaysFromLastMonth = firstDay ? firstDay - 1: 6;
       const numberOfDaysFromNextMonth = totalGrids - numberOfDaysFromLastMonth - daysInMonth;
       const calendarLastMonthDays = [];
-
       const CalendarlastMonthStart = lastMonthLastDay - numberOfDaysFromLastMonth + 1;
+  
 
       for (let x = CalendarlastMonthStart; x <= lastMonthLastDay; x++){
         calendarLastMonthDays.push(x)
@@ -82,14 +83,39 @@ function FullCalendarMainContent() {
                   </div>)
           }
           else {
-            grids.push(
-              (y-numberOfDaysFromLastMonth) === currentDate ?
-                    <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/5 shadow-inner relative ring-1 ring-inset ring-primary/30">
-                    <span className="flex items-center justify-center size-7 rounded-full bg-primary text-white font-bold text-sm shadow-[0_0_8px_rgba(244,37,244,0.6)]">{y-numberOfDaysFromLastMonth}</span>
-                    </div>:
+
+            const dayNumber = y -numberOfDaysFromLastMonth
+            const eventDay = thisMonthEvent.find((event)=>{
+              return String(event.date) === String(dayNumber)
+            });
+
+            if (dayNumber === currentDate){
+              grids.push(
+                <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/5 shadow-inner relative ring-1 ring-inset ring-primary/30">
+                <span className="flex items-center justify-center size-7 rounded-full bg-primary text-white font-bold text-sm shadow-[0_0_8px_blue]">{y-numberOfDaysFromLastMonth}</span>
+                </div>
+              )
+            } else if (eventDay) {
+                grids.push(
+                  <div className="min-h-[120px] p-2 border-b border-r border-border-dark hover:bg-white/5 transition-colors group">
+                  <span className="text-white font-medium text-sm">{dayNumber}</span>
+                  <div className="mt-2 p-1.5 rounded bg-primary/20 border border-primary/40 cursor-pointer hover:bg-primary/30 transition-colors shadow-[0_0_10px_blue]">
+                  <div className="flex items-center gap-1 mb-0.5">
+                  <div className="size-1.5 rounded-full bg-primary"></div>
+                  <span className="text-[10px] text-white font-bold">11:00 PM</span>
+                  </div>
+                  <p className="text-xs text-white font-bold truncate">{eventDay.location}</p>
+                  </div>
+                  </div>
+                )
+            }
+            else {
+              grids.push(
               <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/[0.02]">
               <span className="text-white font-medium text-sm">{y-numberOfDaysFromLastMonth}</span>
-              </div>)
+              </div>
+              )
+            }
           }
           
         }
@@ -100,6 +126,45 @@ function FullCalendarMainContent() {
       )
     }
 
+
+    function listViewFunction () {
+      const listView = [];
+
+      eventsChronological.forEach((event) => {
+
+      listView.unshift(
+        <div className="group flex flex-col md:flex-row gap-4 p-5 border-b border-border-dark hover:bg-white/5 transition-all relative overflow-hidden mb-4">
+        <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-100 transition-opacity"></div>
+        <div className="flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 md:w-20 md:h-20 rounded-2xl border border-primary/50 bg-primary/10 transition-colors shrink-0 p-3 md:p-0">
+        <span className="text-sm font-bold text-primary uppercase">{event.month}</span>
+        <span className="text-2xl md:text-3xl font-black text-primary leading-none">{event.date}</span>
+        </div>
+        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
+        <div className="lg:col-span-2 flex flex-col gap-1.5">
+        <div className="flex items-center gap-3 text-xs font-bold tracking-wide">
+        <span className="text-primary">10:00 PM</span>
+        <span className="w-1 h-1 rounded-full bg-border-dark"></span>
+        <span className="text-text-muted uppercase">Featured</span>
+        </div>
+        <h4 className="text-primary text-xl font-bold transition-colors">{event.title}</h4>
+        <div className="flex items-center gap-2 text-sm text-text-muted mt-0.5">
+        <span className="material-symbols-outlined text-base">location_on</span>
+                                {event.location}
+                            </div>
+        </div>
+        <div className="flex md:flex-col lg:flex-row items-center justify-start md:justify-end gap-3 mt-2 md:mt-0">
+        <a className="hidden md:flex items-center justify-center size-10 rounded-full border text-white hover:text-primary bg-primary hover:bg-primary/10 border-primary transition-all" href="#">
+        <span className="material-symbols-outlined">arrow_outward</span>
+        </a>
+        <a className="md:hidden text-sm font-bold text-primary" href="#">View Details</a>
+        </div>
+        </div>
+        </div>
+      )
+      });
+
+      return (listView)
+    }
 
 
 
@@ -196,6 +261,8 @@ function FullCalendarMainContent() {
 <div className="grid grid-cols-7 auto-rows-fr bg-[#221022]">
   
   {
+    !thisMonthEvent ? 
+    <p>Loading...</p>:
     gridsFunction()
   }
 {/* <!-- Week 1 -->
@@ -355,7 +422,17 @@ function FullCalendarMainContent() {
 </div> */}
 </div>
 </div>
-<div className={`${viewMode === "list" ? "block" : "hidden"} font-poppins font-bold text-lg`}>List View Coming Soon...</div>
+
+{/* List View */}
+<div className={`${viewMode === "list" ? "block" : "hidden"} flex-1 w-full font-poppins font-bold text-lg h-[747px] md:h-auto overflow-y-scroll`}>
+    {  
+      !eventsChronological ?
+      <p>Loading</p> :
+      listViewFunction()
+    }
+  </div>
+{/* End of List View */}
+
 {/* <!-- Sidebar (Trending/Artists) --> */}
 <aside className="w-full lg:w-80 flex flex-col gap-6 shrink-0">
 {/* <!-- Artist Spotlight Card --> */}

@@ -1,6 +1,9 @@
+import theExperience from "../assets/the-experience.jpg";
+import theTalent from "../assets/the-talent.jpg";
+
 function MissionSection  () {
   return (
-    <section className="bg-[#161118] relative overflow-hidden">
+    <section className="bg-primary relative overflow-hidden">
 
 <div className="absolute top-0 right-0 w-1/3 h-full bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
 <div className="px-4 py-16 md:px-10 lg:px-20 xl:px-40 flex justify-center relative z-10">
@@ -21,7 +24,7 @@ function MissionSection  () {
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
 <div className="group flex flex-col gap-4">
 <div className="w-full h-64 bg-center bg-primary bg-no-repeat bg-cover rounded-xl border border-border-dark group-hover:border-primary/50 transition-all duration-300 relative overflow-hidden" data-alt="Abstract vibrant rave lights and smoke" style={{
-  backgroundImage: `url("")`}}>
+  backgroundImage: `url(${theExperience})`}}>
 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
 </div>
 <div>
@@ -33,7 +36,7 @@ function MissionSection  () {
 </div>
 <div className="group flex flex-col gap-4">
 <div className="w-full h-64 bg-center bg-primary bg-no-repeat bg-cover rounded-xl border border-border-dark group-hover:border-primary/50 transition-all duration-300 relative overflow-hidden" data-alt="Music producer working in a dark studio with purple lighting" style={{
-  backgroundImage: `url("")`}}>
+  backgroundImage: `url(${theTalent})`}}>
 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
 </div>
 <div>
