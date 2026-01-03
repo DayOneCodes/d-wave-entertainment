@@ -8,6 +8,8 @@ export function EventDataProvider ({ children }) {
   const [ eventData, setEventData ] = useState(null);
   const [ error,  setError ] = useState(null)
 
+
+  // Update: Separate Effect for fetching from effect for sorting
   useEffect(() => {
       async function loadEventData () {
         try {

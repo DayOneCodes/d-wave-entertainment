@@ -14,6 +14,7 @@ function FullCalendarMainContent() {
   const [lastMonthLastDay, setLastMonthLastDay] = useState(0);
   const [thisMonth, setThisMonth] = useState(lesMoins[ceMoinIndex]);
   const [thisYear, setThisYear] = useState(todayDate.getFullYear())
+  const [viewMode, setViewMode] = useState("calendar")
 
   useEffect (() => {
     const todayDayNumber = todayDate.getDate();
@@ -74,16 +75,23 @@ function FullCalendarMainContent() {
           )
         }
         else if (y > numberOfDaysFromLastMonth){
-          grids.push(
-              y - numberOfDaysFromLastMonth > daysInMonth ?
-              <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/[0.02]">
-              <span className="text-white font-medium text-sm">{totalGrids - (y - numberOfDaysFromNextMonth)}</span>
-              </div>
-              :
+          if (y-numberOfDaysFromLastMonth > daysInMonth) {
+            grids.push(
+                  <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/[0.02]">
+                  <span className="text-white font-medium text-sm">{totalGrids - (y - numberOfDaysFromNextMonth)}</span>
+                  </div>)
+          }
+          else {
+            grids.push(
+              (y-numberOfDaysFromLastMonth) === currentDate ?
+                    <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/5 shadow-inner relative ring-1 ring-inset ring-primary/30">
+                    <span className="flex items-center justify-center size-7 rounded-full bg-primary text-white font-bold text-sm shadow-[0_0_8px_rgba(244,37,244,0.6)]">{y-numberOfDaysFromLastMonth}</span>
+                    </div>:
               <div className="min-h-[120px] p-2 border-b border-r border-border-dark bg-white/[0.02]">
               <span className="text-white font-medium text-sm">{y-numberOfDaysFromLastMonth}</span>
-              </div> 
-          )
+              </div>)
+          }
+          
         }
   }
 
@@ -92,10 +100,6 @@ function FullCalendarMainContent() {
       )
     }
 
-   async function fetchEvents () {
-    const res = await fetch ();
-    const data = await res.json(); 
-  }
 
 
 
@@ -139,23 +143,27 @@ function FullCalendarMainContent() {
 </div>
 {/* <!-- View Switcher --> */}
 <div className="flex h-12 items-center rounded-xl bg-surface-dark p-1 border border-border-dark">
-<label className="flex cursor-pointer h-full items-center justify-center rounded-lg px-4 bg-primary/10 text-primary shadow-sm transition-all">
+<label className={`flex cursor-pointer h-full items-center justify-center rounded-lg px-4 ${viewMode === "calendar" ? "bg-primary/10 text-primary shadow-sm" : "hover:bg-white/5 text-text-muted"} transition-all`} onClick={() => {
+  setViewMode("calendar");
+}}>
 <span className="material-symbols-outlined mr-2 text-lg">calendar_month</span>
-<span className="text-sm font-bold">Calendar</span>
+<span className={`text-sm ${viewMode === "calendar"? "font-bold" : "font-medium"}`}>Calendar</span>
 <input className="hidden" name="view" type="radio" value="Calendar"/>
 </label>
-<label className="flex cursor-pointer h-full items-center justify-center rounded-lg px-4 hover:bg-white/5 text-text-muted transition-all">
+<label className={`flex cursor-pointer h-full items-center justify-center rounded-lg px-4 ${viewMode === "list" ? "bg-primary/10 text-primary shadow-sm" : "hover:bg-white/5 text-text-muted"}  transition-all`} onClick={() => {
+  setViewMode("list");
+}}>
 <span className="material-symbols-outlined mr-2 text-lg">list</span>
-<span className="text-sm font-medium">List</span>
+<span className={`text-sm ${viewMode === "list"? "font-bold" : "font-medium"}`}>List</span>
 <input className="hidden" name="view" type="radio" value="List"/>
 </label>
 </div>
 </div>
 </div>
 {/* <!-- Calendar Content Area --> */}
-<div className="flex flex-col lg:flex-row gap-8 items-start">
+<div className="flex flex-col  lg:flex-row gap-8 items-start">
 {/* <!-- Calendar Grid --> */}
-<div className="flex-1 w-full bg-surface-dark rounded-2xl border border-border-dark overflow-hidden shadow-xl">
+<div className={`${viewMode === "calendar" ? "block" : "hidden"} flex-1 w-full bg-surface-dark rounded-2xl border border-border-dark overflow-hidden shadow-xl`}>
 {/* <!-- Calendar Header (Month Navigation) --> */}
 <div className="flex items-center justify-between p-6 border-b border-border-dark bg-[#281828]">
 <h3 className="text-xl font-bold text-white flex items-center gap-2">
@@ -181,8 +189,8 @@ function FullCalendarMainContent() {
 <div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-white">Wed</div>
 <div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-white">Thu</div>
 <div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-white">Fri</div>
-<div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-text-muted text-primary">Sat</div>
-<div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-text-muted text-primary">Sun</div>
+<div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-text-muted text-blue-500">Sat</div>
+<div className="py-3 text-center text-xs font-bold uppercase tracking-widest text-text-muted text-blue-500">Sun</div>
 </div>
 {/* <!-- Dates Grid --> */}
 <div className="grid grid-cols-7 auto-rows-fr bg-[#221022]">
@@ -347,6 +355,7 @@ function FullCalendarMainContent() {
 </div> */}
 </div>
 </div>
+<div className={`${viewMode === "list" ? "block" : "hidden"} font-poppins font-bold text-lg`}>List View Coming Soon...</div>
 {/* <!-- Sidebar (Trending/Artists) --> */}
 <aside className="w-full lg:w-80 flex flex-col gap-6 shrink-0">
 {/* <!-- Artist Spotlight Card --> */}

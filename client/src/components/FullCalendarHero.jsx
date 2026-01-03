@@ -1,16 +1,29 @@
+import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
+
 function FullCalendarHero() {
+  const {eventsChronological} = useChronologicalEvents();
+
   return (
     <>
       <div className="w-full relative">
 <div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: 'linear-gradient(to top, #221022 0%, rgba(34, 16, 34, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%), url("")'}}>
 <div className="layout-content-container max-w-[1200px] w-full px-4 sm:px-10 flex flex-col md:flex-row items-end md:items-center justify-between gap-8">
 <div className="flex flex-col gap-4 max-w-2xl">
-<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 w-fit backdrop-blur-sm">
-<span className="size-2 rounded-full bg-primary animate-pulse"></span>
-<span className="text-xs font-bold text-primary uppercase tracking-wider">Featured Event</span>
+<div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/40 w-fit backdrop-blur-sm">
+<span className="size-2 rounded-full bg-white animate-pulse"></span>
+<span className="text-xs font-bold text-white uppercase tracking-wider">UP NEXT</span>
 </div>
 <h1 className="text-white text-4xl sm:text-5xl md:text-6xl uppercase font-black leading-tight tracking-[-0.033em] neon-text-shadow">
-                                Secret Saturday: Santa's Party
+                                {
+                                  //UPDATE: use Date to query next event as the next event may not always be the first on the array.
+                                  !eventsChronological ? 
+                                  (
+                                    <p>Loading...</p>
+                                  ) :
+                                  (
+                                <p>{eventsChronological[0].title}</p>
+                                )
+                                }
                             </h1>
 <p className="text-gray-200 text-base sm:text-lg font-normal max-w-lg">
                                 Join us for an unforgettable night of sound and light featuring birthday celebration from SKY, spinning deep house and techno until sunrise.
@@ -24,26 +37,26 @@ function FullCalendarHero() {
                                 </button>
 </div>
 </div>
-<div className="glass-panel p-6 rounded-xl border border-white/10 shadow-2xl min-w-[300px] hidden lg:block">
-<p className="text-text-muted text-xs font-bold uppercase tracking-widest mb-4 text-center">Event Starts In</p>
+<div className="glass-panel p-6 rounded-xl border border-white/20 shadow-2xl min-w-[300px] hidden lg:block">
+<p className="text-white text-xs font-bold uppercase tracking-widest mb-4 text-center">Event Starts In</p>
 <div className="flex gap-3 justify-center">
 <div className="flex flex-col items-center gap-1">
 <div className="flex size-14 items-center justify-center rounded-lg bg-surface-dark border border-border-dark">
 <p className="text-white text-2xl font-bold font-mono">04</p>
 </div>
-<p className="text-text-muted text-[10px] uppercase">Days</p>
+<p className="text-white text-[10px] uppercase">Days</p>
 </div>
 <div className="flex flex-col items-center gap-1">
 <div className="flex size-14 items-center justify-center rounded-lg bg-surface-dark border border-border-dark">
 <p className="text-white text-2xl font-bold font-mono">12</p>
 </div>
-<p className="text-text-muted text-[10px] uppercase">Hours</p>
+<p className="text-white text-[10px] uppercase">Hours</p>
 </div>
 <div className="flex flex-col items-center gap-1">
 <div className="flex size-14 items-center justify-center rounded-lg bg-surface-dark border border-border-dark">
 <p className="text-white text-2xl font-bold font-mono">30</p>
 </div>
-<p className="text-text-muted text-[10px] uppercase">Mins</p>
+<p className="text-white text-[10px] uppercase">Mins</p>
 </div>
 </div>
 </div>

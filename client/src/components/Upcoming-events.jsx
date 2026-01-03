@@ -1,31 +1,10 @@
 import { Link } from "react-router-dom";
-import Eventcard from "./Event-cards";
+import Eventcard from "./Event-cards.jsx";
 import { forwardRef, useState, useEffect } from "react";
-import { useEventData } from "../contexts/EventDataContext.jsx";
+import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
-  const [upcomingEvents, setUpcomingEvents] = useState([]);
-
-  useEffect(() => {
-    async function fetchEvents () {
-      try {
-        const res = await fetch("https://d-wave-entertainment.onrender.com/api/events/");
-        const data = await res.json();
-
-        const eventsCronological = data.reverse();
-        // UPDATE TO CARRY OUT: Sort event cronological by dates instead of simply reversing the data, because admin may not input the events in an organised manner, leading to a bug/error.
-
-        setUpcomingEvents(eventsCronological.slice(0, 3));
-        console.log("Fetched upcoming events:", eventsCronological.slice(0, 3));
-      } catch (error) {
-      console.error("Error fetching upcoming events:", error);
-      }
-    };
-
-    fetchEvents();
-
-    console.log(useEventData().eventData)
-  }, [])
+  const { eventsChronological } = useChronologicalEvents();
 
   return (
     <> 
@@ -41,8 +20,10 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
           </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {
-              upcomingEvents.map((event,_) => {
+            { !eventsChronological ?
+            (<p>Loading Events...</p>) :
+            (
+              eventsChronological.slice(0,3).map((event,_) => {
                 
                 return (
                   <Eventcard 
@@ -56,6 +37,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
                   />
                 )
               })
+            )
             }
           </div>
         </div>
