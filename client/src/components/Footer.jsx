@@ -13,7 +13,6 @@ function Footer () {
 <div className="layout-content-container max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 <div className="flex flex-col gap-4 items-center md:items-start">
 <div className="flex items-center gap-2 text-white mb-2">
-<img src={Logo} alt="D Wave Entertainment Logo" className="w-8 h-8 object-contain"/>
 <span className="text-xl font-bold uppercase tracking-tight">D WAVE ENTERTAINMENT</span>
 </div>
 <p className="text-gray-400 text-sm leading-relaxed  text-center md:text-left">

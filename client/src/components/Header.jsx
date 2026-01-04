@@ -46,19 +46,21 @@ useEffect(() => {
           <span className="material-symbols-outlined" onClick={ () => {
             setMobileNavOpen(!mobileNavOpen)
           } 
-          }>menu</span>
+          }>menu
+          
+          </span>
           </div>
           </div>
           </div>
           </div>
 
           {/* {Mobile Nav} */}
-          <nav className={`${mobileNavOpen ? 'opacity-1' : 'opacity-0'}  md:hidden w-full bg-white h-[170px] absolute top-[110.9px] text-primary font-medium transition-all duration-300 flex`}>
-            <ul className="flex flex-col items-center gap-2 m-auto">
-              <li><a onClick={() => onScrollToEvents()}>Upcoming Events</a></li>
-              <li><NavLink to="/about-us">About Us</NavLink></li>
-              <li><a onClick={() => onScrollToServices()}>Services</a></li>
-              <li><NavLink to="/contact">Contact</NavLink></li>
+          <nav className={`${mobileNavOpen ? 'opacity-1 h-[170px]' : 'opacity-1 h-[0px]'}  md:hidden w-full bg-white absolute top-[110.9px] text-primary font-medium transition-all duration-250 flex`}>
+            <ul className={`${mobileNavOpen ? "" : "h-[0px]"} flex flex-col items-center gap-2 m-auto`}>
+              <li className={`${mobileNavOpen ? "" : "translate-y-[-30px] opacity-0"} transition-all duration-200`}><a onClick={ () => mobileNavOpen && onScrollToEvents()}>Upcoming Events</a></li>
+              <li className={`${mobileNavOpen ? "" : "translate-y-[-60px] opacity-0"} transition-all duration-200`}><NavLink to={mobileNavOpen && "/about-us"}>About Us</NavLink></li>
+              <li className={`${mobileNavOpen ? "" : "translate-y-[-90px] opacity-0"} transition-all duration-200`}><a onClick={() => mobileNavOpen && onScrollToEvents()}>Services</a></li>
+              <li className={`${mobileNavOpen ? "" : "translate-y-[-120px] opacity-0"} transition-all duration-200`}><NavLink to={mobileNavOpen && "/contact"}>Contact</NavLink></li>
             </ul>
           </nav>
       </nav>
