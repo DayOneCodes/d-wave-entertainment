@@ -1,15 +1,45 @@
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 function MainContentContact () {
   const [whatsappText, setWhatsappText] = useState("Hello, I would like to get in touch with D-Wave Entertainment");
-  const [whatsappUrl, setWhatsappUrl] = useState("")
+  const [whatsappUrl, setWhatsappUrl] = useState("");
+  const [status, setStatus] = useState()
+  const form = useRef();
   
   useEffect(() => {
     setWhatsappUrl(`https://wa.me/2347069400682?text=${encodeURIComponent(whatsappText)}`)
   }, [whatsappText])
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const emailParams = {
+      title: form.current.title.value,
+      name: form.current.name.value,
+      message: form.current.message.value,
+      phoneNumber: form.current.phoneNumber.value || ".",
+      email: form.current.email.value
+    }
+
+    emailjs.send(
+      import.meta.env.VITE_EMAIL_JS_SERVICE_ID,
+      import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID,
+      emailParams,
+      import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY
+    )
+    .then((res) => {
+      setStatus("Message Send Success")
+      form.current.reset();
+    }, (error) => {
+      console.log(error.text)
+      setStatus("Message send Failed, Try Again Later")
+    })
+
+
+  }
 
   return (
 <div className="layout-container flex flex-col grow w-full items-center px-4 md:px-10 lg:px-40 pb-20 mt-5">
@@ -20,27 +50,27 @@ function MainContentContact () {
 <h3 className="text-primary text-2xl font-bold">Send us a message</h3>
 <p className="text-black text-base">Fill out the form below and our team will get back to you within 24 hours.</p>
 </div>
-<form className="flex flex-col gap-5">
+<form className="flex flex-col gap-5" ref={form} onSubmit={sendEmail}>
 <div className="flex flex-col md:flex-row gap-5">
 <label className="flex flex-col flex-1">
 <p className="text-primary text-sm font-medium leading-normal pb-2">Name</p>
-<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="Your full name"/>
+<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" name="name" placeholder="Your full name" required/>
 </label>
 <label className="flex flex-col flex-1">
 <p className="text-primary text-sm font-medium leading-normal pb-2">Email</p>
-<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="name@example.com" type="email"/>
+<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" name="email" placeholder="name@example.com" type="email" required/>
 </label>
 </div>
 <div className="flex flex-col md:flex-row gap-5">
 <label className="flex flex-col flex-1">
 <p className="text-primary text-sm font-medium leading-normal pb-2">Phone (Optional)</p>
-<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="+1 (555) 000-0000" type="tel"/>
+<input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" name="phoneNumber" placeholder="+1 (555) 000-0000" type="tel"/>
 </label>
 <label className="flex flex-col flex-1">
 <p className="text-primary text-sm font-medium leading-normal pb-2">Inquiry Type</p>
 <div className="relative">
-<select className="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-primary focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] pr-10 text-base font-normal leading-normal transition-all appearance-none">
-<option disabled="" selected="" value="">Select an option</option>
+<select className="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-primary focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] pr-10 text-base font-normal leading-normal transition-all appearance-none" name="title" defaultValue={""} required>
+<option value="" disabled>Select an option</option>
 <option value="artist">Artist Management</option>
 <option value="events">Private Events</option>
 <option value="general">General Inquiry</option>
@@ -54,11 +84,12 @@ function MainContentContact () {
 </div>
 <label className="flex flex-col flex-1">
 <p className="text-primary text-sm font-medium leading-normal pb-2">Message</p>
-<textarea className="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary min-h-[160px] placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" placeholder="Tell us about your event or inquiry..."></textarea>
+<textarea className="form-textarea flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary min-h-[160px] placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" name="message"  required placeholder="Tell us about your event or inquiry..."></textarea>
 </label>
-<button className="flex w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[rgba(40,24,40,0.4)] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors mt-2 shadow-[0_0_20px_rgba(40,24,40,0.4)]">
+<button className="flex w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[rgba(40,24,40,0.4)] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors mt-2 shadow-[0_0_20px_rgba(40,24,40,0.4)]" type="submit">
 <span className="truncate">Send Message</span>
 </button>
+<p className="text-green-500 font-medium font-poppins">{status}</p>
 </form>
 </div>
 {/* <!-- Right Column: Info & Map --> */}
