@@ -12,12 +12,12 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
 
   return (
     <> 
-      <section className="py-24 px-4 md:px-10 lg:px-40 bg-background-light dark:bg-background-dark" id="events" ref={ref}>
+      <section className="py-24 px-4 md:px-10 lg:px-40 bg-background-light" id="events" ref={ref}>
         <div className="max-w-[1200px] mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
           <h2 className="text-4xl font-bold tracking-tight text-primary mb-2">Upcoming Events</h2>
-          <p className="text-slate-600 dark:text-gray-400">Don't miss out on the hottest parties in the city.</p>
+          <p className="text-slate-600 ">Don't miss out on the hottest parties in the city.</p>
           </div>
           <Link className="text-primary font-bold flex items-center gap-1 hover:gap-2 transition-all"   to={"events"}>
           View All Events <span className="material-symbols-outlined text-sm">arrow_forward</span>

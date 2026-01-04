@@ -9,7 +9,7 @@ function ContactHero () {
                   <h1 className="text-white text-5xl font-black leading-tight tracking-[-0.033em] md:text-6xl">
                       Get In Touch
                   </h1>
-                  <h2 className="text-gray-300 text-lg font-normal leading-relaxed md:text-xl">
+                  <h2 className="text-gray-300 text-lg font-bold leading-relaxed md:text-xl">
                      Ready to elevate your event? Whether it's artist management, private parties, or general inquiries, we're here to make it happen.
                   </h2>
               </div>

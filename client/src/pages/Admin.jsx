@@ -1,7 +1,12 @@
+import ContentManagement from "../components/ContentManagement";
+import CreateEvent from "../components/CreateEvent";
+
 function Admin () {
   return (
     <>
-    <div>BienVenue SKY, Qu'est-ce ue vous voulez faire aujourdui ?</div>
+    <h1 className="font-poppins text-primary text-2xl font-bold m-4">Welcome To The Admin Area</h1>
+    <CreateEvent />
+        {/* <ContentManagement />  Adding to update to allow site owner control site content easily*/ }
     </>
   )
 }

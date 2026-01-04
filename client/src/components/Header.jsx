@@ -17,11 +17,11 @@ useEffect(() => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-light/80 border-b border-gray-200 dark:border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-light/80 border-b border-gray-200">
           <div className="layout-container flex h-full grow flex-col">
           <div className="px-4 md:px-10 lg:px-40 flex justify-center">
           <div className="layout-content-container flex flex-col md:flex-row gap-4 w-full max-w-[1200px] items-center justify-between py-4">
-          <div className="flex items-center gap-4 text-slate-900 dark:text-white" onClick={
+          <div className="flex items-center gap-4 text-slate-900" onClick={
            () => {navigate("/")}
           }>
               <div className="size-8 text-primary">
