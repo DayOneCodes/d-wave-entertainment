@@ -21,7 +21,7 @@ export function EventChronologicalProvider ({children}) {
 }
   ]);
   const lesMoins = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const [ceMoinIndex, setCeMoinIndex] = useState(new Date().getMonth());
+  const [ceMoinIndexI, setCeMoinIndexI] = useState(new Date().getMonth());
 
   
   useEffect(() => {
@@ -32,17 +32,17 @@ export function EventChronologicalProvider ({children}) {
 
     const thisMonth = []
     reversed.forEach((event) => {
-      if (event.month.toLowerCase() === lesMoins[ceMoinIndex].toLowerCase()){
+      if (event.month.toLowerCase() === lesMoins[ceMoinIndexI].toLowerCase()){
         thisMonth.unshift(event)
       }
     });
 
-    // setThisMonthEvent(thisMonth)
+    setThisMonthEvent(thisMonth)
 
-  }, [eventData, ceMoinIndex])
+  }, [eventData, ceMoinIndexI])
 
   return (
-    <EventsChronologicalContext.Provider value={{eventsChronological, thisMonthEvent, setCeMoinIndex}}>
+    <EventsChronologicalContext.Provider value={{eventsChronological, thisMonthEvent, setCeMoinIndexI}}>
       {children}
     </EventsChronologicalContext.Provider>
   )

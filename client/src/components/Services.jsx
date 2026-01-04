@@ -1,8 +1,8 @@
 import { forwardRef } from "react";
-import photoUn from "../assets/service-I.jpg";
-import photoDeux from "../assets/service-II.jpg";
-import photoTrois from "../assets/service-III.jpg";
-import photoQuatre from "../assets/service-IV.jpg";
+import photoUn from "../assets/service-I.webp";
+import photoDeux from "../assets/service-II.webp";
+import photoTrois from "../assets/service-III.webp";
+import photoQuatre from "../assets/service-IV.webp";
 
 
 const Services = forwardRef(function Services (props, ref) {
@@ -13,7 +13,7 @@ const Services = forwardRef(function Services (props, ref) {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1">
           <span className="text-primary font-bold tracking-widest uppercase text-sm mb-2 block">Management</span>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 leading-tight">
                                     Elevating Talent to the <span className="text-primary">Global Stage</span>
           </h2>
           <p className="text-slate-600 dark:text-gray-300 text-lg mb-10 leading-relaxed">
@@ -53,7 +53,7 @@ const Services = forwardRef(function Services (props, ref) {
           <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl"></div>
           <div className="relative grid grid-cols-2 gap-4">
           <div className="space-y-4 translate-y-8">
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Female singer performing on stage" style={{backgroundImage: `url(${photoDeux})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(${photoDeux})`}}></div>
           <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(${photoUn})`}}></div>
           </div>
           <div className="space-y-4">

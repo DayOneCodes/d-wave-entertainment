@@ -38,7 +38,7 @@ function FullCalendarHero() {
                                 </button>
 </div>
 </div>
-<div className="glass-panel p-6 rounded-xl border border-white/20 shadow-2xl min-w-[300px] hidden lg:block">
+{/* <div className="glass-panel p-6 rounded-xl border border-white/20 shadow-2xl min-w-[300px] hidden lg:block">
 <p className="text-white text-xs font-bold uppercase tracking-widest mb-4 text-center">Event Starts In</p>
 <div className="flex gap-3 justify-center">
 <div className="flex flex-col items-center gap-1">
@@ -60,7 +60,7 @@ function FullCalendarHero() {
 <p className="text-white text-[10px] uppercase">Mins</p>
 </div>
 </div>
-</div>
+</div> */}
 </div>
 </div>
 </div>

@@ -24,6 +24,7 @@ function Landingpage () {
   })
  }
 
+
  const location = useLocation();
 
  useEffect(() => {

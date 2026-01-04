@@ -1,4 +1,5 @@
 import Logo from "../assets/logo.jpeg";
+import { Link } from "react-router-dom";
 
 function Footer () {
   return (
@@ -18,18 +19,17 @@ function Footer () {
 </div>
 <div className="flex flex-col gap-4 items-center md:items-start">
 <h4 className="font-bold text-lg mb-2">Explore</h4>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Events Calendar</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Artist Roster</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">About Us</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">News &amp; Press</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Get in Touch</a>
+<Link className="text-gray-400  text-sm" to="#">Events Calendar</Link>
+<Link className="text-gray-400  text-sm" to="#">About Us</Link>
+<Link className="text-gray-400  text-sm" to="#">News</Link>
+<Link className="text-gray-400  text-sm" to="#">Get in Touch</Link>
 </div>
 <div className="flex flex-col gap-4 items-center md:items-star">
 <h4 className="font-bold text-lg mb-2">Services</h4>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Artist Management</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Event Production</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Brand Partnerships</a>
-<a className="text-gray-400 hover:text-primary transition-colors text-sm" href="#">Booking Inquiry</a>
+<p className="text-gray-400 text-sm" href="#">Artist Management</p>
+<p className="text-gray-400 text-sm" href="#">Event Production</p>
+<p className="text-gray-400 text-sm" href="#">Brand Partnerships</p>
+<p className="text-gray-400 text-sm" href="#">Booking Inquiry</p>
 </div>
 <div className="flex flex-col gap-4 items-center md:items-start">
 <h4 className="font-bold text-lg mb-2">Contact</h4>

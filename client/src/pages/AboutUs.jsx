@@ -6,6 +6,7 @@ import MissionSection from '../components/Mission.jsx';
 import CTA from '../components/CTA.jsx';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import TheVisionary from '../components/TheVisionary.jsx';
 
 function AbooutUs () {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function AbooutUs () {
       <AboutUsHero />
       <Stats />
       <MissionSection />
+      <TheVisionary />
       <CTA onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
       </main>
       <Footer />
