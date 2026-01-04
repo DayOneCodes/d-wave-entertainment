@@ -1,7 +1,16 @@
 import { FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { useState, useEffect } from "react";
 
 function MainContentContact () {
+  const [whatsappText, setWhatsappText] = useState("Hello, I would like to get in touch with D-Wave Entertainment");
+  const [whatsappUrl, setWhatsappUrl] = useState("")
+  
+  useEffect(() => {
+    setWhatsappUrl(`https://wa.me/2347069400682?text=${encodeURIComponent(whatsappText)}`)
+  }, [whatsappText])
+
+
   return (
 <div className="layout-container flex flex-col grow w-full items-center px-4 md:px-10 lg:px-40 pb-20 mt-5">
 <div className="layout-content-container flex flex-col max-w-[1200px] w-full gap-12 lg:flex-row lg:gap-16">
@@ -97,7 +106,7 @@ function MainContentContact () {
 <FontAwesomeIcon icon={faInstagram} className="size-6 group-hover:scale-110 transition-transform"/>
 </a>
 
-<a className="size-10 rounded-lg bg-[#231b27] border border-[#4c3b54] flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all group" href="https://wa.me/+2347069400682" target="_blank">
+<a className="size-10 rounded-lg bg-[#231b27] border border-[#4c3b54] flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all group" href={whatsappUrl} target="_blank">
 <FontAwesomeIcon icon={faWhatsapp} className="size-6 group-hover:scale-110 transition-transform"/>
 </a>
 </div>

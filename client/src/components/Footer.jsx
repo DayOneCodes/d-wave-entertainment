@@ -1,5 +1,8 @@
 import Logo from "../assets/logo.jpeg";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 
 function Footer () {
   return (
@@ -36,9 +39,9 @@ function Footer () {
 <p className="text-gray-400 text-sm">D Wave<br/>Coventry, UK ZIPCODE</p>
 <p className="text-gray-400 text-sm">dwaventertainment.com<br/>+44 7888 642492</p>
 <div className="flex gap-4 mt-2">
-<a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">public</i></a>
+<a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faInstagram} className="size-6"/></a>
+<a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>
 <a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">alternate_email</i></a>
-<a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">forum</i></a>
 </div>
 </div>
 </div>
