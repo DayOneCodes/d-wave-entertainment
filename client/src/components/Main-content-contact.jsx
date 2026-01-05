@@ -6,8 +6,10 @@ import emailjs from "@emailjs/browser";
 function MainContentContact () {
   const [whatsappText, setWhatsappText] = useState("Hello, I would like to get in touch with D-Wave Entertainment");
   const [whatsappUrl, setWhatsappUrl] = useState("");
-  const [status, setStatus] = useState()
+  const [status, setStatus] = useState("")
   const form = useRef();
+  const loadTimeRef = useRef(Date.now());
+  
   
   useEffect(() => {
     setWhatsappUrl(`https://wa.me/2347069400682?text=${encodeURIComponent(whatsappText)}`)
@@ -15,6 +17,24 @@ function MainContentContact () {
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    const coolDownTime = 15000;
+    const lastSubmit = Number(localStorage.getItem("lastSubmit"));
+    const minimumTimeToFillForm = 3000;
+
+    if (lastSubmit && Date.now() - lastSubmit < coolDownTime){
+      setStatus("Please wait before resending.");
+      return;
+    }
+
+    if (form.current.company?.value){
+      return;
+    }
+
+    if (Date.now() - loadTimeRef.current < minimumTimeToFillForm){
+      setStatus("Form submitted too quickly, please try again.")
+      return;
+    }
 
     const emailParams = {
       title: form.current.title.value,
@@ -31,9 +51,11 @@ function MainContentContact () {
       import.meta.env.VITE_EMAIL_JS_PUBLIC_KEY
     )
     .then((res) => {
+      localStorage.setItem("lastSubmit", Date.now());
       setStatus("Message Send Success")
       form.current.reset();
-    }, (error) => {
+    })
+    .catch((error) => {
       console.log(error.text)
       setStatus("Message send Failed, Try Again Later")
     })
@@ -60,6 +82,7 @@ function MainContentContact () {
 <p className="text-primary text-sm font-medium leading-normal pb-2">Email</p>
 <input className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" name="email" placeholder="name@example.com" type="email" required/>
 </label>
+<input className="hidden form-input w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-black focus:outline-0 focus:ring-1 focus:ring-primary border bg-white/20 border-[#5c5360] focus:border-primary h-14 placeholder:text-[#b09cba] p-[15px] text-base font-normal leading-normal transition-all" tabIndex="-1" placeholder="input company you work in" type="text" name="company" autoComplete="off"/>
 </div>
 <div className="flex flex-col md:flex-row gap-5">
 <label className="flex flex-col flex-1">
@@ -89,7 +112,7 @@ function MainContentContact () {
 <button className="flex w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[rgba(40,24,40,0.4)] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors mt-2 shadow-[0_0_20px_rgba(40,24,40,0.4)]" type="submit">
 <span className="truncate">Send Message</span>
 </button>
-<p className="text-green-500 font-medium font-poppins">{status}</p>
+<p className="text-green-500 font-medium font-poppins" role="alert" aria-live="polite">{status}</p>
 </form>
 </div>
 {/* <!-- Right Column: Info & Map --> */}
