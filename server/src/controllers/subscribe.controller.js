@@ -1,6 +1,6 @@
 import express from "express";
 import { Subscriber } from "../models/subscribe.model.js";
-import axois from "axios";
+import axios from "axios";
 import validator from "validator";
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
@@ -35,7 +35,7 @@ export const createSubscriber = async (req, res) => {
   }
   catch (err) {
       console.error("Brevo error:", err.response?.data || err.message)
-      return res.status(500).json({message: "Subscription failed" });
+      return res.status(500).json({message: err.response?.data || "Subscription failed" });
   }
 }
 
