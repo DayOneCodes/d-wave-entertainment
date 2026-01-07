@@ -6,7 +6,7 @@ import emailjs from "@emailjs/browser";
 function MainContentContact () {
   const [whatsappText, setWhatsappText] = useState("Hello, I would like to get in touch with D-Wave Entertainment");
   const [whatsappUrl, setWhatsappUrl] = useState("");
-  const [status, setStatus] = useState("")
+  const [status, setStatus] = useState({})
   const form = useRef();
   const loadTimeRef = useRef(Date.now());
   
@@ -22,8 +22,12 @@ function MainContentContact () {
     const lastSubmit = Number(localStorage.getItem("lastSubmit"));
     const minimumTimeToFillForm = 3000;
 
-    if (lastSubmit && Date.now() - lastSubmit < coolDownTime){
-      setStatus("Please wait before resending.");
+    if (!Number.isNaN(lastSubmit) && Date.now() - lastSubmit < coolDownTime){
+      setStatus({
+        message: "Please wait before resending.",
+        code: "red",
+        aria: "assertive"
+      });
       return;
     }
 
@@ -31,8 +35,13 @@ function MainContentContact () {
       return;
     }
 
+    //Move to backend to contribute to risk score instead of binary pass/fail
     if (Date.now() - loadTimeRef.current < minimumTimeToFillForm){
-      setStatus("Form submitted too quickly, please try again.")
+      setStatus({
+        message: "Form submitted too quickly, please try again.",
+        code: "red",
+        aria: "assertive"
+      })
       return;
     }
 
@@ -44,6 +53,19 @@ function MainContentContact () {
       email: form.current.email.value
     }
 
+    const { title, name, email, phoneNumber, message} = emailParams;
+    const limits = {
+      title: 50,
+      name: 100,
+      message: 100
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return setStatus("Invalid email");
+    if (phoneNumber && !/^\+?\d{7,15}$/.test(phoneNumber)) return setStatus("Invalid phone number")
+    if (name.trim().length > limits.name) return setStatus("Name too long");
+    if (message.trim().length > limits.message) return setStatus("Message too long")
+    if (title.trim().length > limits.title) return setStatus ("title too long")
+
     emailjs.send(
       import.meta.env.VITE_EMAIL_JS_SERVICE_ID,
       import.meta.env.VITE_EMAIL_JS_TEMPLATE_ID,
@@ -52,12 +74,20 @@ function MainContentContact () {
     )
     .then((res) => {
       localStorage.setItem("lastSubmit", Date.now());
-      setStatus("Message Send Success")
+      setStatus({
+        message: "Message Send Success",
+        code: "green",
+        aria: "polite"
+      })
       form.current.reset();
     })
     .catch((error) => {
       console.log(error.text)
-      setStatus("Message send Failed, Try Again Later")
+      setStatus({
+        message: "Message send Failed, Try Again Later",
+        code: "red",
+        aria: "assertive"
+      })
     })
 
 
@@ -112,7 +142,8 @@ function MainContentContact () {
 <button className="flex w-full md:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary hover:bg-[rgba(40,24,40,0.4)] text-white text-base font-bold leading-normal tracking-[0.015em] transition-colors mt-2 shadow-[0_0_20px_rgba(40,24,40,0.4)]" type="submit">
 <span className="truncate">Send Message</span>
 </button>
-<p className="text-green-500 font-medium font-poppins" role="alert" aria-live="polite">{status}</p>
+{/* Set aria-live="assertive" for error messages to have separate type of urgency. either separate success vs error channels or dynamic aria */}
+<p className={`${status.code === "green" ? "text-green-500" : "text-red-500"} font-medium font-poppins`} role="alert" aria-live={status.aria}>{status.message}</p> 
 </form>
 </div>
 {/* <!-- Right Column: Info & Map --> */}

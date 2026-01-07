@@ -7,7 +7,7 @@ import Newsletter from "../components/Newsletter.jsx";
 import { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-function Landingpage () {
+function Landingpage ({scrollTop}) {
   const scrollEvent = useRef(null);
   const scrollService = useRef(null);
   
@@ -43,26 +43,13 @@ function Landingpage () {
   window.history.replaceState({}, document.title)
  }, [location])  
 
- const [scrollData, setScrollData] = useState(0);
-
-useEffect(() => {
-  const handleScroll = () => {
-    const { scrollTop } = document.documentElement;
-    setScrollData(
-      scrollTop);
-  };
-
-  window.addEventListener('scroll', handleScroll);
-  handleScroll(); 
-
-  return () => {
-    window.removeEventListener('scroll', handleScroll);
-  }
-}, [])
 
   return (
   <>
-        <Header scrollTop={scrollData} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
+        <Header scrollTop={scrollTop} switchHeader={{
+          pointOne: 649,
+          pointTwo: 4463
+        }} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
         <LandingHero onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
         <UpcomingEvents ref={scrollEvent} />
         <Services ref={scrollService} />

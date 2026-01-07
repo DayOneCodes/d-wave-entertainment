@@ -274,34 +274,6 @@ function FullCalendarMainContent() {
 
 {/* <!-- Sidebar (Trending/Artists) --> */}
 <aside className="w-full lg:w-80 flex flex-col gap-6 shrink-0">
-{/* <div className="bg-surface-dark rounded-2xl border border-border-dark p-5 shadow-lg">
-<h3 className="text-primary text-lg font-bold mb-4">Don't Miss Out</h3>
-<div className="flex flex-col gap-3">
-<a className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-transparent hover:border-primary/30 transition-all group" href="#">
-<div className="flex justify-between items-start mb-1">
-<span className="text-primary text-xs font-bold uppercase">Tomorrow</span>
-<span className="text-text-muted text-[10px]">Oct 12</span>
-</div>
-<p className="text-black font-bold text-sm leading-snug group-hover:text-primary transition-colors">Underground Bass Challenge</p>
-<div className="flex items-center gap-1 mt-2 text-text-muted text-xs">
-<span className="material-symbols-outlined text-sm">location_on</span>
-                                        The Basement
-                                    </div>
-</a>
-<a className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-transparent hover:border-primary/30 transition-all group" href="#">
-<div className="flex justify-between items-start mb-1">
-<span className="text-green-400 text-xs font-bold uppercase">Selling Fast</span>
-<span className="text-text-muted text-[10px]">Oct 20</span>
-</div>
-<p className="text-black font-bold text-sm leading-snug group-hover:text-primary transition-colors">Cyber Goth Night</p>
-<div className="flex items-center gap-1 mt-2 text-text-muted text-xs">
-<span className="material-symbols-outlined text-sm">location_on</span>
-                                        Sector 7
-                                    </div>
-</a>
-</div>
-</div> */}
-<ArtistSpotlight />
 <DiscoverOurVision />
 </aside>
 </div>

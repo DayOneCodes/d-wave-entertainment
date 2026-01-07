@@ -2,22 +2,33 @@ import { NavLink, useNavigate} from "react-router-dom";
 import Logo from "../assets/logo.jpeg";
 import { useState, useEffect  } from "react";
 
-function Header ({ onScrollToEvents, onScrollToServices, scrollTop}) {
+function Header ({ onScrollToEvents, onScrollToServices, scrollTop, switchHeader}) {
 const navigate = useNavigate();
 const  [mobileNavOpen, setMobileNavOpen] =  useState(false);
+const [headerbackground, setHeaderBackground] = useState("pointZero")
 
 
 //UPDATE: When scroll is at 0 and no longer change going up, if a user scrolls up, the nav bar remains open.
 useEffect(() => {
     mobileNavOpen && setMobileNavOpen(false);
-    console.log("WORKING");
+    if (switchHeader) {
+    if (scrollTop >= switchHeader.pointOne && scrollTop < switchHeader.pointTwo) {
+    setHeaderBackground("pointOne")
+    }
+    else if (scrollTop >= switchHeader.pointTwo){
+    setHeaderBackground("pointTwo")
+    }
+    else if (scrollTop < switchHeader.pointOne) {
+    setHeaderBackground("pointZero")
+    }
+  }
 
 }, [scrollTop]);
 
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-background-light/80 border-b border-gray-200">
+      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md ${headerbackground === "pointZero" ? "bg-background-light/80": headerbackground === "pointOne" ? "bg-primary" : "bg-background-light/80"} border-b transition-all transition-200 border-gray-200`}>
           <div className="layout-container flex h-full grow flex-col">
           <div className="px-4 md:px-10 lg:px-40 flex justify-center">
           <div className="layout-content-container flex flex-col md:flex-row gap-4 w-full max-w-[1200px] items-center justify-between py-4">
@@ -42,7 +53,7 @@ useEffect(() => {
           </div>
 
           {/* <!-- Mobile Menu Icon --> */}
-          <div className="md:hidden text-primary text-bold">
+          <div className={`${headerbackground === "pointZero" ? "text-primary": headerbackground === "pointOne" ? "text-white" : "text-primary"} md:hidden transition-all transition-200 text-bold`}>
           <span className="material-symbols-outlined" onClick={ () => {
             setMobileNavOpen(!mobileNavOpen)
           } 
