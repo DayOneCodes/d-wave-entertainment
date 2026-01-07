@@ -2,9 +2,9 @@ import { Event } from "../models/events.model.js";
 
 const createEvent = async (req, res) => {
   try {
-    const { title, date, location, month, year, category, imageUrl, ticketUrl } = req.body;
+    const { title, time, day, location, month, year, category, imageUrl, description, ticketUrl, tickets } = req.body;
 
-    if (!title || !date || !location || !month || !category  || !year ) {
+    if (!title || !time || !day || !location || !description ||!month || !category  || !year ) {
       return res.status(400).json({
         message: "Fill ALL required fields"
       })
@@ -12,13 +12,16 @@ const createEvent = async (req, res) => {
     
     const event = await Event.create({
       title,
-      date,
+      time,
+      day,
       location,
       month,
       year,
       category,
       imageUrl,
-      ticketUrl
+      description,
+      ticketUrl,
+      tickets
     });
 
     return res.status(200).json({

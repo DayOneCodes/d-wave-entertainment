@@ -195,7 +195,7 @@ function FullCalendarMainContent() {
 <option>Club Night</option>
 <option>After Party</option>
 <option>Rooftop</option>
-<optio>All White Party</optio>
+<option>All White Party</option>
 </select>
 <span className="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-sm">expand_more</span>
 </div>

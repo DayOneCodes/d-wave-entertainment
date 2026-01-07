@@ -27,7 +27,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
             { !eventsChronological ?
             (<p>Loading Events...</p>) :
             (
-              eventsChronological.slice(0,3).map((event,_) => {
+              eventsChronological.slice(0,3).map((event,i) => {
                 let image = event.imageUrl;
 
                 if (!image) {
@@ -48,7 +48,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
                 }
 
                 return (
-                  <Eventcard 
+                  <Eventcard key={i}
                     month={event.month.slice(0,3)}
                     date={event.date}
                     location={event.location}
