@@ -31,13 +31,12 @@ app.use(cors({
 
   }
 }));
-app.options("/api/*", cors());
 
 app.use(express.json());
 
-app.use("/api/events", eventRouter);
-app.use("/api/site-data", siteDataRouter);
-app.use("/api/subscribe", subscribeRouter);
+app.use("/api/events", cors(), eventRouter);
+app.use("/api/site-data", cors(),siteDataRouter);
+app.use("/api/subscribe", cors(), subscribeRouter);
 
 app.use(
   express.static(path.join(__dirname, "../../client/dist"))
