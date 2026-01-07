@@ -24,13 +24,14 @@ app.use(cors({
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.includes(origin)){
-      callback(null, true);
+      callback(null, origin);
     } else {
       callback(new Error ("Not allowed by CORS"))
     }
 
   }
 }));
+app.options("*", cors());
 
 app.use(express.json());
 

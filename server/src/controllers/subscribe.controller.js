@@ -6,7 +6,7 @@ import validator from "validator";
 const BREVO_API_KEY = process.env.BREVO_API_KEY;
 const BREVO_LIST_ID = Number(process.env.BREVO_LIST_ID);
 
-export const createSubscriber = async (res, req) => {
+export const createSubscriber = async (req, res) => {
   try{
     const { email } = req.body;
 

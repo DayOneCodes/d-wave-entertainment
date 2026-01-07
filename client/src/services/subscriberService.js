@@ -1,5 +1,5 @@
 export const subscribeEmail = async (email) => {
-  const res = await fetch("http://localhost:5000/api/subscribers", {
+  const res = await fetch("http://localhost:5000/api/subscribe", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
