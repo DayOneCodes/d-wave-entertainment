@@ -4,11 +4,23 @@ const subscriberSchema = new Schema({
   email: {
     type: String,
     required: true,
-    unique: true
+    lowercase: true,
+    unique: true,
+    trim: true,
+    index: true
   },
-  token: {
+  subScribedAt: {
+    type: Date,
+    default: Date.now
+  },
+  source: {
     type: String,
-    required: true,
+    default: "newsletter"
+  },
+  ip: String,
+  userAgent: String,
+  flagged: {
+
   },
   wantsNewsletter: {
     type: Boolean,

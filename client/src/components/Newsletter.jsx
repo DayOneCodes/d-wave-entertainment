@@ -4,6 +4,7 @@ import { subscribeEmail } from "../services/subscriberService";
 const EMAIL_REGEX = /\S+@\S+\.\S+/
 
 function Newsletter () {
+  const formStartedAtRef = useRef(Date.now());
   const newsletter = useRef();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState({status: "idle", message: "", code: "", aria: ""});
@@ -42,7 +43,7 @@ function Newsletter () {
           aria: "polite"
         });
 
-        await subscribeEmail(email);
+        await subscribeEmail(email, formStartedAtRef.current);
 
         setStatus({
           status: "success",
