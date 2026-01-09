@@ -15,10 +15,11 @@ function TheVisionary () {
 <p className="text-white text-xl font-medium mb-6">Founder &amp; CEO</p>
 <div className="space-y-6 text-white text-lg leading-relaxed">
 <p>
-                                    Alex founded Pulse &amp; Play with a singular ambition: to dismantle the barriers between the raw, chaotic energy of underground rave culture and the sophisticated structure of professional artist management.
+                                    Based in the heart of Coventry, Oduwaiye E. Uwamose founded D-Wave Entertainment with a passion for community building and a sharp eye for the evolving entertainment landscape. His vision was to create a brand that doesn't just host events, but cultivates a lifestyle.
                                 </p>
 <p>
-                                    Starting his journey in the basements of Berlin's most exclusive clubs, Alex realized that true talent often lacked the business infrastructure to thrive. With over 15 years of industry experience, he has bridged that gap, curating unforgettable nights while building sustainable careers for the artists who soundtrack them.
+                                    With extensive experience in event curation and a deep understanding of youth culture, Oduwaiye has positioned D-Wave as a pivotal bridge between intentional high-quality production and raw community energy.
+
                                 </p>
 <p className="text-white font-medium italic border-l-4 border-white pl-4 my-6">
                                     "We don't just manage artists; we amplify their souls. We don't just host parties; we curate memories."
