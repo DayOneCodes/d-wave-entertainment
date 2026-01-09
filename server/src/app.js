@@ -19,6 +19,7 @@ app.use(cors({
     "http://localhost:5000",
     "http://localhost:5173",
     "http://localhost:5000",
+    "http://localhost:5174",
      "https://d-wave-entertainment.onrender.com",
      "https://dwaveentertainment.co.uk"
     ];
