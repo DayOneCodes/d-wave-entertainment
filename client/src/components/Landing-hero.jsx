@@ -19,13 +19,13 @@ function LandingHero ({onScrollToEvents, onScrollToServices}) {
           <p className="text-white text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
           Structured nightlife, sports, top-tier talent management and community engagement tailored for the modern West Midlands landscape.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-6 lg:mb-6">
-              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white  text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_[0_0_30px_rgba(40,24,40,0.6)] transition-all flex items-center justify-center gap-2" onClick={() => onScrollToEvents()
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-6 items-center lg:mb-6">
+              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white w-[67%] md:w-[100%] text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_[0_0_30px_rgba(40,24,40,0.6)] transition-all flex items-center justify-center gap-2" onClick={() => onScrollToEvents()
               }>
                  <span className="material-symbols-outlined">confirmation_number</span>
                   View Events
               </button>
-              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 text-base font-bold h-14 px-8 rounded-lg transition-all flex items-center justify-center gap-2" onClick={
+              <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border w-[67%] md:w-[100%] border-white/20 text-base font-bold h-14 px-8 rounded-lg transition-all flex items-center justify-center gap-2" onClick={
                 () => onScrollToServices()
               }>
                   <span className="material-symbols-outlined">mic_external_on</span>

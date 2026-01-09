@@ -5,11 +5,13 @@ import OrderSummary from "../components/order-confirmation-components/OrderSumma
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useEvents } from "../contexts/EventContext.jsx";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function OrderConfirmation() {
   const { eventId } = useParams();
   const {events, loading, error} = useEvents();
   const [event, setEvent] = useState(null);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -82,12 +84,36 @@ function OrderConfirmation() {
     setTotal(sumTotal);
   }, [subTotal]);
 
+
+  const [sourcePage, setSourcePage] = useState(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state.sourcePage){
+      switch (location.state.sourcePage){
+        case "/":
+          setSourcePage("/")
+        return;
+        case "/events":
+          setSourcePage("/events")
+        return;
+      }
+    }
+  }, [])
+
   return (
-    <div className="flex flex-1 justify-center p-4">
+    <div className="flex flex-1 justify-center py-4 px-2">
       <div className="layout-content-container flex flex-col max-w-[1200px] flex-1 w-full">
         <div className="flex flex-wrap justify-between gap-3 px-4 pb-6">
           <div className="flex min-w-72 flex-col gap-2">
             <h1 className="text-primary text-3xl font-black leading-tight tracking-[-0.033em]">
+              <span className="material-symbols-outlined" onClick={
+                () =>  {
+                  navigate(sourcePage)
+                }
+              }>
+                arrow_back
+              </span> <br/>
               Review Your Order
             </h1>
             <p className="text-primary/80 text-base font-normal leading-normal">
@@ -103,7 +129,7 @@ function OrderConfirmation() {
                 !event ?
                 (<p>Loading Event summary...</p>) :
                 (
-                <EventSummary event={event} loading={loading} error={error}/>
+                <EventSummary event={event} loading={loading} error={error} sourcePage={sourcePage}/>
                 )
               }
 
@@ -140,6 +166,7 @@ function OrderConfirmation() {
               ticketQuantities={ticketQuantities}
               handleOrderPreparation={handleOrderPreparation}
               handleProceedToPayment={handleProceedToPayment}
+              sourcePage={sourcePage}
             />
           </div>
         </div>

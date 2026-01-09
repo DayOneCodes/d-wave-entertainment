@@ -37,8 +37,8 @@ function Footer () {
 </div>
 <div className="flex flex-col gap-4 items-center md:items-start">
 <h4 className="font-bold text-lg mb-2">Contact</h4>
-<p className="text-gray-400 text-sm">D Wave<br/>Coventry, UK ZIPCODE</p>
-<p className="text-gray-400 text-sm">dwaventertainment.com<br/>+44 7888 642492</p>
+<p className="text-gray-400 text-sm">D-Wave Entertainment<br/>Coventry, UK</p>
+<p className="text-gray-400 text-sm">info@dwaveentertainment.co.uk<br/>+44 7888 642492</p>
 <div className="flex gap-4 mt-2">
 <a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faInstagram} className="size-6"/></a>
 <a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>

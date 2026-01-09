@@ -9,7 +9,9 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
 
   const handleGetTicket = () => {
     setGetTicket(event);
-    navigate(`/checkout/${event._id}`)
+    navigate(`/checkout/${event._id}`, {
+        state: {sourcePage: "/"}
+    })
   }
 
   return (

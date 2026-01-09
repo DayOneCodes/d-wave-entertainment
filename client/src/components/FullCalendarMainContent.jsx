@@ -143,7 +143,7 @@ const {events, loading, error} = useEvents();
         <div className="absolute left-0 top-0 bottom-0 w-1 bg-primary opacity-100 transition-opacity"></div>
         <div className="flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0 md:w-20 md:h-20 rounded-2xl border border-primary/50 bg-primary/10 transition-colors shrink-0 p-3 md:p-0">
         <span className="text-sm font-bold text-primary uppercase">{event.month}</span>
-        <span className="text-2xl md:text-3xl font-black text-primary leading-none">{event.date}</span>
+        <span className="text-2xl md:text-3xl font-black text-primary leading-none">{event.day}</span>
         </div>
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
         <div className="lg:col-span-2 flex flex-col gap-1.5">

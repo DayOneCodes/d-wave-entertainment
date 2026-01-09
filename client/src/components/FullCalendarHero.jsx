@@ -1,8 +1,11 @@
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
 import backgroundImage from "../assets/club-ii.jpg"
+import { useNavigate } from "react-router-dom";
+import { useEvents } from "../contexts/EventContext";
 
 function FullCalendarHero() {
   const {eventsChronological} = useChronologicalEvents();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -30,7 +33,11 @@ function FullCalendarHero() {
                                 Join us for an unforgettable night of sound and light featuring birthday celebration from SKY, spinning deep house and techno until sunrise.
                             </p>
 <div className="flex gap-4 mt-2">
-<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white hover:white/90 text-primary text-base font-bold shadow-[0_0_30px_rgba(40,24,40,0.6)] transition-all transform hover:scale-105">
+<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white hover:white/90 text-primary text-base font-bold shadow-[0_0_30px_rgba(40,24,40,0.6)] transition-all transform hover:scale-105" onClick={
+  () => {navigate(`/checkout/${eventsChronological[0]._id}`, {
+    state: {sourcePage: "/events"}
+  })}
+}>
                                     Get Tickets
                                 </button>
 <button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-base font-bold transition-all">

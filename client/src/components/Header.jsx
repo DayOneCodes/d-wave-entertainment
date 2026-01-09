@@ -12,7 +12,7 @@ useEffect(() => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-transparent md:bg-primary border-b transition-all transition-200 border-gray-200`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-transparent border-b transition-all transition-200 border-gray-200`}>
           <div className="layout-container flex h-[70px] grow flex-col">
           <div className="px-4 md:px-10 lg:px-40 flex justify-center">
           <div className="layout-content-container flex flex-col md:flex-row gap-4 w-full max-w-[1200px] items-center justify-between py-4">
@@ -47,8 +47,9 @@ useEffect(() => {
           </div>
           </div>
           {/* {Mobile Nav} */}
-          <nav className={`${mobileNavOpen ? 'opacity-1 h-[170px]' : 'opacity-1 h-[0px]'}  md:hidden w-full bg-white absolute top-[110.9px] text-primary font-medium transition-all duration-250 flex`}>
+          <nav className={`${mobileNavOpen ? 'opacity-1 h-[170px]' : 'opacity-1 h-[0px]'}  md:hidden w-full bg-white absolute top-[71px] text-primary font-medium transition-all duration-250 flex`}>
             <ul className={`${mobileNavOpen ? "" : "h-[0px]"} flex flex-col items-center gap-2 m-auto`}>
+              <li className={`${mobileNavOpen ? "" : "translate-y-[-60px] opacity-0"} transition-all duration-200`}><NavLink to={mobileNavOpen && "/"}>Home</NavLink></li>
               <li className={`${mobileNavOpen ? "" : "translate-y-[-30px] opacity-0"} transition-all duration-200`}><a onClick={ () => mobileNavOpen && onScrollToEvents()}>Upcoming Events</a></li>
               <li className={`${mobileNavOpen ? "" : "translate-y-[-60px] opacity-0"} transition-all duration-200`}><NavLink to={mobileNavOpen && "/about-us"}>About Us</NavLink></li>
               <li className={`${mobileNavOpen ? "" : "translate-y-[-90px] opacity-0"} transition-all duration-200`}><a onClick={() => mobileNavOpen && onScrollToEvents()}>Services</a></li>

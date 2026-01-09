@@ -44,7 +44,7 @@ export default function TicketItem({ ticket, setSubTotal, onChange }) {
             {ticket.description}
           </p>
           <p className="text-primary font-bold mt-1 sm:hidden">
-            ${ticket.price}
+            £{ticket.price}
           </p>
         </div>
       </div>

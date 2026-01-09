@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export default function OrderSummary({
   subtotal,
@@ -8,8 +9,11 @@ export default function OrderSummary({
   ticketQuantities,
   handleOrderPreparation,
   handleProceedToPayment,
+  sourcePage
 }) {
   const navigate = useNavigate();
+  const location = useLocation();
+
 
   const styles = {
     orderSummaryCard:
@@ -54,7 +58,7 @@ export default function OrderSummary({
             <span className="text-xs text-text-secondary">GBP</span>
           </div>
           <span className="text-primary text-3xl font-black tracking-tight">
-            ${total}
+            £{total}
           </span>
         </div>
 
@@ -78,7 +82,7 @@ export default function OrderSummary({
 
           <button
             className={styles.buttonSecondary}
-            onClick={() => navigate("/")}
+            onClick={() => navigate(sourcePage)}
           >
             Go Back
           </button>

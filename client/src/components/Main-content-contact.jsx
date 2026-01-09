@@ -158,8 +158,8 @@ function MainContentContact () {
 </div>
 <div className="flex flex-col">
 <span className="text-primary text-xs font-medium uppercase tracking-wider">Email</span>
-<a className="text-primary text-base font-medium hover:text-primary transition-colors" href="mailto:hello@vibeparty.com">hello@dwave.com</a>
-<a className="text-primary text-sm opacity-80 hover:text-primary transition-colors" href="mailto:booking@vibeparty.com">booking@dwave.com</a>
+<a className="text-primary md:text-base text-sm font-medium hover:text-primary transition-colors" href="mailto:hello@vibeparty.com">info@dwaveentertainment.co.uk</a>
+<a className="text-primary md:text-sm text-[0.73rem] opacity-80 hover:text-primary transition-colors" href="mailto:booking@vibeparty.com">support@dwaveentertainmment.co.uk</a>
 </div>
 </div>
 <div className="flex items-start gap-4 p-4 rounded-xl bg-card-dark border border-[#4c3b54]/50">
@@ -168,8 +168,8 @@ function MainContentContact () {
 </div>
 <div className="flex flex-col">
 <span className="text-primary text-xs font-medium uppercase tracking-wider">Phone</span>
-<a className="text-primary text-base font-medium hover:text-primary transition-colors" href="tel:+15551234567">+44 7888 642492</a>
-<span className="text-primary text-sm">Mon-Fri, 9am - 6pm EST</span>
+<a className="text-primary md:text-base text-sm font-medium hover:text-primary transition-colors" href="tel:+15551234567">+44 7888 642492</a>
+<span className="text-primary md:text-xs text-[0.73rem]">Mon-Fri, 9am - 6pm EST</span>
 </div>
 </div>
 <div className="flex items-start gap-4 p-4 rounded-xl bg-card-dark border border-[#4c3b54]/50">
@@ -178,7 +178,7 @@ function MainContentContact () {
 </div>
 <div className="flex flex-col">
 <span className="text-primary text-xs font-medium uppercase tracking-wider">Headquarters</span>
-<p className="text-primary text-base font-medium">Coventry,<br/> UK ZIPCODE</p>
+<p className="text-primary text-sm md:text-base font-medium">Coventry,<br/> UK</p>
 </div>
 </div>
 </div>
