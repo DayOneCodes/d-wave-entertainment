@@ -46,10 +46,7 @@ function Landingpage ({scrollTop}) {
 
   return (
   <>
-        <Header scrollTop={scrollTop} switchHeader={{
-          pointOne: 649,
-          pointTwo: 4463
-        }} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
+        <Header scrollTop={scrollTop} onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices} />
         <LandingHero onScrollToEvents={onScrollToEvents} onScrollToServices={onScrollToServices}/>
         <UpcomingEvents ref={scrollEvent} />
         <Services ref={scrollService} />

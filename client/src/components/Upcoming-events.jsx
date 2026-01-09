@@ -13,8 +13,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   const { eventsChronological } = useChronologicalEvents();
   const { events, loading, error } = useEvents();
 
-  if (loading) return <p>Loading Events...</p>
-  if (error) return <p>Failed to load events</p> 
+console.log(events); 
 
   return (
     <> 

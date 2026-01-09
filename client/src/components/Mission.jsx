@@ -28,9 +28,9 @@ function MissionSection  () {
 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
 </div>
 <div>
-<h3 className="text-primary text-xl font-bold leading-normal mb-2">The Experience</h3>
-<p className="text-primary text-base font-normal leading-relaxed">
-                                            Immersive event production, venue partnerships, and unforgettable nights. We create the moments that people talk about for years.
+<h3 className="text-primary text-xl font-bold leading-normal mb-2">The Gist</h3>
+<p className="text-primary text-base text-justify font-normal leading-relaxed">
+                                            Immersive event production, venue partnerships, and unforgettable nights. Comprehensive artist management, booking representation, and career growth strategies. We handle the business so artists can handle the music and we create the moments that people talk about for years.
                                         </p>
 </div>
 </div>
@@ -40,10 +40,10 @@ function MissionSection  () {
 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-300"></div>
 </div>
 <div>
-<h3 className="text-primary text-xl font-bold leading-normal mb-2">The Talent</h3>
-<p className="text-primary text-base font-normal leading-relaxed">
-                                            Comprehensive artist management, booking representation, and career growth strategies. We handle the business so artists can handle the music.
-                                        </p>
+<h3 className="text-primary text-xl font-bold leading-normal mb-2">Community & Sports</h3>
+<p className="text-primary text-base text-justify  font-normal leading-relaxed">
+                    Empowering local athletes and community initiatives through high-performance events and mentorship programs
+</p>
 </div>
 </div>
 </div>

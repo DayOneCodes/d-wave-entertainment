@@ -1,7 +1,5 @@
-import  { useGetTicket } from "../../contexts/GetTicketContext.jsx"
 
-export default function EventSummary () {
-  const { event } = useGetTicket();
+export default function EventSummary ({event, loading, error}) {
 
   return (
       <div className="flex flex-col items-stretch justify-start rounded-xl xl:flex-row xl:items-start bg-surface-dark border border-surface-highlight overflow-hidden relative group">
@@ -19,7 +17,7 @@ export default function EventSummary () {
           <div className="flex flex-col gap-2 mt-2 text-text-secondary text-sm font-medium">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[20px]">calendar_month</span>
-              <span>Saturday, {event.month} {event.date} • 10:00 PM</span>
+              <span>Saturday, {event.month} {event.day} • 10:00 PM</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[20px]">location_on</span>

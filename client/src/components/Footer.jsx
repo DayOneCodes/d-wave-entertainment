@@ -23,6 +23,8 @@ function Footer () {
 <h4 className="font-bold text-lg mb-2">Explore</h4>
 <Link className="text-gray-400  text-sm" to="#">Events Calendar</Link>
 <Link className="text-gray-400  text-sm" to="#">About Us</Link>
+<Link to="#">Careers</Link>
+<Link to="#">Reviews</Link>
 <Link className="text-gray-400  text-sm" to="#">News</Link>
 <Link className="text-gray-400  text-sm" to="#">Get in Touch</Link>
 </div>

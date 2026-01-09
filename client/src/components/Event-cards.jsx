@@ -2,21 +2,18 @@ import { useChronologicalEvents } from "../contexts/EventChronologicalContext.js
 import { useGetTicket } from "../contexts/GetTicketContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-function Eventcard ({ month, date, location, category, title, imageUrl, ticketUrl }) {
+function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketUrl }) {
 
-  const event = {month, date, location, category, title, imageUrl, ticketUrl};
   const { setGetTicket } = useGetTicket();
   const navigate = useNavigate();
 
   const handleGetTicket = () => {
     setGetTicket(event);
-    navigate("/order-confirmation")
+    navigate(`/checkout/${event._id}`)
   }
 
   return (
-      <div className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100" onClick={
-        () => {window.open(`https://${ticketUrl}`, '_blank')}
-      }>
+      <div className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
           <div className="relative h-64 overflow-hidden">
               <div className="absolute top-4 left-4 bg-white/90 backdrop-blur text-center p-2 rounded-lg z-10 shadow-lg min-w-[60px]">
                   <span className="block text-xs font-bold uppercase text-slate-500">{month}</span>
@@ -36,7 +33,10 @@ function Eventcard ({ month, date, location, category, title, imageUrl, ticketUr
                   </span>
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors">{title}</h3>
-              <button className="w-full py-3 rounded-lg border border-slate-200 text-slate-900 font-bold hover:bg-primary hover:text-white hover:border-primary transition-colors flex justify-center items-center gap-2" onClick={handleGetTicket}>
+              <button className="w-full py-3 rounded-lg border border-slate-200 text-slate-900 font-bold md:hover:bg-primary md:hover:text-white md:hover:border-primary transition-colors flex justify-center items-center gap-2" onClick={
+                event.ticketUrl ? 
+                    () => {window.open(`https://${ticketUrl}`, '_blank')} :
+                         handleGetTicket}>
                   Get Tickets
               </button>
           </div>

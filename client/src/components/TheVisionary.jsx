@@ -11,7 +11,7 @@ function TheVisionary () {
 <span className="w-8 h-[2px] bg-white"></span>
                                 The Visionary
                             </div>
-<h2 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-2">Oduwaiye Uwamose</h2>
+<h2 className="text-white text-3xl md:text-5xl font-bold leading-tight mb-2">Oduwaiye E. Uwamose</h2>
 <p className="text-white text-xl font-medium mb-6">Founder &amp; CEO</p>
 <div className="space-y-6 text-white text-lg leading-relaxed">
 <p>

@@ -1,5 +1,5 @@
 export const subscribeEmail = async (email, formStartedAt) => {
-  const res = await fetch("http://localhost:5000/api/subscribe/", {
+  const res = await fetch("https://dwaveentertainment.co.uk/api/subscribe/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
