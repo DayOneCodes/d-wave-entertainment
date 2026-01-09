@@ -35,7 +35,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
               error ? 
                (<p>Failed to load events</p>) :
             (
-              events.slice(0,3).map((event,i) => {
+              events.slice(0,3).reverse().map((event,i) => {
                 let image = event.imageUrl;
 
                 if (!image) {

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
 import DiscoverOurVision from "./DiscoverOurVision";
-import ArtistSpotlight from "./ArtistSpotlight";
+import { useEvents } from "../contexts/EventContext";
+
 
 function FullCalendarMainContent() {
   const { eventsChronological, thisMonthEvent } = useChronologicalEvents();
@@ -18,7 +19,9 @@ function FullCalendarMainContent() {
   const [thisYear, setThisYear] = useState(todayDate.getFullYear())
   const [viewMode, setViewMode] = useState("list");
 
-
+  //
+const {events, loading, error} = useEvents();
+//
 
   useEffect (() => {
     const todayDayNumber = todayDate.getDate();
@@ -133,7 +136,7 @@ function FullCalendarMainContent() {
     function listViewFunction () {
       const listView = [];
 
-      eventsChronological.forEach((event) => {
+      events.forEach((event) => {
 
       listView.push(
         <div className="group flex flex-col md:flex-row gap-4 p-5 border-b border-border-dark hover:bg-white/5 transition-all relative overflow-hidden mb-4">
@@ -166,7 +169,7 @@ function FullCalendarMainContent() {
       )
       });
 
-      return (listView)
+      return (listView.reverse())
     }
 
 
@@ -265,8 +268,10 @@ function FullCalendarMainContent() {
 {/* List View */}
 <div className={`${viewMode === "list" ? "block" : "hidden"} flex-1 w-full bg-surface-dark border-border-dark font-poppins font-bold text-lg h-[850px] md:h-auto overflow-y-scroll no-scrollbar border shadow-lg rounded-2xl`}>
     {  
-      !eventsChronological ?
-      <p>Loading</p> :
+      loading ?
+      <p>Loading list...</p> :
+      error ?
+      <p>Failed to load list, Refresh</p> :
       listViewFunction()
     }
   </div>
