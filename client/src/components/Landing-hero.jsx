@@ -12,8 +12,8 @@ function LandingHero ({onScrollToEvents, onScrollToServices}) {
       </div>
       <div className="relative z-10 container mx-auto px-4 md:px-10 flex flex-col items-center text-center gap-8 max-w-4xl">
           <span className="text-white text-sm font-bold tracking-widest uppercase animate-pulse">Coventry &amp; West Midlands</span>
- <h1 class="text-4xl md:text-7xl lg:text-8xl font-black text-white leading-[1] tracking-tighter text-left md:text-center mb-8">
-                    D-WAVE ENTERTAINMENT: <br/><span class="text-gradient">CULTURALLY RELEVANT EXPERIENCES</span>
+ <h1 className="text-4xl md:text-7xl lg:text-8xl font-black text-white leading-[1] tracking-tighter text-left md:text-center mb-8">
+                    D-WAVE ENTERTAINMENT: <br/><span className="text-gradient">CULTURALLY RELEVANT EXPERIENCES</span>
 </h1>
 
           <p className="text-white text-lg md:text-xl font-medium max-w-2xl leading-relaxed">

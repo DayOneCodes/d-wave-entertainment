@@ -2,13 +2,19 @@ import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards.jsx";
 import { forwardRef, useState, useEffect } from "react";
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
+import fetchEvents from "../api/eventApi.js";
 import clubNight from "../assets/club-night.webp";
 import roofTop from "../assets/roof-top.webp";
 import allWhite from "../assets/all-white.webp";
 import afterParty from "../assets/after-party.webp";
+import { useEvents } from "../contexts/EventContext.jsx";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   const { eventsChronological } = useChronologicalEvents();
+  const { events, loading, error } = useEvents();
+
+  if (loading) return <p>Loading Events...</p>
+  if (error) return <p>Failed to load events</p> 
 
   return (
     <> 
@@ -24,10 +30,12 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
           </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            { !eventsChronological ?
-            (<p>Loading Events...</p>) :
+            { loading ?
+               (<p>Loading Events...</p>) :
+              error ? 
+               (<p>Failed to load events</p>) :
             (
-              eventsChronological.slice(0,3).map((event,i) => {
+              events.slice(0,3).map((event,i) => {
                 let image = event.imageUrl;
 
                 if (!image) {
@@ -49,8 +57,9 @@ const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
 
                 return (
                   <Eventcard key={i}
+                    event={event}
                     month={event.month.slice(0,3)}
-                    date={event.date}
+                    date={event.day}
                     location={event.location}
                     category={event.category}
                     title={event.title}
