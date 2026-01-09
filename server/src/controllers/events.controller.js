@@ -39,6 +39,39 @@ const createEvent = async (req, res) => {
 const readEvents = async (req, res) => {
   try {
     const events = await Event.find();
+
+    const monthIndex = {
+      January: 0,
+      February: 1,
+      March: 2,
+      April: 3,
+      May: 4,
+      June: 5,
+      July: 6,
+      August: 7,
+      September: 8,
+      October: 9,
+      November: 10,
+      December: 11
+    }
+
+    events.sort((a,b) => {
+      const dateA = new Date(
+        a.year,
+        monthIndex[a.month],
+        a.day
+      );
+
+      const dateB = new Date(
+        b.year,
+        monthIndex[b.month],
+        b.day
+      );
+
+      return dateA - dateB
+    })
+    
+
     return res.status(200).json(events);
   }
   catch (err) {
