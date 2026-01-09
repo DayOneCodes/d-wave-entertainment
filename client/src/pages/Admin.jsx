@@ -1,5 +1,5 @@
-import ContentManagement from "../components/ContentManagement";
-import CreateEvent from "../components/CreateEvent";
+import ContentManagement from "../components/admin-components/ContentManagement";
+import CreateEvent from "../components/admin-components/CreateEvent";
 
 function Admin () {
   return (

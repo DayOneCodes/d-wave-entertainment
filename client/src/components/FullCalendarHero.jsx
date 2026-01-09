@@ -40,7 +40,9 @@ function FullCalendarHero() {
 }>
                                     Get Tickets
                                 </button>
-<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-base font-bold transition-all">
+<button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-base font-bold transition-all" onClick={
+  () => {navigate(`/event-info/${eventsChronological[0]._id}`)}
+}>
                                     More Info
                                 </button>
 </div>

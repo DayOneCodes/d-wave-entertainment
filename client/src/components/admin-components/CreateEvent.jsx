@@ -1,4 +1,11 @@
+import { useState, useMemo } from "react";
+
+
+
 export default function CreateEvent() {
+  const [nextpageMessage, setNextPageMessage] = useState("");
+
+  
   return (
     <div className="flex-1 overflow-y-auto p-6 md:p-10 scroll-smooth">
       <div className="max-w-5xl mx-auto flex flex-col gap-8">
@@ -124,6 +131,18 @@ export default function CreateEvent() {
                   ))}
                 </div>
 
+                <div className="flex flex-col gap-2">
+                  <label className="text-xs relative text-white font-medium uppercase bg-primary w-[57%] flex justify-center items-center p-1">
+                    Add Ticket Options <span className="absolute p-1 -right-6 text-primary">+</span>
+                  </label>
+
+                  <input
+                    type="text"
+                    placeholder="e.g. Summer Sunset Festival 2024"
+                    className="bg-white/10 border border-border-dark rounded-lg px-4 py-3 text-sm text-white focus:border-primary focus:ring-0 w-full placeholder:text-text-muted/50"
+                  />
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
                     <label className="text-xs text-text-muted font-medium uppercase">
@@ -207,7 +226,8 @@ export default function CreateEvent() {
               <span className="material-symbols-outlined text-[20px]">
                 save
               </span>
-              Save Event
+              
+              save event
             </button>
           </div>
 

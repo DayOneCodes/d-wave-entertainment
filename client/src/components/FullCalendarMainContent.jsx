@@ -162,7 +162,7 @@ const {events, loading, error} = useEvents();
         <a className="hidden md:flex items-center justify-center size-10 rounded-full border text-white hover:text-primary bg-primary hover:bg-primary/10 border-primary transition-all" href="#">
         <span className="material-symbols-outlined">arrow_outward</span>
         </a>
-        <a className="md:hidden text-sm font-bold text-primary" href="#">View Details</a>
+        <a className="md:hidden text-sm font-bold text-primary" href={`/event-info/${event._id}`}>View Details</a>
         </div>
         </div>
         </div>

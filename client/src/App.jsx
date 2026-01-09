@@ -7,6 +7,7 @@ import AboutUs from './pages/AboutUs.jsx';
 import FullCalendar from './pages/FullCalendar.jsx';
 import Admin from './pages/Admin.jsx';
 import OrderConfirmation from './pages/OrderConfirmation.jsx';
+import EventDetails from './pages/EventDetails.jsx';
 import { Route, Routes } from "react-router-dom";
 
 
@@ -36,6 +37,7 @@ function App() {
       <Route path="/events" element={<FullCalendar />}/>
       <Route path="/admin" element={<Admin />}/>
       <Route path="/checkout/:eventId" element={<OrderConfirmation />}/>
+      <Route path="/event-info/:eventId" element={<EventDetails />} />
       <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
     </Routes>
   )
