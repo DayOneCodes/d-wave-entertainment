@@ -5,9 +5,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "#281828",
+        "primary": "#2E070F",
         "background-light": "#f7f5f8",
-        "background-dark": "#1c1022",
+        "background-dark": "#2E070F",
       },
       fontFamily: {
          "display": ["Be Vietnam Pro", "sans-serif"],

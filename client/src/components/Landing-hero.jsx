@@ -3,14 +3,14 @@ import bgLandingPage from "../assets/club-ii.jpg";
 function LandingHero ({onScrollToEvents, onScrollToServices}) {
   return (
     <>
-      <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden" data-header-theme="light">
+      <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
 
       <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed" data-alt="Crowd at a concert with purple lighting and confetti" style={{
           backgroundImage: `url("${bgLandingPage}")
           `,
           }}>
       </div>
-      <div className="relative z-10 container mx-auto px-4 md:px-10 flex flex-col items-center  text-center gap-8 max-w-4xl">
+      <div className="relative z-10 container mx-auto px-4 min-h-[95vh] md:px-10 flex flex-col items-center  text-center gap-8 max-w-4xl">
           <span className="text-white text-sm font-bold tracking-widest uppercase animate-pulse">Coventry &amp; West Midlands</span>
  <h1 className="text-4xl md:text-5xl lg:text-[3.87rem] font-black text-white leading-[1] tracking-tighter text-left md:text-center mb-8">
                     D-WAVE ENTERTAINMENT: <br/><span className="text-gradient">CULTURALLY RELEVANT EXPERIENCES</span>
