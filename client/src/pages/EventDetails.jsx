@@ -27,7 +27,7 @@ function EventDetails () {
     <>
         <Header />
         <Hero event={event}/>
-        <EventDetailsMainContent />
+        <EventDetailsMainContent event={event} />
         <Footer />
     </>
   )

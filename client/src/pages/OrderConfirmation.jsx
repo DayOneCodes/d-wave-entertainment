@@ -89,7 +89,7 @@ function OrderConfirmation() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.state.sourcePage){
+    if (location.state){
       switch (location.state.sourcePage){
         case "/":
           setSourcePage("/")
@@ -98,6 +98,9 @@ function OrderConfirmation() {
           setSourcePage("/events")
         return;
       }
+    }else{
+      const sourcePage = `/event-info/${eventId}`
+      setSourcePage(sourcePage)
     }
   }, [])
 

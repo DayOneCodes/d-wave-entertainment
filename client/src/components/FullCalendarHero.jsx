@@ -2,6 +2,7 @@ import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
 import backgroundImage from "../assets/club-ii.jpg"
 import { useNavigate } from "react-router-dom";
 import { useEvents } from "../contexts/EventContext";
+import setImage from "../utils/eventImage";
 
 function FullCalendarHero() {
   const {eventsChronological} = useChronologicalEvents();
@@ -9,8 +10,8 @@ function FullCalendarHero() {
 
   return (
     <>
-<div className="w-full relative mt-12 md:mt-0">
-<div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: `url(${backgroundImage})`}}>
+<div className="w-full relative mt-3 md:mt-0">
+<div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: `url(${setImage(eventsChronological[0])})`}}>
 <div className="layout-content-container max-w-[1200px] w-full px-4 sm:px-10 flex flex-col md:flex-row items-end md:items-center justify-between gap-8">
 <div className="flex flex-col gap-4 max-w-2xl">
 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/40 w-fit backdrop-blur-sm">

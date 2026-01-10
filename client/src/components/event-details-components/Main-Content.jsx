@@ -1,4 +1,8 @@
-function EventDetailsMainContent () {
+import { useNavigate } from "react-router-dom";
+
+function EventDetailsMainContent ({event}) {
+  const navigate = useNavigate();
+
   return (
     <section className="px-6 lg:px-40 py-20 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
   {/* Main Column */}
@@ -13,34 +17,8 @@ function EventDetailsMainContent () {
 
       <div className="flex flex-col gap-6 text-black leading-loose text-lg font-light">
         <p>
-          Experience the pinnacle of D-Wave Entertainment's curated nightlife.
-          THE GIST: MIDNIGHT LUXE is more than an event; it's an auditory sanctuary
-          designed for those who seek the extraordinary.
+          {event.description}
         </p>
-
-        <p>
-          Featuring a custom-engineered spatial audio system and immersive visual
-          installations by London's premier light artists, the evening will
-          unfold in three distinct acts. From deep melodic techno to high-energy
-          minimal beats, every moment is meticulously paced to elevate your
-          experience.
-        </p>
-
-        <ul className="grid grid-cols-2 gap-4 mt-4">
-          {[
-            "Premium Mixology Bar",
-            "High-Fashion Dress Code",
-            "Private VIP Suites",
-            "World-Class Acoustics",
-          ].map((item) => (
-            <li key={item} className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary text-sm">
-                check_circle
-              </span>
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   </div>
@@ -80,7 +58,10 @@ function EventDetailsMainContent () {
 </div>
 </div>
 <div className="flex flex-col gap-3">
-<button className="w-full py-4 bg-primary text-white font-black tracking-widest text-sm rounded-lg hover:shadow-[0_0_20px_rgba(244,192,37,0.3)] transition-all">
+<button className="w-full py-4 bg-primary text-white font-black tracking-widest text-sm rounded-lg hover:shadow-[0_0_20px_rgba(244,192,37,0.3)] transition-all" onClick={() => {
+  navigate(`/checkout/${event._id}`)
+  }
+}>
                                 GET TICKETS
                             </button>
 <p className="text-center text-[10px] text-white/30 uppercase tracking-[0.2em] mt-2">Prices subject to increase</p>
@@ -92,7 +73,8 @@ function EventDetailsMainContent () {
 <div className="size-10 rounded-full flex items-center justify-center border border-white/10 group-hover:border-primary/50 transition-all">
 <span className="material-symbols-outlined text-xl">share</span>
 </div>
-<span className="text-xs font-bold tracking-widest">SHARE EVENT</span>
+{/* Add update: Copy Event Link */}
+{/* <span className="text-xs font-bold tracking-widest">SHARE EVENT</span> */}
 </div>
 {/* update Idea: Allow users add event to their calendar */}
 {/* <div className="flex items-center gap-4 text-primarytransition-colors cursor-pointer group">
@@ -107,8 +89,6 @@ function EventDetailsMainContent () {
 <h4 class="text-xs font-black tracking-widest mb-3 opacity-40">IMPORTANT INFO</h4>
 <ul className="flex flex-col gap-2 text-[11px] text-primary leading-relaxed font-medium">
 <li>• 21+ Valid ID Required</li>
-<li>• Fashion-forward dress code enforced</li>
-<li>• No photography inside the main hall</li>
 <li>• All ticket sales are final</li>
 </ul>
 </div>

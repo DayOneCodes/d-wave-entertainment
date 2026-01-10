@@ -2,7 +2,7 @@ import backgroundImage from "../assets/club-ii.jpg"
 
 function AboutUsHero() {
   return (
-      <section className="relative mt-2 md:mt-0">
+      <section className="relative -mt-8">
           <div className="px-4 py-12 md:px-10 lg:px-20 xl:px-40 flex justify-center">
               <div className="w-full max-w-[1200px]">
                   <div className="@container">

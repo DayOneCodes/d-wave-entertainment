@@ -2,12 +2,8 @@ import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards.jsx";
 import { forwardRef, useState, useEffect } from "react";
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
-import fetchEvents from "../api/eventApi.js";
-import clubNight from "../assets/club-night.webp";
-import roofTop from "../assets/roof-top.webp";
-import allWhite from "../assets/all-white.webp";
-import afterParty from "../assets/after-party.webp";
 import { useEvents } from "../contexts/EventContext.jsx";
+import setImage from "../utils/eventImage.js";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents (props, ref) {
   const { eventsChronological } = useChronologicalEvents();
@@ -35,24 +31,7 @@ console.log(events);
                (<p>Failed to load events</p>) :
             (
               events.slice(0,3).reverse().map((event,i) => {
-                let image = event.imageUrl;
-
-                if (!image) {
-                  switch (event.category){
-                    case "After Party":
-                      image = afterParty;
-                      break;
-                    case "Rooftop":
-                      image = roofTop;
-                      break;
-                    case "Club Night":
-                      image = clubNight;
-                      break;
-                    case "All White Party":
-                      image = allWhite;
-                      break;
-                  }
-                }
+                const image = setImage(event);
 
                 return (
                   <Eventcard key={i}

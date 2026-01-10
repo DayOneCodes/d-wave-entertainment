@@ -24,7 +24,7 @@ function TheVisionary () {
 <p className="text-white font-medium italic border-l-4 border-white pl-4 my-6">
                                     "We don't just manage artists; we amplify their souls. We don't just host parties; we curate memories."
                                 </p>
-<img alt="Alex Chen Signature" class="h-12 opacity-80 invert brightness-0" src={theVisionary} style={{filter: `invert(1)`}}/>
+
 </div>
 </div>
 <div className="order-1 md:order-2 relative">

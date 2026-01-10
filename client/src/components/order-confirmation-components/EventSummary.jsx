@@ -1,3 +1,4 @@
+import setImage from "../../utils/eventImage";
 
 export default function EventSummary ({event, loading, error}) {
 
@@ -6,7 +7,7 @@ export default function EventSummary ({event, loading, error}) {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent pointer-events-none"></div>
         <div
           className="w-full lg:w-48 xl:w-64 bg-center bg-no-repeat aspect-video lg:aspect-auto lg:h-full bg-cover"
-          style={{ backgroundImage: `url(${event.imageUrl || "https://lh3.googleusercontent.com/aida-public/AB6AXuCanzD-vK82rmrcuMnQoxcXb09WrP3cLBpWIkRGj5SPs2sdWOiytUF6VinNMHt1dp3b6AqXd69oOPU40Aca8Sg1Uo19dy9LWDjJ562ZaQ5_xS9tQ_DS7CaK5WBEhv2BhYFS3l3IgbGUISPudFZHtXfG5oNpJ4ZTvY9k6bP2kIR2nBpWTkS2GRHSPerRa59xMr4_e7TGWHS9kC37TnlIQK6cIwI_KhBeB7udiTg3Qs9cSjkKiepMZLNXHTaD_tPc5SGrev4nCzZmzMA"})` }}
+          style={{ backgroundImage: `url(${setImage(event)})` }}
           alt={event.title}
         />
         <div className="flex w-full grow flex-col items-stretch justify-center gap-1 p-6 relative z-10">
