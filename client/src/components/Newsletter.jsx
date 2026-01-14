@@ -1,9 +1,10 @@
 import { useState, useRef } from "react";
 import { subscribeEmail } from "../services/subscriberService";
+import { forwardRef } from "react";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/
 
-function Newsletter () {
+const Newsletter = forwardRef(function Newsletter (props, ref) {
   const formStartedAtRef = useRef(Date.now());
   const newsletter = useRef();
   const [email, setEmail] = useState("");
@@ -68,7 +69,7 @@ function Newsletter () {
 
   return (
     <> 
-      <section className="py-20 px-4 md:px-10 lg:px-40 bg-white border-t border-slate-200">
+      <section className="py-20 px-4 md:px-10 lg:px-40 bg-white border-t border-slate-200" ref={ref}>
           <div className="max-w-4xl mx-auto text-center">
               <div className="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-6">
                   <span className="material-symbols-outlined text-3xl">mail</span>
@@ -103,6 +104,6 @@ function Newsletter () {
       </section>
     </>
   )
-}
+})
 
 export default Newsletter;

@@ -2,7 +2,7 @@ import { useChronologicalEvents } from "../contexts/EventChronologicalContext.js
 import { useGetTicket } from "../contexts/GetTicketContext.jsx";
 import { useNavigate } from "react-router-dom";
 
-function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketUrl }) {
+function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketUrl, ticketStatus}) {
 
   const { setGetTicket } = useGetTicket();
   const navigate = useNavigate();
@@ -14,6 +14,16 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
     })
   }
 
+  const handleTicketStatus = () => {
+    if (!ticketStatus) {
+        alert("SOLD OUT")
+    }
+    else {
+        event.ticketUrl ? 
+            () => {window.open(`https://${ticketUrl}`, '_blank')} :
+                handleGetTicket();
+    }
+ }
   return (
       <div className="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100">
           <div className="relative h-64 overflow-hidden">
@@ -35,11 +45,8 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
                   </span>
               </div>
               <h3 className="text-lg font-bold text-slate-900 mb-4 group-hover:text-primary transition-colors">{title}</h3>
-              <button className="w-full py-3 rounded-lg border border-slate-200 text-slate-900 font-bold md:hover:bg-primary md:hover:text-white md:hover:border-primary transition-colors flex justify-center items-center gap-2" onClick={
-                event.ticketUrl ? 
-                    () => {window.open(`https://${ticketUrl}`, '_blank')} :
-                         handleGetTicket}>
-                  Get Tickets
+              <button className="w-full py-3 rounded-lg border border-slate-200 text-slate-900 font-bold md:hover:bg-primary md:hover:text-white md:hover:border-primary transition-colors flex justify-center items-center gap-2" onClick={handleTicketStatus}>
+                  {ticketStatus ? "Get Tickets" : "SOLD OUT"}
               </button>
           </div>
       </div>
