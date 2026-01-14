@@ -7,19 +7,22 @@ import { EventDataProvider } from './contexts/EventDataContext.jsx'
 import { EventChronologicalProvider } from './contexts/EventChronologicalContext.jsx';
 import { GetTicketProvider } from './contexts/GetTicketContext.jsx';
 import { EventProvider } from './contexts/EventContext.jsx'
+import { ToastProvider } from './contexts/ToastContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <EventProvider>
-      <EventDataProvider>
-        <EventChronologicalProvider>
-          <GetTicketProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </GetTicketProvider>
-        </EventChronologicalProvider>
-      </EventDataProvider>
-    </EventProvider>
+    <ToastProvider>
+      <EventProvider>
+        <EventDataProvider>
+          <EventChronologicalProvider>
+            <GetTicketProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </GetTicketProvider>
+          </EventChronologicalProvider>
+        </EventDataProvider>
+      </EventProvider>
+    </ToastProvider>
   </StrictMode>,
 )

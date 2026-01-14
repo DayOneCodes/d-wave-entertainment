@@ -1,11 +1,13 @@
 import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
 import { useGetTicket } from "../contexts/GetTicketContext.jsx";
 import { useNavigate } from "react-router-dom";
+import { useToast } from "../contexts/ToastContext.jsx";
 
 function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketUrl, ticketStatus}) {
 
   const { setGetTicket } = useGetTicket();
   const navigate = useNavigate();
+  const {  showToast } = useToast();
 
   const handleGetTicket = () => {
     setGetTicket(event);
@@ -16,7 +18,7 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
 
   const handleTicketStatus = () => {
     if (!ticketStatus) {
-        alert("SOLD OUT")
+        showToast(`Sorry, tickets for ${event.title} are currently sold out`, "info")
     }
     else {
         event.ticketUrl ? 
