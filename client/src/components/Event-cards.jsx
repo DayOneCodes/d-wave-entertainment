@@ -7,7 +7,7 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
 
   const { setGetTicket } = useGetTicket();
   const navigate = useNavigate();
-  const {  showToast } = useToast();
+  const { showToast } = useToast();
 
   const handleGetTicket = () => {
     setGetTicket(event);

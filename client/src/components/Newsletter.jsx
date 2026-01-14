@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { subscribeEmail } from "../services/subscriberService";
 import { forwardRef } from "react";
+import { useToast } from "../contexts/ToastContext";
 
 const EMAIL_REGEX = /\S+@\S+\.\S+/
 
@@ -9,6 +10,7 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
   const newsletter = useRef();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState({status: "idle", message: "", code: "", aria: ""});
+  const { showToast } = useToast();
 
   const joinNewsletter = async (e) => {
       e.preventDefault();
@@ -44,6 +46,8 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           aria: "polite"
         });
 
+        showToast("submitting, please wait...", "success")
+
         await subscribeEmail(email, formStartedAtRef.current);
 
         setStatus({
@@ -52,6 +56,8 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           code: "green",
           aria: "polite"
         });
+
+        showToast("You're subscribed to our newsletter", "success")
 
         setEmail("");
       }
