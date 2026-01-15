@@ -3,46 +3,95 @@ import backgroundImage from "../assets/club-ii.jpg"
 import { useNavigate } from "react-router-dom";
 import { useEvents } from "../contexts/EventContext";
 import setImage from "../utils/eventImage";
+import { useToast } from "../contexts/ToastContext";
 
 function FullCalendarHero() {
   const {eventsChronological} = useChronologicalEvents();
   const navigate = useNavigate();
+  const {events, futureEvents, pastEvents, todaysEvents, loading, error} = useEvents();
+  const { showToast } = useToast();
+
+
+  const isObject = (value) => {
+    return (
+      value !== null && typeof value === "object" && !Array.isArray(value) 
+    )
+  }
+
+  const handleSpotLightEvent = () => {
+    if (loading) return "Loading...";
+    if (error) return "Error loading event, refresh";
+    if (todaysEvents.length > 0) return todaysEvents[0];
+    if (futureEvents.length === 0) return pastEvents[0];
+    return futureEvents[0];
+  }
+
+  const handleTicketStatus = () => {
+    if (loading) return "Loading...";
+    if (error) return "Error loading event, refresh"; 
+    if (pastEvents.includes(handleSpotLightEvent())) {
+      return {
+        message: "Just Concluded", 
+        ticketsAvailable: false,
+        status: "SOLD OUT"}
+    } 
+    else if (todaysEvents.includes(handleSpotLightEvent())){
+      return {
+        message: "Happening Today", 
+        ticketsAvailable: false,
+        status: "SOLD OUT"
+    }
+  }
+
+  return {
+        message: "Up Next", 
+        ticketsAvailable: true,
+        status: "Get Tickets"
+  }
+};
+
+const handleGetTicket = () => {
+  if (loading) showToast("Loading...", "success");
+  if (error) showToast("Error loading event, please refresh", "error"); 
+  if (handleTicketStatus().ticketsAvailable) {
+    handleSpotLightEvent().ticketUrl ?
+      window.open(`https://${handleSpotLightEvent().ticketUrl}`, "_blank") :
+      navigate(`/checkout/${handleSpotLightEvent()[0]._id}`, {
+        state: {sourcePage: "/events"}
+      })
+  }
+  else {
+    showToast(`Sorry, tickets for ${handleSpotLightEvent().title} are currently sold out`, "error")
+  }
+}
 
   return (
     <>
 <div className="w-full relative mt-3 md:mt-0">
-<div className="relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12" data-alt="Crowd dancing at a neon-lit rave with lasers" style={{backgroundImage: `url(${setImage(eventsChronological[0])})`}}>
+<div className={`before:content-[''] before:absolute before:inset-0 before:blur-xl before:bg-[url(${setImage(eventsChronological[0])})] before:bg-no-repeat before:bg-center before:bg-cover before:z-0 relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12`} data-alt="Crowd dancing at a neon-lit rave with lasers">
 <div className="layout-content-container max-w-[1200px] w-full px-4 sm:px-10 flex flex-col md:flex-row items-end md:items-center justify-between gap-8">
 <div className="flex flex-col gap-4 max-w-2xl">
 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/40 w-fit backdrop-blur-sm">
 <span className="size-2 rounded-full bg-white animate-pulse"></span>
-<span className="text-xs font-bold text-white uppercase tracking-wider">UP NEXT</span>
+<span className="text-xs font-bold text-white uppercase tracking-wider">{handleTicketStatus().message}</span>
 </div>
-<h1 className="text-white text-4xl sm:text-5xl md:text-6xl uppercase font-black leading-tight tracking-[-0.033em] neon-text-shadow">
+<h1 className="text-white text-4xl sm:text-5xl md:text-6xl uppercase font-black leading-tight tracking-[-0.033em] neon-text-shadow z-10">
                                 {
-                                  //UPDATE: use Date to query next event as the next event may not always be the first on the array.
-                                  !eventsChronological ? 
-                                  (
-                                    <p>Loading...</p>
-                                  ) :
-                                  (
-                                <p>{eventsChronological[0].title}</p>
-                                )
+                                  !isObject(
+                                 handleSpotLightEvent()) ? handleSpotLightEvent() : handleSpotLightEvent().title
                                 }
                             </h1>
-<p className="text-gray-200 text-base sm:text-lg font-normal max-w-lg">
-                                Join us for an unforgettable night of sound and light featuring birthday celebration from SKY, spinning deep house and techno until sunrise.
+<p className="text-gray-200 text-base sm:text-lg font-normal max-w-lg z-10">
+                               {handleSpotLightEvent().description}
                             </p>
 <div className="flex gap-4 mt-2">
 <button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white hover:white/90 text-primary text-base font-bold shadow-[0_0_30px_rgba(40,24,40,0.6)] transition-all transform hover:scale-105" onClick={
-  () => {navigate(`/checkout/${eventsChronological[0]._id}`, {
-    state: {sourcePage: "/events"}
-  })}
+  handleGetTicket
 }>
-                                    Get Tickets
+{handleTicketStatus().status}
                                 </button>
 <button className="flex items-center justify-center rounded-lg h-12 px-6 bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md text-white text-base font-bold transition-all" onClick={
-  () => {navigate(`/event-info/${eventsChronological[0]._id}`)}
+  () => {navigate(`/event-info/${handleSpotLightEvent()[0]._id}`)}
 }>
                                     More Info
                                 </button>

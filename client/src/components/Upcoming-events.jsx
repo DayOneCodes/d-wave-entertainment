@@ -43,7 +43,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents ({onScrollToNewsLetter
     if (error) return "";
     if (futureEvents.length === 0){
       return (
-       pastEvents.slice(0,3).reverse().map((event,i) => {
+       pastEvents.slice(0,3).map((event,i) => {
         const image = setImage(event);
 
         return (
@@ -65,7 +65,7 @@ const UpcomingEvents = forwardRef(function UpcomingEvents ({onScrollToNewsLetter
 
 
     return (
-     futureEvents.slice(0,3).reverse().map((event,i) => {
+     futureEvents.slice(0,3).map((event,i) => {
         const image = setImage(event);
 
         return (

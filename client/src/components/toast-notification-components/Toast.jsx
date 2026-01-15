@@ -6,7 +6,7 @@ function Toast ({message, type}) {
   }
 
   return(
-    <div className={`w-[90%] px-3 py-3 rounded text-white shadow ${styles[type]}`}>
+    <div className={`w-[95%] px-3 py-3 rounded flex items-center text-white shadow ${styles[type]}`}>
       {message}
     </div>
   )

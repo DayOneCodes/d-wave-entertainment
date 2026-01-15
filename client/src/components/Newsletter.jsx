@@ -23,6 +23,8 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           aria: "assertive"
         });
 
+        showToast("Could not read input", "error")
+
         return;
       }
 
@@ -35,6 +37,8 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
             aria: "assertive"
           });
 
+          showToast("Please enter a valid email", "error")
+
           return;
       }
 
@@ -46,7 +50,7 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           aria: "polite"
         });
 
-        showToast("submitting, please wait...", "success")
+        showToast("submitting, please wait...", "info")
 
         await subscribeEmail(email, formStartedAtRef.current);
 
@@ -57,7 +61,7 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           aria: "polite"
         });
 
-        showToast("You're subscribed to our newsletter", "success")
+        showToast("You're subscribed to our newsletter!", "success")
 
         setEmail("");
       }
@@ -68,6 +72,8 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
           code: "red",
           aria: "assertive"
         });
+
+        showToast(`${err.message}`, "error")
         console.log(err.message)
       }
 
@@ -99,7 +105,7 @@ const Newsletter = forwardRef(function Newsletter (props, ref) {
               <p className="mt-4 text-xs text-slate-500 ">We respect your privacy. Unsubscribe at any time.</p>
               {status !== "idle" && (
               <p 
-              className={`${status.code === "green" ? "text-green-500" : "text-red-500"} font-bold`} 
+              className={`${status.code === "green" ? "text-green-500" : "text-red-500"} font-bold opacity-0`} 
               role="alert"
               aria-live={status.aria}
               >

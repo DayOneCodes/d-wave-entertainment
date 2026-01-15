@@ -18,11 +18,11 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
 
   const handleTicketStatus = () => {
     if (!ticketStatus) {
-        showToast(`Sorry, tickets for ${event.title} are currently sold out`, "info")
+        showToast(`Sorry, tickets for ${event.title} are currently sold out`, "error")
     }
     else {
         event.ticketUrl ? 
-            () => {window.open(`https://${ticketUrl}`, '_blank')} :
+               window.open(`https://${event.ticketUrl}`, '_blank') :
                 handleGetTicket();
     }
  }

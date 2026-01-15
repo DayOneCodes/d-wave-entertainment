@@ -34,12 +34,12 @@ export const EventProvider = ({children}) => {
           const eventKey = event.normalizedDateKey.getTime();
 
           if (eventKey > todayKey){
-            future.push(event);
+            future.unshift(event);
           }
           else if (eventKey < todayKey){
-            past.push(event)
+            past.unshift(event)
           } else {
-            today.push(event)
+            today.unshift(event)
           }
         });
 
