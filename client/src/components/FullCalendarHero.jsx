@@ -85,7 +85,7 @@ const handlebackgroundImage = () => {
 <span className="size-2 rounded-full bg-white animate-pulse"></span>
 <span className="text-xs font-bold text-white uppercase tracking-wider">{handleTicketStatus().message}</span>
 </div>
-<h1 className="text-white text-4xl sm:text-5xl md:text-6xl uppercase font-black leading-tight tracking-[-0.033em] neon-text-shadow z-10">
+<h1 className="text-white stroke-primary text-4xl sm:text-5xl md:text-6xl uppercase font-black leading-tight tracking-[-0.033em] neon-text-shadow z-10">
                                 {
                                   !isObject(
                                  handleSpotLightEvent()) ? handleSpotLightEvent() : handleSpotLightEvent().title

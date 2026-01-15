@@ -35,3 +35,7 @@
 .no-scrollbar::-webkit-scrollbar{
     display: none;
 }
+
+.stroke-primary {
+  -webkit-text-stroke: 0.7px #2E070F;
+}
