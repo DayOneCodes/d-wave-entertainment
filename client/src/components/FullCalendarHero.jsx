@@ -56,7 +56,7 @@ const handleGetTicket = () => {
   if (handleTicketStatus().ticketsAvailable) {
     handleSpotLightEvent().ticketUrl ?
       window.open(`https://${handleSpotLightEvent().ticketUrl}`, "_blank") :
-      navigate(`/checkout/${handleSpotLightEvent()[0]._id}`, {
+      navigate(`/checkout/${handleSpotLightEvent()._id}`, {
         state: {sourcePage: "/events"}
       })
   }
@@ -65,10 +65,20 @@ const handleGetTicket = () => {
   }
 }
 
+const handlebackgroundImage = () => {
+  if (loading) return "";
+  if (error) return "";
+  if (isObject(handleSpotLightEvent())){
+    return setImage(handleSpotLightEvent())
+  }
+}
+
   return (
     <>
 <div className="w-full relative mt-3 md:mt-0">
-<div className={`before:content-[''] before:absolute before:inset-0 before:blur-xl before:bg-[url(${setImage(eventsChronological[0])})] before:bg-no-repeat before:bg-center before:bg-cover before:z-0 relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12`} data-alt="Crowd dancing at a neon-lit rave with lasers">
+<div className={`before:content-[''] before:absolute before:inset-0 before:blur-xl before:bg-[url(${
+  handlebackgroundImage()
+  })] before:bg-no-repeat before:bg-center before:bg-cover before:z-0 relative h-[500px] w-full bg-primary bg-cover bg-center bg-no-repeat flex items-end justify-center pb-12`} data-alt="Crowd dancing at a neon-lit rave with lasers">
 <div className="layout-content-container max-w-[1200px] w-full px-4 sm:px-10 flex flex-col md:flex-row items-end md:items-center justify-between gap-8">
 <div className="flex flex-col gap-4 max-w-2xl">
 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 border border-white/40 w-fit backdrop-blur-sm">
