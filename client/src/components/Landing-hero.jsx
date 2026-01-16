@@ -5,14 +5,13 @@ function LandingHero ({onScrollToEvents, onScrollToServices}) {
     <>
       <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
 
-      <div className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat bg-fixed" data-alt="Crowd at a concert with purple lighting and confetti" style={{
-          backgroundImage: `url("${bgLandingPage}")
-          `,
-          }}>
+      <div className={`absolute inset-0 z-0 bg-primary before:content-[''] before:absolute before:inset-0 before:blur-md before:bg-[url(${
+        bgLandingPage
+      })] before:bg-no-repeat before:bg-center before:bg-cover before:z-0 bg-cover bg-center bg-no-repeat bg-fixed`} data-alt="Crowd at a concert with purple lighting and confetti">
       </div>
       <div className="relative z-10 container mx-auto px-4 min-h-[95vh] md:px-10 flex flex-col items-center  text-center gap-8 max-w-4xl">
           <span className="text-white text-sm font-bold tracking-widest uppercase animate-pulse">Coventry &amp; West Midlands</span>
- <h1 className="text-4xl md:text-5xl lg:text-[3.87rem] font-black text-white leading-[1] tracking-tighter text-left md:text-center mb-8">
+ <h1 className="text-4xl md:text-5xl lg:text-[3.87rem] font-black stroke-primary text-white leading-[1] tracking-tighter text-left md:text-center mb-8">
                     D-WAVE ENTERTAINMENT: <br/><span className="text-gradient">CULTURALLY RELEVANT EXPERIENCES</span>
 </h1>
 
