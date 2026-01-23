@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useToast } from "../../contexts/ToastContext";
 
 export default function OrderSummary({
   subtotal,
@@ -9,10 +10,13 @@ export default function OrderSummary({
   ticketQuantities,
   handleOrderPreparation,
   handleProceedToPayment,
+  confirmSelection,
+  setConfirmSelection,
   sourcePage
 }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { showToast } = useToast();
 
 
   const styles = {
@@ -67,10 +71,9 @@ export default function OrderSummary({
             className={styles.buttonPrimary}
             onClick={() => {
               if (handleOrderPreparation().length === 0) {
-                console.log("Unable to proceed. No Item Selected!");
+                showToast("Unable to proceed. No Item Selected!", "error");
               } else {
-                console.log(handleOrderPreparation());
-                console.log(handleProceedToPayment());
+                setConfirmSelection(!confirmSelection);
               }
             }}
           >

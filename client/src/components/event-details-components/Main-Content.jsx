@@ -11,7 +11,7 @@ function EventDetailsMainContent ({event}) {
     {/* About The Event */}
     <div>
       <h2 className="serif-text text-primary text-3xl font-bold mb-6 flex items-center gap-4">
-        <span className="w-12 h-[1px] bg-primary"></span>
+        <span className="w-8 h-[1px] bg-primary"></span>
         About the Event
       </h2>
 

@@ -2,9 +2,9 @@ import setImage from "../../utils/eventImage";
 
 function EventDetailsHero ({event}) {
   return (
-    <section className="relative w-full h-[85vh] flex flex-col justify-end overflow-hidden">
+    <section className="relative w-full h-[72vh] flex flex-col justify-end overflow-hidden">
 <div className="absolute inset-0 z-0">
-<div className="absolute inset-0 bg-black/40 z-10"></div>
+<div className="absolute inset-0 bg-primary z-10"></div>
 <div className="absolute inset-0 hero-gradient z-20"></div>
 <div className="w-full h-full bg-cover bg-center transform scale-105" data-alt="Cinematic luxury lounge atmosphere with golden lighting" style={{backgroundImage: `url(${setImage(event)})`}}></div>
 </div>

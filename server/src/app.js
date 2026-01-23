@@ -5,7 +5,8 @@ import { fileURLToPath } from "url";
 import eventRouter from "./routes/events.route.js";
 import siteDataRouter from "./routes/site-data.route.js";
 import subscribeRouter from "./routes/subscribe.route.js";
-import orderRouter from "./routes/order.route.js"
+import orderRouter from "./routes/order.route.js";
+import paymentRouter from "./routes/payment.route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -41,6 +42,7 @@ app.use("/api/events", cors(), eventRouter);
 app.use("/api/site-data", cors(),siteDataRouter);
 app.use("/api/subscribe", cors(), subscribeRouter);
 app.use("/api/orders", cors(), orderRouter);
+app.use("/api/payments", cors(), paymentRouter);
 
 app.use(
   express.static(path.join(__dirname, "../../client/dist"))

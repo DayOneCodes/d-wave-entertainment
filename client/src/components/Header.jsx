@@ -25,9 +25,9 @@ useEffect(() => {
           </div>
           <div className="hidden md:flex flex-1 justify-end gap-8 items-center">
               <div className="flex items-center gap-9">
-                  <a className="text-sm text-white font-medium transition-colors" onClick={() => onScrollToEvents()}>Upcoming Events</a>
+                  <a className="text-sm text-white font-medium transition-colors cursor-pointer" onClick={() => onScrollToEvents()}>Upcoming Events</a>
                   <NavLink className="text-sm text-white font-medium transition-colors" to="/about-us">About Us</NavLink>
-                  <a className="text-sm text-white font-medium transition-colors" onClick={() => onScrollToServices()}>Services</a>
+                  <a className="text-sm text-white font-medium transition-colors cursor-pointer" onClick={() => onScrollToServices()}>Services</a>
                   <NavLink className="text-sm text-white font-medium transition-colors" to="/contact">Contact</NavLink>
               </div>
               {/* <button className="bg-primary hover:bg-primary/90 transition-all text-white text-sm font-bold h-10 px-6 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_rgba(40,24,40,0.6)]">
