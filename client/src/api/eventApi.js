@@ -1,16 +1,50 @@
-export default async function fetchEvents () {
-  try {
-      const res = await fetch ("https://dwaveentertainment.co.uk/api/events/");
+import {ENV} from "../config/env.js";
+import {ApiError} from "../errors/ApiError.js";
 
-      if (!res.ok){
-        throw new Error("Failed to fetch events")
-      }
 
-      const eventData = await res.json();
+const BASE_EVENTS_URL = `${ENV.API_BASE_URL}/events`;
 
-      return eventData;
+async function request(url, options = {}) {
+  const res = await fetch(url, {
+    headers: {
+      "Content-Type": "application/json",
+      ...options.headers,
+    },
+
+    ...options,
+  });
+
+  if (!res.ok) {
+    const errorBody = await res.text();
+    throw new ApiError(res.status, errorBody);
   }
-  catch (err) {
-    console.error("ERROR: err.message")
-  }
+
+  // return res.status === 204? mull : res.json();
+  return res.json();
+}
+
+export const EventAPI = {
+  fetchAll () {
+    return request(BASE_EVENTS_URL);
+  },
+
+  create(payload) {
+    return request(BASE_EVENTS_URL, {
+      method: "POST",
+      body: JSON.stringify(payload),
+    });
+  },
+
+  update(eventId, payload) {
+    return request(`${BASE_EVENTS_URL}/${eventId}`, {
+      method: "PUT",
+      body: JSON.stringify(payload),
+    })
+  },
+
+  delete(eventId) {
+    return request(`${BASE_EVENTS_URL}/${eventId}`, {
+      method: "DELETE",
+    });
+  },
 };

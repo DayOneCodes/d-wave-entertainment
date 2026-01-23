@@ -1,5 +1,5 @@
 import {createContext, useContext, useState, useEffect} from "react";
-import fetchEvents from "../api/eventApi";
+import { eventService } from "../services/event.service";
 import addNormalizedDateKey from "../utils/eventNormalizer";
 
 const EventContext = createContext();
@@ -15,7 +15,7 @@ export const EventProvider = ({children}) => {
   useEffect(() => {
     const loadEvents = async () => {
       try {
-        const data = await fetchEvents();
+        const data = await eventService.getEvents();
         const normalizedEvents = addNormalizedDateKey(data);
         setEvents(normalizedEvents);
 
