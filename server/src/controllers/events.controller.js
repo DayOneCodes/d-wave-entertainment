@@ -97,13 +97,34 @@ const deleteEvent = async (req, res) => {
   }
   catch (err) {
    return res.status(500).json({
-    message: `Server: ${err.message}`
+    message: `Server Error: ${err.message}`
    })
   }
 };
 
+
+const updateEvent = async (req, res) => {
+  try {
+    const updated =  await Event.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {new: true}
+    );
+
+    res.status(200).json({
+      message: "Event updates successfully",
+      event: updated,
+    })
+  } catch (err) {
+    res.status(500).json({
+      message: `Server Error: ${err.message}`
+    })
+  }
+}
+
 export { 
   createEvent,
   readEvents,
-  deleteEvent
+  deleteEvent,
+  updateEvent
  };

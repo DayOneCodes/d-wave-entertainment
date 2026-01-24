@@ -2,11 +2,6 @@ import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 
 dotenv.config();
-console.log("🔑 ENV CHECK:", {
-  MONGO: !!process.env.MONGODB_URI,
-  BREVO_KEY: !!process.env.BREVO_API_KEY,
-  BREVO_LIST: process.env.BREVO_LIST_ID,
-});
 
 import app from "./app.js";
 

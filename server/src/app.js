@@ -1,17 +1,22 @@
 import cors from "cors";
 import express from "express";
 import path from "path";
+import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import eventRouter from "./routes/events.route.js";
 import siteDataRouter from "./routes/site-data.route.js";
 import subscribeRouter from "./routes/subscribe.route.js";
 import orderRouter from "./routes/order.route.js";
 import paymentRouter from "./routes/payment.route.js";
+import authRouter from "./routes/auth.route.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 console.log(__dirname)
 const app = express();
+
+
+app.use(cookieParser());
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -32,9 +37,10 @@ app.use(cors({
     } else {
       callback(new Error ("Not allowed by CORS"))
     }
-
-  }
-}));
+  },
+  credentials: true,
+})
+);
 
 app.use(express.json());
 
@@ -43,6 +49,7 @@ app.use("/api/site-data", cors(),siteDataRouter);
 app.use("/api/subscribe", cors(), subscribeRouter);
 app.use("/api/orders", cors(), orderRouter);
 app.use("/api/payments", cors(), paymentRouter);
+app.use("/api/auth", cors(), authRouter);
 
 app.use(
   express.static(path.join(__dirname, "../../client/dist"))
