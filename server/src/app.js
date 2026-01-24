@@ -44,12 +44,12 @@ app.use(cors({
 
 app.use(express.json());
 
-app.use("/api/events", cors(), eventRouter);
-app.use("/api/site-data", cors(),siteDataRouter);
-app.use("/api/subscribe", cors(), subscribeRouter);
-app.use("/api/orders", cors(), orderRouter);
-app.use("/api/payments", cors(), paymentRouter);
-app.use("/api/auth", cors(), authRouter);
+app.use("/api/events", eventRouter);
+app.use("/api/site-data", siteDataRouter);
+app.use("/api/subscribe", subscribeRouter);
+app.use("/api/orders", orderRouter);
+app.use("/api/payments", paymentRouter);
+app.use("/api/auth", authRouter);
 
 app.use(
   express.static(path.join(__dirname, "../../client/dist"))
