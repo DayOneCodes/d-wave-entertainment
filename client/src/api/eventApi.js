@@ -4,11 +4,10 @@ const BASE_EVENTS_URL = "/events";
 
 export const EventAPI = {
   fetchAll () {
-    return httpRequest(BASE_EVENTS_URL, {
-      auth: false,
-    });
+    return httpRequest(BASE_EVENTS_URL);
   },
 
+  //WRONG PATH FOR THE METHOR CREATE
   create(payload) {
     return httpRequest(BASE_EVENTS_URL, {
       method: "POST",

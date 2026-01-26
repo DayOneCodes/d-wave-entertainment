@@ -19,27 +19,10 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-  origin: function (origin, callback) {
-    
-    const allowedOrigins = [
-    "http://localhost:5000",
-    "http://localhost:5173",
-    "http://localhost:5000",
-    "http://localhost:5174",
-     "https://d-wave-entertainment.onrender.com",
-     "https://dwaveentertainment.co.uk"
-    ];
-
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)){
-      callback(null, origin);
-    } else {
-      callback(new Error ("Not allowed by CORS"))
-    }
-  },
-  credentials: true,
-})
+  origin: "https://dwaveentertainment.co.uk",
+  credentials: true
+}
+)
 );
 
 app.use(express.json());

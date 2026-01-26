@@ -6,3 +6,9 @@ export const ROLE_PERMISSIONS = {
   user: ["read:profile"],
   admin: ["read:profile", "manage:users", "manage:events"]
 };
+
+export const COOKIE_OPTIONS = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+}

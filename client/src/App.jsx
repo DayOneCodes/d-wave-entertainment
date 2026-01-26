@@ -9,6 +9,8 @@ import Admin from './pages/Admin.jsx';
 import OrderConfirmation from './pages/OrderConfirmation.jsx';
 import EventDetails from './pages/EventDetails.jsx';
 import { Route, Routes } from "react-router-dom";
+import Auth from "./pages/Auth.jsx";
+import { ProtectedRoute } from './utils/roleGuard.jsx';
 
 
 
@@ -35,9 +37,14 @@ function App() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/events" element={<FullCalendar />}/>
-      <Route path="/admin" element={<Admin />}/>
+      <Route path="/admin" element={
+        <ProtectedRoute allowedRoles={["admin"]}>
+          <Admin />
+        </ProtectedRoute>
+        }/>
       <Route path="/checkout/:eventId" element={<OrderConfirmation />}/>
       <Route path="/event-info/:eventId" element={<EventDetails />} />
+      <Route path="/login" element={<Auth />} />
       <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
     </Routes>
   )

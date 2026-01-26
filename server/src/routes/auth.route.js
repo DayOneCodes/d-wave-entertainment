@@ -2,16 +2,40 @@ import express from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
-import { issueAccessToken, issueRefreshToken, verifyRefreshToken } from "../services/token.service.js";
+import { issueAccessToken, issueRefreshToken, verifyAccessToken, verifyRefreshToken } from "../services/token.service.js";
 import isValidEmail from "../utils/emailValidator.js";
+import { COOKIE_OPTIONS } from "../config/constants.js";
 
 const router = express.Router();
 
+
+router.get("/me", async (req, res) => {
+  try {
+    const token = req.cookies.access_token;
+
+    if (!token) return res.status(401).json({message: "Not authenticated"});
+
+    const payload = verifyAccessToken(token);
+    const user = await User.findById(payload.id).select("-password -refreshTokenHash");
+    if (!user) return res.status(401).json({message: "Invalid token"});
+
+    res.json({
+      id: user._id,
+      username: user.username,
+      email: user.email,
+      role: user.role
+    })
+  }catch (err) {
+    console.error(err);
+    return res.status(401).json({message: "Invalid or expired token"})
+  }
+})
+
 router.post("/register", async (req, res) => {
   try {
-    const {email, username, password} = req.body;
+    const {name, email, username, password} = req.body;
 
-    if (!email|| !username || !password) return res.status(400).json({message: "Missing fields"});
+    if (!name|| !email|| !username || !password) return res.status(400).json({message: "Missing fields"});
 
     if (!isValidEmail(email)) return res.status(400).json({message: "Invalid email address"});
 
@@ -22,7 +46,7 @@ router.post("/register", async (req, res) => {
       console.log("Attempt to register with invalid role:", req.body.role)
     }
 
-    const user = await User.create({email, username, password, role: "user"});
+    const user = await User.create({name, email, username, password, role: "user"});
 
     res.status(201).json({message: "User created successfully"});
   } catch (err) {
@@ -32,7 +56,9 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const {email, password} = req.body;
+
+try {
+  const {name, email, password} = req.body;
   const user = await User.findOne({email});
   if (!user) return res.status(400).json({message: "Invalid credentials"});
 
@@ -50,18 +76,19 @@ router.post("/login", async (req, res) => {
 
   res
   .cookie("access_token", accessToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Strict",
+    ...COOKIE_OPTIONS,
     maxAge: 15 * 60 * 1000,
   })
   .cookie("refresh_token", refreshToken, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "Strict",
+   ...COOKIE_OPTIONS,
     maxAge: 7 * 24 * 60 * 60 * 1000, 
   })
   .json({ id: user._id, username: user.email, role: user.role });
+}
+catch (err) {
+  console.log("Log In Error", err)
+  res.status(500).json({message: "Log In Failed"})
+}
 });
 
 router.post("/refresh", async (req, res) => {
@@ -86,15 +113,11 @@ router.post("/refresh", async (req, res) => {
 
     res
     .cookie("access_token", newAccessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+     ...COOKIE_OPTIONS,
       maxAge: 15 * 60 * 1000
     })
     .cookie("refresh_token", rotatedRefreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "Strict",
+      ...COOKIE_OPTIONS,
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 

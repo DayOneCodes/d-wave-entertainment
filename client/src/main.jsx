@@ -8,21 +8,24 @@ import { EventChronologicalProvider } from './contexts/EventChronologicalContext
 import { GetTicketProvider } from './contexts/GetTicketContext.jsx';
 import { EventProvider } from './contexts/EventContext.jsx'
 import { ToastProvider } from './contexts/ToastContext.jsx'
+import { AuthProvider } from './contexts/AuthContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ToastProvider>
-      <EventProvider>
-        <EventDataProvider>
-          <EventChronologicalProvider>
-            <GetTicketProvider>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
-            </GetTicketProvider>
-          </EventChronologicalProvider>
-        </EventDataProvider>
-      </EventProvider>
-    </ToastProvider>
+    <AuthProvider>
+      <ToastProvider>
+          <EventProvider>
+            <EventDataProvider>
+              <EventChronologicalProvider>
+                <GetTicketProvider>
+                  <BrowserRouter>
+                    <App />
+                  </BrowserRouter>
+                </GetTicketProvider>
+              </EventChronologicalProvider>
+            </EventDataProvider>
+          </EventProvider>
+        </ToastProvider>
+    </AuthProvider>
   </StrictMode>,
 )

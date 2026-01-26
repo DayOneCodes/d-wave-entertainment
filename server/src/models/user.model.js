@@ -2,14 +2,7 @@ import mongoose, {Schema} from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new Schema({
-  Firstname: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-    maxlength: 50,
-  },
-  Lastname: {
+  name: {
     type: String,
     required: true,
     trim: true,
