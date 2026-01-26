@@ -1,23 +1,28 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
+import bcrypt from "bcryptjs";
+import { issueAccessToken, issueRefreshToken, verifyRefreshToken } from "../services/token.service.js";
+import isValidEmail from "../utils/emailValidator.js";
 
 const router = express.Router();
 
-//GENERATE JWT SECRET
-const JWT_SECRET = process.env.JWT_SECRET || "superscret";
-
 router.post("/register", async (req, res) => {
   try {
-    const {username, password, role} = req.body;
+    const {email, username, password} = req.body;
 
-    if (!username || !password) return res.status(400).json({message: "Missing fields"});
+    if (!email|| !username || !password) return res.status(400).json({message: "Missing fields"});
 
-    const existingUser = await User.findOne({username});
-    if (existingUser) return res.status(400).json({message: "Username already exists"});
+    if (!isValidEmail(email)) return res.status(400).json({message: "Invalid email address"});
 
-    const user = new User({username, passwordHash: password, role: role || "user"});
-    await user.save();
+    const existingUser = await User.findOne({email});
+    if (existingUser) return res.status(400).json({message: "Account with this email already exists"});
+
+    if (req.body.role && req.body.role !== "user") {
+      console.log("Attempt to register with invalid role:", req.body.role)
+    }
+
+    const user = await User.create({email, username, password, role: "user"});
 
     res.status(201).json({message: "User created successfully"});
   } catch (err) {
@@ -27,30 +32,36 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const {username, password} = req.body;
-  const user = await User.findOne({username});
+  const {email, password} = req.body;
+  const user = await User.findOne({email});
   if (!user) return res.status(400).json({message: "Invalid credentials"});
 
   const isMatch = await user.comparePassword(password);
   if (!isMatch) return res.status(400).json({message: "Invalid credentials"});
 
-  const accessToken = jwt.sign({id: user._id, role: user.role}, JWT_SECRET, {expiresIn: "15m"});
-  const refreshToken = jwt.sign({id: user._id}, JWT_SECRET, {expiresIn: "7d"});
+  //LATER: add active account check
+
+  const accessToken = issueAccessToken(user);
+
+  const refreshToken = issueRefreshToken(user);
+
+  user.refreshTokenHash = await bcrypt.hash(refreshToken, 10);
+  await user.save();
 
   res
   .cookie("access_token", accessToken, {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "Strict",
     maxAge: 15 * 60 * 1000,
   })
   .cookie("refresh_token", refreshToken, {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
     sameSite: "Strict",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
+    maxAge: 7 * 24 * 60 * 60 * 1000, 
   })
-  .json({message: "Login successful"})
+  .json({ id: user._id, username: user.email, role: user.role });
 });
 
 router.post("/refresh", async (req, res) => {
@@ -58,17 +69,33 @@ router.post("/refresh", async (req, res) => {
   if (!refresh_token) return res.status(401).json({message: "No refresh token"});
 
   try {
-    const payload = jwt.verify(refresh_token, JWT_SECRET);
+    const payload = verifyRefreshToken(refresh_token);
     const user = await User.findById(payload.id);
     if (!user) return res.status(401).json({message: "Invalid user"})
 
-    const newAccessToken = jwt.sign({id: user._id, role: user.role}, JWT_SECRET, {expiresIn: "15m"});
+    //LATER: add active account check
 
-    res.cookie("access_token", newAccessToken, {
+    const isValid = await bcrypt.compare(refresh_token, user.refreshTokenHash || "");
+
+    if (!isValid) return res.status(401).json({message: "Invalid refresh token"});
+
+    const newAccessToken = issueAccessToken(user);
+    const rotatedRefreshToken = issueRefreshToken(user);
+    user.refreshTokenHash = await bcrypt.hash(rotatedRefreshToken, 10);
+    await user.save();
+
+    res
+    .cookie("access_token", newAccessToken, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "Strict",
       maxAge: 15 * 60 * 1000
+    })
+    .cookie("refresh_token", rotatedRefreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
     res.json({message: "Access token refreshed"});
@@ -77,8 +104,24 @@ router.post("/refresh", async (req, res) => {
   }
 });
 
-router.post("/logout", (req, res) => {
-  res.clearCookie("access_token").clearCookie("refresh_token").json({message: "Logged out successfully"});
-})
+router.post("/logout", async (req, res) => {
+
+  try {
+    const refreshToken = req.cookies.refresh_token;
+
+  if (refreshToken) {
+    const payload = verifyRefreshToken(refreshToken);
+    const user = await User.findById(payload.id);
+
+    if (user) {
+      user.refreshTokenHash = null;
+      await user.save();
+    }
+  }
+ }
+  catch (_) {}
+
+ res.clearCookie("access_token").clearCookie("refresh_token").json({message: "Logged out"});
+});
 
 export default router;

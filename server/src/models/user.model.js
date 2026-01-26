@@ -2,12 +2,40 @@ import mongoose, {Schema} from "mongoose";
 import bcrypt from "bcryptjs";
 
 const userSchema = new Schema({
+  Firstname: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 50,
+  },
+  Lastname: {
+    type: String,
+    required: true,
+    trim: true,
+    minlength: 3,
+    maxlength: 50,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true,
+    validate: {
+      validator: function(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);},
+      message: "Invalid email address"
+    }
+  },
   username: {
     type: String,
     required: true,
     unique: true,
+    minlength: 3,
+    maxlength: 30,
   },
-  passwordHash: {
+  password: {
     type: String,
     required: true,
   },
@@ -15,18 +43,21 @@ const userSchema = new Schema({
     type: String, 
     enum: ["user", "admin"],
     default: "user"
+  },
+  refreshTokenHash: {
+    type: String,
+    default: null,
   }
 },
 { timestamps: true});
 
 userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compare(password, this.passwordHash)
+  return bcrypt.compare(password, this.password)
 }
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("passwordHash")) return next();
-  this.passwordHash = await bcrypt.hash(this.passwordHash, 10);
-  next();
+userSchema.pre("save", async function () {
+  if (this.isModified("password")) {
+  this.password = await bcrypt.hash(this.password, 10)};
 })
 
 export const User = mongoose.model("User", userSchema);
