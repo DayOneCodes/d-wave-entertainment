@@ -35,7 +35,7 @@ const eventSchema = new Schema({
     maxLength: 100
   },
   time: {
-    type: Date,
+    type: String,
     required: true,
   },
   day: {

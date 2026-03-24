@@ -1,56 +1,43 @@
-import mongoose, {Schema} from "mongoose";
-import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-    maxlength: 50,
-  },
+const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
     unique: true,
-    lowercase: true,
     trim: true,
-    validate: {
-      validator: function(email) {
-        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);},
-      message: "Invalid email address"
-    }
   },
-  username: {
+  passwordHash: {
     type: String,
     required: true,
-    unique: true,
-    minlength: 3,
-    maxlength: 30,
   },
-  password: {
+  name: {
     type: String,
     required: true,
+  },
+  profilePictureUrl: {
+
   },
   role: {
-    type: String, 
-    enum: ["user", "admin"],
-    default: "user"
-  },
-  refreshTokenHash: {
     type: String,
-    default: null,
-  }
+    required: true,
+    default: "user",
+    enum: ["user", "admin"]
+  },
+  lastLogin: {
+    type: Date,
+    default: Date.now()
+  },
+  isVerified: {
+    type: Boolean,
+    default: false,
+  },
+  verificationToken: String,
+  verificationTokenExpiresAt: Date,
+  resetPasswordToken: String,
+  resetPasswordTokenExpiresAt: Date,
 },
-{ timestamps: true});
+{ timestamps: true },
+)
 
-userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compare(password, this.password)
-}
-
-userSchema.pre("save", async function () {
-  if (this.isModified("password")) {
-  this.password = await bcrypt.hash(this.password, 10)};
-})
-
-export const User = mongoose.model("User", userSchema);
+export const User = mongoose.model("User", UserSchema);

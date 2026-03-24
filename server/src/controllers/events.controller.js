@@ -1,4 +1,36 @@
 import { Event } from "../models/events.model.js";
+import multer from "multer";
+import cloudinary from "../config/cloudinary.config.js";
+
+const uploadImage = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({message: "No image uploaded"})
+    }
+
+    const streamUpload = () => new Promise ((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "events" },
+        (error, result) => {
+          if (result) resolve(result)
+          else reject(error)
+        }
+      );
+
+      stream.end(req.file.buffer)
+    });
+
+    const result = await streamUpload();
+
+    res.status(200).json({
+      imageUrl: result.secure_url,
+      publicId: result.public_id
+    });
+
+  } catch (err) {
+    res.status(500).json({message: err.message})
+  }
+};
 
 const createEvent = async (req, res) => {
   try {
@@ -11,7 +43,7 @@ const createEvent = async (req, res) => {
     };
     
     const event = await Event.create({
-      title,
+      title, 
       time,
       day,
       location,
@@ -123,6 +155,7 @@ const updateEvent = async (req, res) => {
 }
 
 export { 
+  uploadImage,
   createEvent,
   readEvents,
   deleteEvent,
