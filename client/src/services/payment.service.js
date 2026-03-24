@@ -1,13 +1,13 @@
 import api from "../lib/api";
-import axios from "axios";
+import { httpRequest } from "../api/httpClient.js";
 
-export const createOrder = async (payload) => {
-  const {data} = await api.post("/orders", payload);
+export const createOrder = (payload) => {
+  const data = httpRequest("/orders", payload);
   return data;
 };
 
-export const initializePayment = async (orderId) => {
-  const {data} = await api.post("/payments/initialize", {
+export const initializePayment = (orderId) => {
+  const data = httpRequest("/payments/initialize", {
     orderId,
     provider: "PAYSTACK"
   });

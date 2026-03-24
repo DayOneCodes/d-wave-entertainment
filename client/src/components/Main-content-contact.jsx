@@ -15,6 +15,7 @@ function MainContentContact () {
     setWhatsappUrl(`https://wa.me/2347069400682?text=${encodeURIComponent(whatsappText)}`)
   }, [whatsappText])
 
+
   const sendEmail = (e) => {
     e.preventDefault();
 

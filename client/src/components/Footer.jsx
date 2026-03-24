@@ -1,8 +1,7 @@
-import Logo from "../assets/logo.jpeg";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInstagram, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import { faInstagram, faWhatsapp, faThreads } from "@fortawesome/free-brands-svg-icons"
 
 function Footer () {
   return (
@@ -21,12 +20,12 @@ function Footer () {
 </div>
 <div className="flex flex-col gap-4 items-center md:items-start">
 <h4 className="font-bold text-lg mb-2">Explore</h4>
-<Link className="text-gray-400  text-sm" to="#">Events Calendar</Link>
-<Link className="text-gray-400  text-sm" to="#">About Us</Link>
-<Link className="text-gray-400  text-sm" to="#">Careers</Link>
-<Link className="text-gray-400  text-sm" to="#">Reviews</Link>
-<Link className="text-gray-400  text-sm" to="#">News</Link>
-<Link className="text-gray-400  text-sm" to="#">Get in Touch</Link>
+<Link className="text-gray-400  text-sm" to="/events">Events Calendar</Link>
+<Link className="text-gray-400  text-sm" to="/about-us">About Us</Link>
+{/* <Link className="text-gray-400  text-sm" to="#">Careers</Link>
+<Link className="text-gray-400  text-sm" to="#">Reviews</Link> */}
+{/* <Link className="text-gray-400  text-sm" to="#">News</Link> */}
+<Link className="text-gray-400  text-sm" to="/contact">Get in Touch</Link>
 </div>
 <div className="flex flex-col gap-4 items-center md:items-star">
 <h4 className="font-bold text-lg mb-2">Services</h4>
@@ -35,23 +34,24 @@ function Footer () {
 <p className="text-gray-400 text-sm" href="#">Brand Partnerships</p>
 <p className="text-gray-400 text-sm" href="#">Booking Inquiry</p>
 </div>
-<div className="flex flex-col gap-4 items-center md:items-start">
+<div className="flex flex-col gap-4 justify-center items-center md:items-start">
 <h4 className="font-bold text-lg mb-2">Contact</h4>
-<p className="text-gray-400 text-sm">D-Wave Entertainment<br/>Coventry, UK</p>
-<p className="text-gray-400 text-sm">info@dwaveentertainment.co.uk<br/>+44 7888 642492</p>
+<p className="text-gray-400 text-sm">D-Wave Entertainment<br/><span className="flex justify-center items-center">Coventry, UK</span></p>
+<p className="text-gray-400 text-sm">info@dwaveentertainment.co.uk<br/><span className="flex justify-center items-center">+44 7888 642492</span></p>
 <div className="flex gap-4 mt-2">
-<a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faInstagram} className="size-6"/></a>
-<a className="text-gray-400 hover:text-white" href="#"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>
-<a className="text-gray-400 hover:text-white" href="#"><i className="material-symbols-outlined">alternate_email</i></a>
+<a className="text-gray-400 hover:text-white" href="https://www.instagram.com/d_waveentertainment?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><FontAwesomeIcon icon={faInstagram} className="size-6"/></a>
+<a className="text-gray-400 hover:text-white" href={`https://wa.me/2347069400682?text=${encodeURIComponent("Hello, I would like to get in touch with D-Wave Entertainment")}`} target="_blank"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>
+{/* fa-brands fa-threads */}
+<a className="text-gray-400 hover:text-white" href="https://www.threads.com/@d_waveentertainment?xmt=AQF0U3q3ziEKHrGt3lrXk3nuJadBwTDMYYl_7ppsHKkUYeY" target="_blank"><FontAwesomeIcon icon={faThreads} className="size-6"/></a>
 </div>
 </div>
 </div>
 <div className="max-w-[1200px] mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
 <p>© 2025 DayOneCodes. All rights reserved.</p>
-<div className="flex gap-6">
+{/* <div className="flex gap-6">
 <a className="hover:text-white" href="#">Privacy Policy</a>
 <a className="hover:text-white" href="#">Terms of Service</a>
-</div>
+</div> */}
 </div>
 </div>
 </footer>

@@ -1,9 +1,8 @@
-import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
 import { useGetTicket } from "../contexts/GetTicketContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../contexts/ToastContext.jsx";
 
-function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketUrl, ticketStatus}) {
+function Eventcard ({ event, month, date, location, category, title, imageUrl, ticketStatus}) {
 
   const { setGetTicket } = useGetTicket();
   const navigate = useNavigate();
@@ -37,7 +36,6 @@ function Eventcard ({ event, month, date, location, category, title, imageUrl, t
               backgroundImage: `url("${imageUrl}")`
               }}>
               </div>
-              {/* <div className="absolute inset-0 opacity-60"></div> */}
               </div>
           <div className="p-6">
               <div className="flex justify-between items-start mb-2">

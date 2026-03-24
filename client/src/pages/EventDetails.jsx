@@ -10,7 +10,7 @@ function EventDetails () {
   const [event, setEvent] = useState("");
   const navigate = useNavigate();
   const location = useLocation(); 
-  const {events, loading, error} = useEvents();
+  const {futureEvents, pastEvents, todaysEvents, events, loading, error} = useEvents();
   const { eventId } = useParams();
 
 
@@ -21,13 +21,17 @@ function EventDetails () {
 
     const foundEvent = events.find(e => e._id.toString() === eventId.toString());
     setEvent(foundEvent);
-  }, [eventId, events,, loading]);
+  }, [eventId, events, loading]);
 
   return (
     <>
         <Header />
-        <Hero event={event}/>
-        <EventDetailsMainContent event={event} />
+        <Hero event={event} loading={loading} error={error}/>
+        <EventDetailsMainContent 
+        event={event} 
+        loading={loading} 
+        error={error} 
+        pastEvents={pastEvents}/>
         <Footer />
     </>
   )

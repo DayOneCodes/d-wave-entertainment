@@ -1,8 +1,5 @@
 import { forwardRef } from "react";
-import photoUn from "../assets/service-I.webp";
-import photoDeux from "../assets/service-II.webp";
-import photoTrois from "../assets/service-III.webp";
-import photoQuatre from "../assets/service-IV.webp";
+
 
 
 const Services = forwardRef(function Services (props, ref) {
@@ -53,12 +50,12 @@ const Services = forwardRef(function Services (props, ref) {
           <div className="absolute -inset-4 bg-primary/20 rounded-2xl blur-2xl"></div>
           <div className="relative grid grid-cols-2 gap-4">
           <div className="space-y-4 translate-y-8">
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(${photoDeux})`}}></div>
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(${photoUn})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774120944/service-II_1_rmz3zf.jpg)`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Sound mixing console close up" style={{backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774120947/service-I_1_zttnnu.jpg)`}}></div>
           </div>
           <div className="space-y-4">
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Backstage pass and equipment" style={{backgroundImage: `url(${photoTrois})`}}></div>
-          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Crowd cheering at a concert" style={{backgroundImage: `url(${photoQuatre})`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-48 w-full shadow-lg" data-alt="Backstage pass and equipment" style={{backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774120946/service-III_1_oi0w1w.jpg)`}}></div>
+          <div className="bg-cover bg-center bg-primary rounded-2xl h-64 w-full shadow-lg" data-alt="Crowd cheering at a concert" style={{backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774120950/service-IV_svry19.jpg)`}}></div>
           </div>
           </div>
           </div>

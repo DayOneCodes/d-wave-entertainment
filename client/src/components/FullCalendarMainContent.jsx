@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
-import { useChronologicalEvents } from "../contexts/EventChronologicalContext";
 import DiscoverOurVision from "./DiscoverOurVision";
 import { useEvents } from "../contexts/EventContext";
 
 
 function FullCalendarMainContent() {
-  const { eventsChronological, thisMonthEvent } = useChronologicalEvents();
-
   const todayDate = new Date();
   const daysOfTheWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const lesMoins = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -18,9 +15,10 @@ function FullCalendarMainContent() {
   const [thisMonth, setThisMonth] = useState(lesMoins[ceMoinIndex]);
   const [thisYear, setThisYear] = useState(todayDate.getFullYear())
   const [viewMode, setViewMode] = useState("list");
+  const [eventFilter, setEventFilter] = useState("All Categories")
 
   //
-const {events, loading, error} = useEvents();
+const {events, loading, error, thisMonthEvents} = useEvents();
 //
 
   useEffect (() => {
@@ -91,7 +89,7 @@ const {events, loading, error} = useEvents();
           else {
 
             const dayNumber = y -numberOfDaysFromLastMonth
-            const eventDay = thisMonthEvent.find((event)=>{
+            const eventDay = thisMonthEvents.find((event)=>{
               return String(event.date) === String(dayNumber)
             });
 
@@ -133,10 +131,21 @@ const {events, loading, error} = useEvents();
     }
 
 
-    function listViewFunction () {
+    function listViewFunction (filter) {
       const listView = [];
+      const fullList  = [...events];
+      let filteredList = fullList;
 
-      events.forEach((event) => {
+      if (filter !== "All Categories") {
+          filteredList = fullList.filter((e, _) => e.category === filter)
+      }
+
+      if (!filteredList.length) {
+        return <p className="text-slate-600">No events in this category right now.
+        Explore other categories or check back soon for new events.</p>
+      }
+
+      filteredList.map((event) => {
 
       listView.push(
         <div className="group flex flex-col md:flex-row gap-4 p-5 border-b border-border-dark hover:bg-white/5 transition-all relative overflow-hidden mb-4">
@@ -159,7 +168,7 @@ const {events, loading, error} = useEvents();
                             </div>
         </div>
         <div className="flex md:flex-col lg:flex-row items-center justify-start md:justify-end gap-3 mt-2 md:mt-0">
-        <a className="hidden md:flex items-center justify-center size-10 rounded-full border text-white hover:text-primary bg-primary hover:bg-primary/10 border-primary transition-all" href="#">
+        <a className="hidden md:flex items-center justify-center size-10 rounded-full border text-white hover:text-primary bg-primary hover:bg-primary/10 border-primary transition-all" href={`/event-info/${event._id}`}>
         <span className="material-symbols-outlined">arrow_outward</span>
         </a>
         <a className="md:hidden text-sm font-bold text-primary" href={`/event-info/${event._id}`}>View Details</a>
@@ -177,23 +186,26 @@ const {events, loading, error} = useEvents();
   return (
     <>
     <div className="layout-content-container max-w-[1280px] w-full px-4 sm:px-10 py-10 flex flex-col gap-8">
-<div className="flex flex-col xl:flex-row gap-6 justify-between items-start xl:items-end">
+    <div className="flex flex-col xl:flex-row gap-6 justify-between items-start xl:items-end">
 
-<div className="flex flex-col gap-2">
-<h2 className="text-primary text-4xl font-black leading-tight tracking-tight">THE SCHEDULE</h2>
-<p className="text-text-muted text-lg">Explore upcoming parties and exclusive events.</p>
-</div>
-{/* <!-- Filters & Controls --> */}
-<div className="flex flex-col sm:flex-row gap-4 w-full xl:w-auto">
-{/* <!-- Filters --> */}
-<div className="flex flex-1 flex-col md:flex-md  sm:flex-none gap-2 bg-surface-dark p-1.5 rounded-xl border border-border-dark">
-<button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-transparent hover:bg-white/5 text-primary text-sm font-medium transition-colors">
-<span className="material-symbols-outlined text-lg text-primary">filter_list</span>
-                                Filter
+    <div className="flex flex-col gap-2">
+    <h2 className="text-primary text-4xl font-black leading-tight tracking-tight">THE SCHEDULE</h2>
+    <p className="text-text-muted text-lg">Explore upcoming parties and exclusive events.</p>
+    </div>
+    {/* <!-- Filters & Controls --> */}
+    <div className="flex flex-col sm:flex-row gap-4 w-full xl:w-auto">
+    {/* <!-- Filters --> */}
+    <div className="flex flex-1 flex-col md:flex-md  sm:flex-none gap-2 bg-surface-dark p-1.5 rounded-xl border border-border-dark">
+    <button className="flex items-center gap-2 px-4 py-2 rounded-lg bg-transparent hover:bg-white/5 text-primary text-sm font-medium transition-colors">
+    <span className="material-symbols-outlined text-lg text-primary">filter_list</span>
+                                    Filter
                             </button>
 <div className="w-px bg-border-dark my-1"></div>
 <div className="relative group">
-<select className="appearance-none bg-transparent text-primary text-sm font-medium px-4 py-2 pr-8 rounded-lg cursor-pointer focus:outline-none focus:bg-white/5">
+<select className="appearance-none bg-transparent text-primary text-sm font-medium px-4 py-2 pr-8 rounded-lg cursor-pointer focus:outline-none focus:bg-white/5"
+onChange={
+  (e) => {setEventFilter(e.target.value)}
+}>
 <option>All Categories</option>
 <option>Club Night</option>
 <option>After Party</option>
@@ -206,13 +218,13 @@ const {events, loading, error} = useEvents();
 </div>
 {/* <!-- View Switcher --> */}
 <div className="flex h-12 items-center rounded-xl bg-surface-dark p-1 border border-border-dark">
-<label className={`flex cursor-pointer h-full items-center justify-center rounded-lg px-4 ${viewMode === "calendar" ? "bg-primary/10 text-primary shadow-sm" : "hover:bg-white/5 text-text-muted"} transition-all`} onClick={() => {
+{/* <label className={`flex cursor-pointer h-full items-center justify-center rounded-lg px-4 ${viewMode === "calendar" ? "bg-primary/10 text-primary shadow-sm" : "hover:bg-white/5 text-text-muted"} transition-all`} onClick={() => {
   setViewMode("calendar");
 }}>
 <span className="material-symbols-outlined mr-2 text-lg">calendar_month</span>
 <span className={`text-sm ${viewMode === "calendar"? "font-bold" : "font-medium"}`}>Coming This Month</span>
 <input className="hidden" name="view" type="radio" value="Calendar"/>
-</label>
+</label> */}
 <label className={`flex cursor-pointer h-full items-center justify-center rounded-lg px-4 ${viewMode === "list" ? "bg-primary/10 text-primary shadow-sm" : "hover:bg-white/5 text-text-muted"}  transition-all`} onClick={() => {
   setViewMode("list");
 }}>
@@ -258,7 +270,7 @@ const {events, loading, error} = useEvents();
 {/* <!-- Dates Grid --> */}
 <div className="grid grid-cols-7 auto-rows-fr bg-[#221022]">
   {
-    !thisMonthEvent ? 
+    !thisMonthEvents ? 
     <p>Loading...</p>:
     gridsFunction()
   }
@@ -272,7 +284,7 @@ const {events, loading, error} = useEvents();
       <p>Loading list...</p> :
       error ?
       <p>Failed to load list, Refresh</p> :
-      listViewFunction()
+      listViewFunction(eventFilter)
     }
   </div>
 {/* End of List View */}

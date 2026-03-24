@@ -6,6 +6,7 @@ class EventService {
   }
 
   async addEvent(event) {
+    console.log(event)
     this.#validateEvent(event);
     return EventAPI.create(event);
   }
@@ -20,9 +21,15 @@ class EventService {
     return EventAPI.delete(eventId);
   }
 
+  async uploadImage (file) {
+    const formData = new FormData();
+    formData.append("imageUrl", file);
+    return EventAPI.upload(formData);
+  }
+
   #validateEvent(event) {
     if (!event?.title) throw new Error ("Event title is required");
-    if (!event?.date) throw new Error ("Event date is required");
+    if (!event?.day) throw new Error ("Event date is required");
     if (!event?.location) throw new Error ("Event location is required");
   }
 }

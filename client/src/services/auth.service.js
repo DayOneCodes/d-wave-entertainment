@@ -1,27 +1,30 @@
-import { AuthAPI } from "../api/authApi";
+import { AuthAPI } from "../api/authApi.js";
 
 class AuthService {
-  async register(user) {
-    return AuthAPI.register(user);
-  }
-
-  async login(user) {
+  async login (user) {
+    this.#validateEmail(user.email);
     return AuthAPI.login(user);
   }
 
-  async getCurrentUser () {
-    try {
-      await AuthAPI.refresh()
-      const user = await AuthAPI.user();
-      return user;
-    }
-    catch {
-      return null;
-    }
+  async logout () {
+    return AuthAPI.logout();
   }
 
-  async logout(user) {
-    return AuthAPI.logout(user);
+  async signup (user) {
+    this.#validateEmail(user.email);
+    return AuthAPI.signup(user);
+  }
+
+  async me () {
+    return AuthAPI.me();
+  }
+
+  async verifyEmail (token) {
+    return AuthAPI.verifyEmail({token});
+  }
+
+  #validateEmail (email) {
+    
   }
 }
 

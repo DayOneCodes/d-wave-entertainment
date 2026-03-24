@@ -1,37 +1,42 @@
-import { httpRequest } from "./httpClient";
+import { httpRequest } from "./httpClient.js";
 
-const BASE_AUTH_URL = "/auth";
+const BASE_AUTH_URL = "/auth"
 
 export const AuthAPI = {
-  register(payload) {
-    return httpRequest(`${BASE_AUTH_URL}/register`, {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
-  },
-
-  login(payload) {
+  login (payload) {
     return httpRequest(`${BASE_AUTH_URL}/login`, {
       method: "POST",
+      credentials: "include",
       body: JSON.stringify(payload),
     });
   },
 
-  refresh() {
-    return httpRequest(`${BASE_AUTH_URL}/refresh`, {
-      method: "POST",
-    });
-  },
-
-  logout() {
+  logout () {
     return httpRequest(`${BASE_AUTH_URL}/logout`, {
       method: "POST",
+      credentials: "include",
     });
   },
 
-  user () {
-    return httpRequest( `${BASE_AUTH_URL}/me`, {
+  signup (payload) {
+    return httpRequest(`${BASE_AUTH_URL}/signup`, {
+      method: "POST",
+      credentials: "include",
+      body: JSON.stringify(payload)
+    })
+  },
+
+  me () {
+    return httpRequest(`${BASE_AUTH_URL}/check-auth`, {
       method: "GET",
+      credentials: "include"
+    });
+  },
+
+  verifyEmail (payload) {
+    return httpRequest(`${BASE_AUTH_URL}/verify-email`, {
+      method: "POST",
+      body: JSON.stringify(payload)
     })
   }
 }

@@ -8,9 +8,12 @@ export const EventProvider = ({children}) => {
   const [events, setEvents] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [pastEvents, setPastEvents] = useState(null);
-  const [futureEvents, setFutureEvents] = useState(null);
-  const [todaysEvents, setTodaysEvents] = useState(null);
+  const [pastEvents, setPastEvents] = useState([]);
+  const [futureEvents, setFutureEvents] = useState([]);
+  const [todaysEvents, setTodaysEvents] = useState([]);
+  const [thisMonthEvents, setThisMonthEvents] = useState([]);
+  const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const thisMonthIndex = new Date().getMonth();
 
   useEffect(() => {
     const loadEvents = async () => {
@@ -18,6 +21,12 @@ export const EventProvider = ({children}) => {
         const data = await eventService.getEvents();
         const normalizedEvents = addNormalizedDateKey(data);
         setEvents(normalizedEvents);
+
+        normalizedEvents.forEach((event) => {
+          if (event.month.toLowerCase() === monthNames[thisMonthIndex]) {
+            setThisMonthEvents(prev => [...prev, event])
+          }
+        })
 
         const past = [];
         const future = [];
@@ -59,7 +68,7 @@ export const EventProvider = ({children}) => {
   }, []);
 
   return (
-    <EventContext.Provider value={{events, loading, error, pastEvents, futureEvents, todaysEvents}}>
+    <EventContext.Provider value={{events, loading, error, pastEvents, futureEvents, todaysEvents, thisMonthEvents}}>
       {children}
     </EventContext.Provider>
   );

@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import Eventcard from "./Event-cards.jsx";
-import { forwardRef, useState, useEffect } from "react";
-import { useChronologicalEvents } from "../contexts/EventChronologicalContext.jsx";
+import { forwardRef } from "react";
 import { useEvents } from "../contexts/EventContext.jsx";
 import setImage from "../utils/eventImage.js";
 
 const UpcomingEvents = forwardRef(function UpcomingEvents ({onScrollToNewsLetter}, ref) {
-  const { eventsChronological } = useChronologicalEvents();
-  const { events, futureEvents, pastEvents, todaysEvents, loading, error } = useEvents();
+  const { futureEvents, pastEvents, todaysEvents, loading, error } = useEvents();
 
   const header = () => {
     if (loading) return "Loading events...";
@@ -41,6 +39,28 @@ const UpcomingEvents = forwardRef(function UpcomingEvents ({onScrollToNewsLetter
   const eventsCards = () => {
     if (loading) return "";
     if (error) return "";
+    if (todaysEvents.length > 0) {
+      return (
+        todaysEvents.slice(0,3).map((event, i) => {
+          const image = setImage(event);
+
+          return (
+            <Eventcard key={i}
+            event={event}
+            month={event.month.slice(0,3)}
+            date={event.day}
+            location={event.location}
+            category={event.category}
+            title={event.title}
+            imageUrl={image}
+            ticketUrl={event.ticketUrl}
+            ticketStatus={false}
+          />
+          )
+        })
+      )
+    }
+    
     if (futureEvents.length === 0){
       return (
        pastEvents.slice(0,3).map((event,i) => {

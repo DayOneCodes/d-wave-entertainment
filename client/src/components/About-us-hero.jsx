@@ -1,20 +1,18 @@
-import backgroundImage from "../assets/club-ii.jpg"
-
 function AboutUsHero() {
   return (
       <section className="relative -mt-8">
           <div className="px-4 py-12 md:px-10 lg:px-20 xl:px-40 flex justify-center">
               <div className="w-full max-w-[1200px]">
-                  <div className="@container">
-                      <div className="@[480px]:p-4">
-                          <div className="relative flex bg-primary min-h-[560px] flex-col gap-6 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat @[480px]:gap-8 items-center justify-center p-8 text-center" data-alt="Dark moody concert crowd with purple laser lights" style={{
-                            backgroundImage: `url(${backgroundImage})`}}>
-                              <div className="absolute inset-0 bg-gradient-to-t from-[#161118] via-transparent to-transparent opacity-90"></div>
+                  <div>
+                      <div>
+                          <div className="relative flex bg-primary min-h-[560px] flex-col gap-6 overflow-hidden rounded-xl bg-cover bg-center bg-no-repeat items-center justify-center p-8 text-center" style={{
+                            backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774264291/image_xpufb6.jpg)`}}>
+    
                               <div className="relative z-10 flex flex-col gap-4 max-w-3xl">
-                                  <h1 className="text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] md:text-6xl lg:text-7xl">
+                                  <h1 className="text-white text-5xl font-black leading-[1.1] tracking-[-0.033em] md:text-6xl lg:text-7xl stroke-primary">
                                       Curating Chaos,<br/> <span className="text-white">Managing Talent.</span>
                                   </h1>
-                                  <h2 className="text-gray-200 text-lg font-normal leading-relaxed md:text-xl">
+                                  <h2 className="text-white  font-semibold leading-relaxed text-xl">
                                       We bridge the gap between high-energy nightlife and professional artist management. From underground raves to sold-out arenas, we define the rhythm.
                                   </h2>
                               </div>

@@ -8,14 +8,20 @@ import FullCalendar from './pages/FullCalendar.jsx';
 import Admin from './pages/Admin.jsx';
 import OrderConfirmation from './pages/OrderConfirmation.jsx';
 import EventDetails from './pages/EventDetails.jsx';
-import { Route, Routes } from "react-router-dom";
-import Auth from "./pages/Auth.jsx";
-import { ProtectedRoute } from './utils/roleGuard.jsx';
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+// import Auth from "./pages/Auth.jsx";
+import ScrollToTop from './utils/ScrollToTop.jsx';
+
+import AuthPage from './pages/Auth.jsx';
+import Dashboard from './pages/Dashboard.jsx';
+import VerifyEmail from './pages/VerifyEmail.jsx';
+import CheckYourEmailPage from './pages/CheckYourEmailPage.jsx';
 
 
 
 function App() {
   const [scrollTop, setScrollTop] = useState(0);
+  // const ProtectedAdminPage = withAuthenticationRequired(Admin)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,21 +38,24 @@ function App() {
   }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<Landingpage scrollTop={scrollTop}/>} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/about-us" element={<AboutUs />} />
-      <Route path="/events" element={<FullCalendar />}/>
-      <Route path="/admin" element={
-        <ProtectedRoute allowedRoles={["admin"]}>
-          <Admin />
-        </ProtectedRoute>
-        }/>
-      <Route path="/checkout/:eventId" element={<OrderConfirmation />}/>
-      <Route path="/event-info/:eventId" element={<EventDetails />} />
-      <Route path="/login" element={<Auth />} />
-      <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
-    </Routes>
+    <BrowserRouter>
+        <ScrollToTop />
+        
+        <Routes>
+            <Route path="/" element={<Landingpage scrollTop={scrollTop}/>} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/events" element={<FullCalendar />}/>
+            <Route path="/admin" element={<Admin />}/>
+            <Route path="/checkout/:eventId" element={<OrderConfirmation />}/>
+            <Route path="/event-info/:eventId" element={<EventDetails />} />
+            <Route path="/dashboard" element={<Dashboard />}/>
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/verify-email/:token" element={<VerifyEmail />} />
+            <Route path="/check-your-email" element={<CheckYourEmailPage />} />
+            <Route path="*" element={<div className="layout-container py-20"><h1 className="text-3xl font-bold text-center">404 - Page Not Found</h1></div>} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 

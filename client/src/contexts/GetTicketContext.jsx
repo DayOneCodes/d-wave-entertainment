@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const SET_TICKET = "SET_TICKET";
 
@@ -33,3 +33,5 @@ export const GetTicketProvider = ({ children }) => {
     </GetTicketContext.Provider>
   )
 }
+
+

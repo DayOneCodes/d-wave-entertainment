@@ -1,71 +1,140 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { authService } from "../services/auth.service";
+import { createContext, useContext, useState, useEffect, } from "react";
+import { authService } from "../services/auth.service.js";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
-export function AuthProvider({children}) {
-  const [user, setUser] = useState(null);
+export const AuthProvider = ({children}) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    async function loadUser () {
-      try {
-        setLoading(true);
-        const currentUser = await authService.getCurrentUser();
-        setUser(currentUser || null);
+    const fetchUser = async () => {
+      try 
+      {
+        // setLoading(true);
+        setError(null);
+
+        const res = await authService.me();
+        if (res.success) {
+          setUser(res.user);
+          setIsAuthenticated(true);
+        }
+      } 
+      catch (err) 
+      {
+        setError(err)
+      } 
+      finally 
+      {
+        setLoading(false)
       }
-      catch (err) {
-        setUser(null);
-      }
-      finally {
-        setLoading(false);
-      }
-    }
-    loadUser();
+    };
+
+    fetchUser();
   }, []);
 
-  const login = async ({email, password}) => {
-    setLoading (true)
-    setError(null);
-    try {
-      const loggedInUser = await authService.login({email, password});
-      console.log(loggedInUser)
-      setUser(loggedInUser);
-      return loggedInUser
-    }
-    catch (err) {
-      setError(err.message);
-      throw err;
-    }
-    finally {
-      setLoading(false);
-    }
-  };
 
+  const useLogin = async (user) => {
+    try 
+    {
+      if (isAuthenticated) throw new Error ("Log-Out current user");
 
-  const logout = async () => {
-    setLoading(true);
-    try {
-      await authService.logout();
-      setUser(null);
-    }
-    catch (_) {}
-    finally {
-      setLoading(false);
-    }
-  };
+      // setLoading(true);
+      setError(null);
 
+      const res = await authService.login(user);
+      if (res.success) {
+        setUser(res.user);
+        setIsAuthenticated(true);
+      }
+
+    } catch (error) 
+    {
+      setError(error);
+    }
+    finally 
+    {
+      setLoading(false)
+    }
+  }
+  
+  const signup = async (payload) => {
+    try 
+    {
+      if (isAuthenticated) throw new Error ("Log-Out current user");
+
+      // setLoading(true);
+      setError(null);
+
+      const res = await authService.signup(payload)
+      if (res.success) {
+        setUser(res.user);
+        setIsAuthenticated(true);
+      }
+
+    }
+    catch (error)
+    {
+      setError(error)
+    }
+    finally
+    {
+      setLoading(false)
+    }
+  }
+
+  // add logout params e.g returnTo: pag
+  const useLogout = async () => {
+    try 
+    {
+      if (!isAuthenticated) throw new Error ("No Active Session to log out from");
+
+      setLoading(true);
+      setError(null);
+
+      const res = await authService.logout();
+      console.log(res)
+      setIsAuthenticated(false);
+      setUser(null)
+    }
+    catch (error) 
+    {
+      setError(error);
+    }
+    finally 
+    {
+      setLoading(false)
+    }
+  }
+
+  const verifyEmail = async (token) => {
+    try 
+    {
+      setLoading(true);
+      setError(null);
+
+      const res = await authService.verifyEmail(token);
+      console.log(res);
+    }
+    catch (error)
+    {
+      setError(error)
+    }
+    finally 
+    {
+      setLoading(false)
+    }
+  }
 
   return (
-    <AuthContext.Provider value={{user, loading, error, login, logout}}>
+    <AuthContext.Provider value={{loading, error, user, isAuthenticated, useLogin, useLogout, signup, verifyEmail}}>
       {children}
     </AuthContext.Provider>
   )
-}
+};
 
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error ("useAuth must be used within AuthProvider");
-  return context;
+export const useAuth = () => {
+  return useContext(AuthContext);
 }

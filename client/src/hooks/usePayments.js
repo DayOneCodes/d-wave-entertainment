@@ -1,8 +1,8 @@
-import { createOrder, initializePayment } from "../services/payment.service";
-import { useToast } from "../contexts/ToastContext";
+import { createOrder, initializePayment } from "../services/payment.service.js";
+import { useToast } from "../contexts/ToastContext.jsx";
+
 
 export function usePayments () {
-  const {showToast} = useToast();
 
   const proceedToPayment = async (orderDraft) => {
     try {
@@ -28,8 +28,6 @@ export function usePayments () {
       const message = error.response?.data?.message || 
       error.message ||
       "Unable to proceed to payment"
-
-      showToast(message);
 
       throw error;
     }

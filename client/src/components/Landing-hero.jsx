@@ -1,13 +1,15 @@
-import bgLandingPage from "../assets/club-ii.jpg";
+import { useAuth } from "../contexts/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 
 function LandingHero ({onScrollToEvents, onScrollToServices}) {
+  const navigate = useNavigate();
+  const {loading, error, user } = useAuth();
+
   return (
     <>
       <div className="relative pt-20 min-h-[90vh] flex items-center justify-center overflow-hidden">
 
-      <div className={`absolute inset-0 z-0 bg-primary before:content-[''] before:absolute before:inset-0 before:blur-md before:bg-[url(${
-        bgLandingPage
-      })] before:bg-no-repeat before:bg-center before:bg-cover before:z-0 bg-cover bg-center bg-no-repeat bg-fixed`} data-alt="Crowd at a concert with purple lighting and confetti">
+      <div className={`absolute inset-0 z-0 bg-primary bg-[url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774264291/image_xpufb6.jpg)] bg-cover bg-center bg-no-repeat bg-fixed`} data-alt="Crowd at a concert with purple lighting and confetti">
       </div>
       <div className="relative z-10 container mx-auto px-4 min-h-[95vh] md:px-10 flex flex-col items-center  text-center gap-8 max-w-4xl">
           <span className="text-white text-sm font-bold tracking-widest uppercase animate-pulse">Coventry &amp; West Midlands</span>
@@ -15,14 +17,20 @@ function LandingHero ({onScrollToEvents, onScrollToServices}) {
                     D-WAVE ENTERTAINMENT: <br/><span className="text-gradient">CULTURALLY RELEVANT EXPERIENCES</span>
 </h1>
 
-          <p className="text-white text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
+          <p className="text-white text-xl font-semibold max-w-2xl leading-relaxed ">
           Building community, culture, and opportunity through  entertainment, football and structured experience.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-6 items-center lg:mb-6">
-              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white w-[67%] md:w-[100%] text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_[0_0_30px_rgba(40,24,40,0.6)] transition-all flex items-center justify-center gap-2" onClick={() => onScrollToEvents()
+              <button className="bg-white hover:bg-background-light/80 hover: border hover:border-white w-[67%] md:w-[100%] text-primary text-base font-bold h-14 px-8 rounded-lg shadow-[0_0_20px_rgba(40,24,40,0.4)] hover:shadow-[0_0_30px_[0_0_30px_rgba(40,24,40,0.6)] transition-all flex items-center justify-center gap-2" onClick={() => {
+                  if (user) {
+                    navigate("/events")
+                  } else {
+                    navigate("/auth")
+                  }
+                }
               }>
-                 <span className="material-symbols-outlined">confirmation_number</span>
-                  View Events
+                 <span className="material-symbols-outlined">rocket_launch</span>
+                  Get Started
               </button>
               <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border w-[67%] md:w-[100%] border-white/20 text-base font-bold h-14 px-8 rounded-lg transition-all flex items-center justify-center gap-2" onClick={
                 () => onScrollToServices()

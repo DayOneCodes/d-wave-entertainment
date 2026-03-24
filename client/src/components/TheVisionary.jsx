@@ -1,4 +1,3 @@
-import theVisionary from "../assets/the-visionary.jpeg"
 function TheVisionary () {
   return (
     
@@ -29,7 +28,7 @@ function TheVisionary () {
 </div>
 <div className="order-1 md:order-2 relative">
 <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-border-dark relative z-10 shadow-2xl shadow-black/50">
-<div className="w-full h-full bg-cover bg-center" style={{backgroundImage: `url(${theVisionary})`}}></div>
+<div className="w-full h-full bg-cover bg-center" style={{backgroundImage: `url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774120945/the-visionary_xyfaac.jpg)`}}></div>
 {/* <div className="absolute inset-0 bg-gradient-to-t from-[#161118] via-transparent to-transparent opacity-30"></div> */}
 </div>
 <div className="absolute -top-6 -right-6 w-3/4 h-3/4 border-2 border-white rounded-2xl -z-0 hidden md:block"></div>
