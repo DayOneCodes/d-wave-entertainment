@@ -14,6 +14,7 @@ const AuthPage = () => {
     oneLowercaseChar: false,
     oneNumber: false
   })
+  const [showPassword, setShowPassword] = useState(false)
 
   const navigate = useNavigate();
 
@@ -47,7 +48,8 @@ const AuthPage = () => {
       return;
     }
 
-    if (!payload.email || !payload.name || !payload.password || !payload.age) {
+    if (!payload.email || !payload.name || !payload.password || !payload.age) 
+    {
       return showToast("All fields are required", "error")
     };
 
@@ -74,13 +76,15 @@ const AuthPage = () => {
 
 
     return (
-      <div className="bg-primary text-white overflow-x-hidden">
+      <div className="bg-primary bg-[url(https://res.cloudinary.com/dslzm3lo6/image/upload/v1774264291/image_xpufb6.jpg)] bg-cover bg-center bg-no-repeat bg-fixed  text-white overflow-x-hidden">
         <div className="relative min-h-screen flex flex-col items-center justify-center hero-bg p-4 md:p-8">
           <div className="w-full max-w-[480px] flex flex-col gap-6">
 
             {/* Logo */}
             <div className="flex justify-center mb-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2" onClick={
+                () => navigate("/")
+              }>
                 <div className="text-black rounded-lg">
                   <img className="w-10" src="https://res.cloudinary.com/dslzm3lo6/image/upload/v1771483783/logo_rbnlbh.jpg"/>
                 </div>
@@ -97,7 +101,9 @@ const AuthPage = () => {
                   {view === "login" ? " Welcome Back" : "Hi, You're Welcome"}
                 </h1>
                 <p className="text-black/80 text-sm mt-2">
-                  Sign in to access your exclusive event dashboard.
+                  {view === "login" ?
+                  "Sign in to access your exclusive event dashboard." :
+                  "Create an account to get your exclusive dashboard"}
                 </p>
               </div>
              { view === "login" && 
@@ -122,7 +128,6 @@ const AuthPage = () => {
 
                 <input
                   type="password"
-                  // value={password}
                   onChange={(e) => {
                   setPayload((prev) => 
                     { 
@@ -221,7 +226,7 @@ const AuthPage = () => {
                 <span className="text-primary text-sm font-semibold uppercase tracking-wider">Password</span>
                 <div className="relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-xl">lock</span>
-                <input className="w-full pl-12 pr-12 h-14 rounded-lg border border-border-dark bg-surface-dark text-black focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-400" placeholder="••••••••" type="password" onChange={(e) => {
+                <input className="w-full pl-12 pr-12 h-14 rounded-lg border border-border-dark bg-surface-dark text-black focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-400" placeholder="••••••••" type={showPassword ? "text" : "password"} onChange={(e) => {
                   setPayload((prev) => 
                     { 
                       return {
@@ -242,8 +247,7 @@ const AuthPage = () => {
                       check.oneLowercaseChar = /[a-z]/.test(e.target.value);
                       
                       check.oneNumber = /[0-9]/.test(e.target.value);
-                      
-                      console.log(check)
+
 
                       return {
                         ...prev,
@@ -251,13 +255,15 @@ const AuthPage = () => {
                       }
                     })
                 }}/>
-                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300" type="button">
+                <button className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500" type="button" onClick={
+                  () => setShowPassword((prev) => !prev)
+                }>
                 <span className="material-symbols-outlined text-xl">visibility</span>
                 </button>
                 </div>
                 </label>
                 <ul >
-                  <li className="text-slate-500">Password must contain:</li>
+                  <li className="text-slate-500">Password must contain at least:</li>
                   <li className={
                     `${passwordStrength.twelveChars ? "text-green-500" :
                     "text-slate-500"} `}>12 Characters</li>
