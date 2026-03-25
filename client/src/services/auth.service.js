@@ -2,7 +2,6 @@ import { AuthAPI } from "../api/authApi.js";
 
 class AuthService {
   async login (user) {
-    this.#validateEmail(user.email);
     return AuthAPI.login(user);
   }
 
@@ -11,7 +10,6 @@ class AuthService {
   }
 
   async signup (user) {
-    this.#validateEmail(user.email);
     return AuthAPI.signup(user);
   }
 
@@ -21,10 +19,6 @@ class AuthService {
 
   async verifyEmail (token) {
     return AuthAPI.verifyEmail({token});
-  }
-
-  #validateEmail (email) {
-    
   }
 }
 

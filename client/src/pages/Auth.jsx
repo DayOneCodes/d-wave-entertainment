@@ -7,6 +7,13 @@ const AuthPage = () => {
   const [ view, setView ] = useState("login");
   const [payload, setPayload] = useState({});
   const [justSignedUp, setJustSignedUp] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState({
+    twelveChars: false,
+    oneSpecialChar: false,
+    oneUppercaseChar: false,
+    oneLowercaseChar: false,
+    oneNumber: false
+  })
 
   const navigate = useNavigate();
 
@@ -40,7 +47,26 @@ const AuthPage = () => {
       return;
     }
 
-    console.log(payload)
+    if (!payload.email || !payload.name || !payload.password || !payload.age) {
+      return showToast("All fields are required", "error")
+    };
+
+    if (!/\S+@\S+\.\S+/.test(payload.email)) return showToast("Invalid Email address", "error");
+
+    let passwordValid = undefined;
+    
+    Object.entries(passwordStrength).forEach((c,_) => {
+      if (!c[1]) {
+        return passwordValid = false;
+      }
+
+        return passwordValid = passwordValid === false ? false : true;
+    });
+
+    if (!passwordValid) {
+      return showToast("Password is not strong enough", "error")
+    } 
+
     await signup(payload);
     setJustSignedUp(true);
     navigate("/check-your-email");
@@ -56,7 +82,7 @@ const AuthPage = () => {
             <div className="flex justify-center mb-2">
               <div className="flex items-center gap-2">
                 <div className="text-black rounded-lg">
-                  <img className="w-10" src="../../public/logo.ico"/>
+                  <img className="w-10" src="https://res.cloudinary.com/dslzm3lo6/image/upload/v1771483783/logo_rbnlbh.jpg"/>
                 </div>
                 <span className="text-2xl font-black tracking-tighter">
                   D-WAVE <span className="text-white">ENT.</span>
@@ -68,7 +94,7 @@ const AuthPage = () => {
             <div className="bg-white glass-card rounded-xl p-6 md:p-10 shadow-2xl">
               <div className="text-center mb-8">
                 <h1 className="text-3xl text-primary md:text-4xl">
-                  Welcome Back
+                  {view === "login" ? " Welcome Back" : "Hi, You're Welcome"}
                 </h1>
                 <p className="text-black/80 text-sm mt-2">
                   Sign in to access your exclusive event dashboard.
@@ -147,7 +173,7 @@ const AuthPage = () => {
                 <span className="text-primary text-sm font-semibold uppercase tracking-wider">Full Name</span>
                 <div className="relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">person</span>
-                <input className="w-full pl-12 pr-4 h-14 rounded-lg border border-border-dark bg-surface-dark text-black focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-400" placeholder="Alex Morgan" type="text" onChange={(e) => {
+                <input className="w-full pl-12 pr-4 h-14 rounded-lg border border-border-dark bg-surface-dark text-black focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-400" required placeholder="Alex Morgan" type="text" onChange={(e) => {
                   setPayload((prev) => 
                     { 
                       return {
@@ -186,6 +212,8 @@ const AuthPage = () => {
                         email: e.target.value
                       }
                     })
+
+                  
                 }}/>
                 </div>
                 </label>
@@ -201,12 +229,51 @@ const AuthPage = () => {
                         password: e.target.value
                       }
                     })
+
+                    setPasswordStrength((prev) => {
+                      const check = {};
+
+                      check.twelveChars = e.target.value.length >= 12;
+
+                      check.oneSpecialChar = /[!@#$%^&*]/.test(e.target.value);
+
+                      check.oneUppercaseChar = /[A-Z]/.test(e.target.value);
+
+                      check.oneLowercaseChar = /[a-z]/.test(e.target.value);
+                      
+                      check.oneNumber = /[0-9]/.test(e.target.value);
+                      
+                      console.log(check)
+
+                      return {
+                        ...prev,
+                        ...check
+                      }
+                    })
                 }}/>
                 <button className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300" type="button">
                 <span className="material-symbols-outlined text-xl">visibility</span>
                 </button>
                 </div>
                 </label>
+                <ul >
+                  <li className="text-slate-500">Password must contain:</li>
+                  <li className={
+                    `${passwordStrength.twelveChars ? "text-green-500" :
+                    "text-slate-500"} `}>12 Characters</li>
+                  <li className={
+                    `${passwordStrength.oneUppercaseChar ? "text-green-500" :
+                    "text-slate-500"} `}>1 uppercase letter</li>
+                  <li className={
+                    `${passwordStrength.oneLowercaseChar ? "text-green-500" :
+                    "text-slate-500"} `}>1 lowercase letter</li>
+                  <li className={
+                    `${passwordStrength.oneSpecialChar ? "text-green-500" :
+                    "text-slate-500"} `}>1 special character</li>
+                  <li className={
+                    `${passwordStrength.oneNumber ? "text-green-500" :
+                    "text-slate-500"} `}>1 number</li>
+                </ul>
                 <div className="flex items-start gap-3 mt-2">
                 <input className="mt-1 rounded border-border-dark bg-surface-dark text-primary focus:ring-primary focus:ring-offset-background-dark" id="terms" type="checkbox"/>
                 <label className="text-sm text-slate-500" for="terms">
