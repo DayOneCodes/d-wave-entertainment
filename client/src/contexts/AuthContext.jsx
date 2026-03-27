@@ -41,7 +41,6 @@ export const AuthProvider = ({children}) => {
     {
       if (isAuthenticated) throw new Error ("Log-Out current user");
 
-      // setLoading(true);
       setError(null);
 
       const res = await authService.login(user);
@@ -50,9 +49,11 @@ export const AuthProvider = ({children}) => {
         setIsAuthenticated(true);
       }
 
+      return {success: true}
     } catch (error) 
     {
       setError(error);
+      return {success: false}
     }
     finally 
     {
@@ -74,10 +75,12 @@ export const AuthProvider = ({children}) => {
         setIsAuthenticated(true);
       }
 
+      return {success: true}
     }
     catch (error)
     {
       setError(error)
+      return {success: false}
     }
     finally
     {

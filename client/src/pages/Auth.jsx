@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AuthPage = () => {
   const [ view, setView ] = useState("login");
   const [payload, setPayload] = useState({});
+  const [authLoading, setAuthLoading] = useState(false);
   const [justSignedUp, setJustSignedUp] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState({
     twelveChars: false,
@@ -29,21 +30,22 @@ const AuthPage = () => {
 
   const handleLogIn = async (e) => {
     e.preventDefault();
-
+    setAuthLoading(true);
     if (isAuthenticated) {
       return;
     }
 
-    await useLogin(payload);
-
-    if (error) {
-      showToast("Invalid log-in credentials", "error")
+    const loginRes = await useLogin(payload);
+    if (!loginRes.success) {
+      showToast("Invalid credentials", "error")
     }
+    setAuthLoading(false)
   }
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+    setAuthLoading(true);
+    try {
     if (isAuthenticated) {
       return;
     }
@@ -69,9 +71,20 @@ const AuthPage = () => {
       return showToast("Password is not strong enough", "error")
     } 
 
-    await signup(payload);
+    const signupRes = await signup(payload);
+    if (signupRes.success) {
+      navigate("/check-your-email");
+    } else {
+      showToast("Error Signing In", "error")
+    }
     setJustSignedUp(true);
-    navigate("/check-your-email");
+    }
+    catch (err) {
+  
+    }
+    finally {
+      setAuthLoading(false)
+    }
   }
 
 
@@ -117,7 +130,7 @@ const AuthPage = () => {
                     { 
                       return {
                         ...prev, 
-                        email: e.target.value
+                        email: e.target.value.trim()
                       }
                     })
                 }}
@@ -133,7 +146,7 @@ const AuthPage = () => {
                     { 
                       return {
                         ...prev, 
-                        password: e.target.value
+                        password: e.target.value.trim()
                       }
                     })
                 }}
@@ -145,10 +158,10 @@ const AuthPage = () => {
 
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={authLoading}
                   className="h-14 bg-primary text-white font-bold rounded-lg disabled:opacity-60"
                   onClick={(e) => handleLogIn(e)}>
-                  {loading ? "Signing in..." : "Sign In"}
+                  {authLoading ? "Signing in..." : "Sign In"}
                 </button>
                                 <div className="relative flex items-center py-4">
                 <div className="flex-grow border-t border-border-dark"></div>
@@ -183,7 +196,7 @@ const AuthPage = () => {
                     { 
                       return {
                         ...prev, 
-                        name: e.target.value
+                        name: e.target.value.trim()
                       }
                     })
                 }}/>
@@ -198,7 +211,7 @@ const AuthPage = () => {
                     { 
                       return {
                         ...prev, 
-                        age: e.target.value
+                        age: e.target.value.trim()
                       }
                     })
                 }}/>
@@ -214,7 +227,7 @@ const AuthPage = () => {
                     { 
                       return {
                         ...prev, 
-                        email: e.target.value
+                        email: e.target.value.trim()
                       }
                     })
 
@@ -227,26 +240,29 @@ const AuthPage = () => {
                 <div className="relative">
                 <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary text-xl">lock</span>
                 <input className="w-full pl-12 pr-12 h-14 rounded-lg border border-border-dark bg-surface-dark text-black focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-400" placeholder="••••••••" type={showPassword ? "text" : "password"} onChange={(e) => {
+                  const password = e.target.value.trim();
+
                   setPayload((prev) => 
                     { 
                       return {
                         ...prev, 
-                        password: e.target.value
+                        password
                       }
                     })
 
                     setPasswordStrength((prev) => {
                       const check = {};
+                      
 
                       check.twelveChars = e.target.value.length >= 12;
 
-                      check.oneSpecialChar = /[!@#$%^&*]/.test(e.target.value);
+                      check.oneSpecialChar = /[!@#$%^&*]/.test(password);
 
-                      check.oneUppercaseChar = /[A-Z]/.test(e.target.value);
+                      check.oneUppercaseChar = /[A-Z]/.test(password);
 
-                      check.oneLowercaseChar = /[a-z]/.test(e.target.value);
+                      check.oneLowercaseChar = /[a-z]/.test(password);
                       
-                      check.oneNumber = /[0-9]/.test(e.target.value);
+                      check.oneNumber = /[0-9]/.test(password);
 
 
                       return {
@@ -286,9 +302,9 @@ const AuthPage = () => {
                     I agree to the <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a className="text-primary hover:underline" href="#">Privacy Policy</a>.
                 </label>
                 </div>
-                <button className="mt-4 w-full h-14 bg-primary hover:bg-primary/90 text-white font-black text-lg rounded-lg transition-transform active:scale-[0.98] flex items-center justify-center gap-2" disabled={loading} type="submit" onClick={(e) => handleSignup(e)}>
+                <button className="mt-4 w-full h-14 bg-primary hover:bg-primary/90 text-white font-black text-lg rounded-lg transition-transform active:scale-[0.98] flex items-center justify-center gap-2" disabled={authLoading} type="submit" onClick={(e) => handleSignup(e)}>
                 {
-                loading && view === "signup" ?
+                authLoading && view === "signup" ?
                  "Signing Up..." : 
                  "CREATE ACCOUNT"
                 }
