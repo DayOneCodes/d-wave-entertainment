@@ -17,7 +17,7 @@ export default {
         "placeholder": "#64748b",
         "border": "#334155",
         },
-        "shadow": "rgba(2, 6, 23, 0.25)"
+        "shadow": "rgba(2, 6, 23, 0chor.25)"
       },
       fontFamily: {
          "display": ["Be Vietnam Pro", "sans-serif"],
