@@ -7,28 +7,28 @@ export const VERIFICATION_EMAIL_TEMPLATE = `
 <title>Verify Your Email</title>
 </head>
 
-<body style="margin:0;padding:0;background-color:#f7f5f8;font-family:Poppins, sans-serif;color:#f7f5f8;">
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:Poppins, sans-serif;color:#f1f5f9;">
 
-<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f5f8;padding:40px 0;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f1f5f9;padding:40px 0;">
 <tr>
 <td align="center">
 
-<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background-color:#ffffff;border-radius:12px; border-width:1px solid #2a2024;padding:40px 30px;">
+<table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;background-color:#ffffff;border-radius:12px; border-width:1px solid #64748b;padding:40px 30px;">
 
 <tr>
 <td align="center" style="padding-bottom:30px;">
-<h1 style="margin:0;font-size:24px;font-family:Poppins, sans-serif;font-weight:bold; color:#2E070F;letter-spacing:3px">
+<h1 style="margin:0;font-size:24px;font-family:Poppins, sans-serif;font-weight:bold; color:#0f172a;letter-spacing:3px">
 VERIFY YOUR EMAIL
 </h1>
 
-<p style="margin-top:10px;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:#6a5f64;">
+<p style="margin-top:10px;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:#64748b;">
 D-WAVE ENTERTAINMENT
 </p>
 </td>
 </tr>
 
 <tr>
-<td align="center" style="padding-bottom:30px;font-size:15px;color:#6a5f64;line-height:1.6;">
+<td align="center" style="padding-bottom:30px;font-size:15px;color:#64748b;line-height:1.6;">
 Click the button below to verify your email address and complete your registration.
 </td>
 </tr>
@@ -38,7 +38,7 @@ Click the button below to verify your email address and complete your registrati
 <a href="{verificationLink}"
 style="
 display:inline-block;
-background-color:#2E070F;
+background-color:#0f172a;
 color:#ffffff;
 text-decoration:none;
 padding:14px 40px;
@@ -52,23 +52,23 @@ Verify Email
 </tr>
 
 <tr>
-<td align="center" style="padding-bottom:30px;font-size:12px;color:#6a5f64;">
+<td align="center" style="padding-bottom:30px;font-size:12px;color:#64748b;">
 This verification link will expire in 10 minutes.
 </td>
 </tr>
 
 <tr>
-<td align="center" style="font-size:12px;color:#6a5f64;line-height:1.6;">
+<td align="center" style="font-size:12px;color:#64748b;line-height:1.6;">
 If the button does not work, copy and paste this link into your browser:
 <br>
-<a href="{verificationLink}" style="color:#2E070F;text-decoration:underline;">
+<a href="{verificationLink}" style="color:#0f172a;text-decoration:underline;">
 {verificationLink}
 </a>
 </td>
 </tr>
 
 <tr>
-<td align="center" style="padding-top:50px;border-top:1px solid #2a2024;font-size:11px;color:#85787d;line-height:1.6;">
+<td align="center" style="padding-top:50px;border-top:1px solid #334155;font-size:11px;color:#080e1a;line-height:1.6;">
 
 Coventry, UK
 <br><br>

@@ -17,21 +17,21 @@ const signUp = async (req, res) => {
 
     const isValidEmail = validator.isEmail(email);
 
-    if (!isValidEmail) return res.status(400).json({success: false, message: "Invalid email format"});
+    if (!isValidEmail) return res.status(400).json({message: "Invalid email format"});
 
     const isStrongPassword = validator.isStrongPassword(password, {
-      minLength: 8,
+      minLength: 12,
       minLowercase: 1,
       minUppercase: 1,
       minNumbers: 1,
       minSymbols: 1
     });
 
-    if (!isStrongPassword) return res.status(400).json({success: false, message: "Password must be at least 12 characters and include uppercase, lowercase, number, and symbol."})
+    if (!isStrongPassword) return res.status(400).json({message: "Password must be at least 12 characters and include uppercase, lowercase, number, and symbol."})
 
     const userExists = await User.findOne({email});
 
-    if (userExists) return res.status(400).json({success: false, message: "If an account with this email can be created, you will receive a verification email", userExists});
+    if (userExists) return res.status(200).json({message: "If an account with this email can be created, you will receive a verification email"});
 
     const passwordHash = await bcrypt.hash(password, 10);
 
@@ -54,18 +54,17 @@ const signUp = async (req, res) => {
     //   passwordHash: undefined,
     // }
 
-    const verificationLink = `https://dwaveentertainment.com/verify-email/${verificationToken}`;
+    const verificationLink = `https://dwaveentertainment.co.uk/verify-email/${verificationToken}`;
     await sendVerificationEmail(user.email, verificationLink)
 
-    res.status(201).json({
-      success: true, 
-      message: "User created successfully brada", 
+    res.status(200).json({ 
+      message: "If an account with this email can be created, you will receive a verification email", 
       // user: payload 
     });
   }
   catch (error) 
   {
-    res.status(500).json({success: false, message: error.message})
+    res.status(500).json({message: error.message})
   }
 }
 
