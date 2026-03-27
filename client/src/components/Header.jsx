@@ -15,7 +15,7 @@ useEffect(() => {
 
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md  border-b transition-all transition-200 border-gray-200`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-primary  border-b transition-all transition-200 border-gray-200`}>
           <div className="layout-container flex h-[70px] grow flex-col">
           <div className="px-4 md:px-10 lg:px-40 flex justify-center">
           <div className="layout-content-container flex flex-col md:flex-row gap-4 w-full max-w-[1200px] items-center justify-between py-4">

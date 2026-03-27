@@ -6,18 +6,18 @@ export default {
     extend: {
       colors: {
         brand: {
-        "hover": "#3A0C15",
-        "active": "#24050B",
+        "hover": "#0c1324",
+        "active": "#080e1a",
         },
-        "primary": "#2E070F",
-        "background-light": "#f7f5f8",
-        "background-dark": "#141012",
+        "primary": "#0f172a",
+        "background-light": "#f8fafc",
+        "background-dark": "#020617",
         input: {
-          "background": "#E7E5E8",
-          "placeholder": "#6F6B70",
-          "border": "#3A3235"
+        "background": "#f1f5f9",
+        "placeholder": "#64748b",
+        "border": "#334155",
         },
-        shadow: "rgba(46, 7, 15, 0.15)"
+        "shadow": "rgba(2, 6, 23, 0.25)"
       },
       fontFamily: {
          "display": ["Be Vietnam Pro", "sans-serif"],
