@@ -70,7 +70,7 @@ const handlebackgroundImage = () => {
   }
 }
 
-const truncateDescription = (desc = "", maxChar = 100) => {
+const truncateDescription = (desc = "", maxChar = 70) => {
   if (!desc) {
     return {
       truncated: false,
