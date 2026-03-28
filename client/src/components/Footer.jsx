@@ -40,7 +40,7 @@ function Footer () {
 <p className="text-gray-400 text-sm">info@dwaveentertainment.co.uk<br/><span className="flex justify-center items-center">+44 7888 642492</span></p>
 <div className="flex gap-4 mt-2">
 <a className="text-gray-400 hover:text-white" href="https://www.instagram.com/d_waveentertainment?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"><FontAwesomeIcon icon={faInstagram} className="size-6"/></a>
-<a className="text-gray-400 hover:text-white" href={`https://wa.me/2347069400682?text=${encodeURIComponent("Hello, I would like to get in touch with D-Wave Entertainment")}`} target="_blank"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>
+<a className="text-gray-400 hover:text-white" href={`https://wa.me/447888642492?text=${encodeURIComponent("Hello, I would like to get in touch with D-Wave Entertainment")}`} target="_blank"><FontAwesomeIcon icon={faWhatsapp} className="size-6"/></a>
 {/* fa-brands fa-threads */}
 <a className="text-gray-400 hover:text-white" href="https://www.threads.com/@d_waveentertainment?xmt=AQF0U3q3ziEKHrGt3lrXk3nuJadBwTDMYYl_7ppsHKkUYeY" target="_blank"><FontAwesomeIcon icon={faThreads} className="size-6"/></a>
 </div>

@@ -12,7 +12,7 @@ function MainContentContact () {
   
   
   useEffect(() => {
-    setWhatsappUrl(`https://wa.me/2347069400682?text=${encodeURIComponent(whatsappText)}`)
+    setWhatsappUrl(`https://wa.me/447888642492?text=${encodeURIComponent(whatsappText)}`)
   }, [whatsappText])
 
 
