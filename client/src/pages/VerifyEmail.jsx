@@ -58,7 +58,7 @@ const VerifyEmail = () => {
 
   if (verificationSuccess) return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <Success message={message} close={navigate("/auth")}/>
+      <Success message={message} close={() => navigate("/auth")}/>
     </div>)
 
 }
