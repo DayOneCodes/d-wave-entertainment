@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext.jsx";
 import Loading from "../components/Loading.jsx";
 import Success from "../components/Success.jsx";
@@ -11,14 +11,13 @@ const VerifyEmail = () => {
   const { verifyEmail } = useAuth();
   const [verifyEmailLoading, setVerifyEmailLoading] = useState(true);
   const [verificationSuccess, setVerificationSuccess] = useState(null);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Verifying your account");
+  const navigate = useNavigate();
 
   const hasVerified = useRef(false);
 
   useEffect(() => {
     async function verifyToken () { 
-      setMessage("Verifying your account")
-      
       if (token && !hasVerified.current) {
         hasVerified.current = true;
 
@@ -26,11 +25,11 @@ const VerifyEmail = () => {
         const verifyEmailRes = await verifyEmail(token);
 
         if (verifyEmailRes?.success) {
-          setVerificationSuccess(true);
           setMessage("Account Verified Successfully, redirecting to log in...")
+          setVerificationSuccess(true);
         } else {
+          setMessage("Invalid or Expired Link");
           setVerificationSuccess(false);
-          setMessage("Invalid or Expired Link")
         }
       }
       catch (err) {
@@ -49,17 +48,17 @@ const VerifyEmail = () => {
 
   if (verifyEmailLoading) return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <Loading message="Verifying your account"/>
+      <Loading message={message}/>
     </div>)
 
   if (verificationSuccess === false) return (
     <div className="flex justify-center items-center w-screen h-screen">
       <Error message={message}/>
     </div>)
-    
+
   if (verificationSuccess) return (
     <div className="flex justify-center items-center w-screen h-screen">
-      <Success message={message}/>
+      <Success message={message} close={navigate("/auth")}/>
     </div>)
 
 }
