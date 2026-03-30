@@ -18,7 +18,7 @@ function EventDetailsMainContent ({event, loading, error, pastEvents}) {
         About the Event
       </h2>
 
-      <div className="flex flex-col gap-6 text-black leading-loose text-lg font-light">
+      <div className="flex flex-col gap-6 text-justify text-black leading-relaxed text-lg font-light">
         <p>
           {event.description}
         </p>
