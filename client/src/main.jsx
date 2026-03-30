@@ -13,8 +13,8 @@ import { AuthProvider } from './contexts/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToastProvider>
       <AuthProvider>
-        <ToastProvider>
           <ModalProvider>
             <EventProvider>
               <EventMetaProvider>
@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')).render(
               </EventMetaProvider>    
             </EventProvider>
           </ModalProvider>
-        </ToastProvider>
       </AuthProvider>
+    </ToastProvider>
   </StrictMode>,
 )

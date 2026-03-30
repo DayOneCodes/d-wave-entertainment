@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, } from "react";
 import { authService } from "../services/auth.service.js";
+import { useToast } from "./ToastContext.jsx";
 
 const AuthContext = createContext();
 
@@ -8,6 +9,7 @@ export const AuthProvider = ({children}) => {
   const [error, setError] = useState(null);
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const { showToast } =  useToast();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -49,6 +51,8 @@ export const AuthProvider = ({children}) => {
         setIsAuthenticated(true);
       }
 
+      showToast(`Hello ${res.user.name}, You've logged in successfully`, "success");
+      
       return {success: true}
     } catch (error) 
     {
@@ -101,6 +105,7 @@ export const AuthProvider = ({children}) => {
       console.log(res)
       setIsAuthenticated(false);
       setUser(null)
+      showToast("You've successfully logged out", "success")
     }
     catch (error) 
     {
@@ -120,10 +125,12 @@ export const AuthProvider = ({children}) => {
 
       const res = await authService.verifyEmail(token);
       console.log(res);
+      return {success: true}
     }
     catch (error)
     {
       setError(error)
+      return {success: false}
     }
     finally 
     {
@@ -131,8 +138,27 @@ export const AuthProvider = ({children}) => {
     }
   }
 
+
+  const resendVerificationMail = async (email) => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const res = await authService.resendVerificationMail(email)
+      showToast("You've resent verification e-mail successfully", "success")
+      return {success: true}
+    } catch (error) 
+    {
+      setError(error)
+      return {success: false}
+    }
+    finally {
+      setLoading(false)
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{loading, error, user, isAuthenticated, useLogin, useLogout, signup, verifyEmail}}>
+    <AuthContext.Provider value={{loading, error, user, isAuthenticated, useLogin, useLogout, signup, verifyEmail, resendVerificationMail}}>
       {children}
     </AuthContext.Provider>
   )

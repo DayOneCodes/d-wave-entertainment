@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 import { useAuth } from "../contexts/AuthContext.jsx";
 import Loading from "../components/Loading.jsx";
@@ -8,23 +8,59 @@ import Error from "../components/Error.jsx";
 const VerifyEmail = () => {
 
   const { token } = useParams();
-  const { loading, error, verifyEmail } = useAuth();
+  const { verifyEmail } = useAuth();
+  const [verifyEmailLoading, setVerifyEmailLoading] = useState(true);
+  const [verificationSuccess, setVerificationSuccess] = useState(null);
+  const [message, setMessage] = useState("");
 
   const hasVerified = useRef(false);
 
   useEffect(() => {
-    if (token && !hasVerified.current) {
-      hasVerified.current = true;
-      verifyEmail(token);
+    async function verifyToken () { 
+      setMessage("Verifying your account")
+      
+      if (token && !hasVerified.current) {
+        hasVerified.current = true;
+
+      try {
+        const verifyEmailRes = await verifyEmail(token);
+
+        if (verifyEmailRes?.success) {
+          setVerificationSuccess(true);
+          setMessage("Account Verified Successfully, redirecting to log in...")
+        } else {
+          setVerificationSuccess(false);
+          setMessage("Invalid or Expired Link")
+        }
+      }
+      catch (err) {
+        setVerificationSuccess(false)
+        setMessage("We couldn’t verify your account right now, please check your connection and try again")
+      } 
+      finally {
+        setVerifyEmailLoading(false);
+      }
+      }
     }
+
+    verifyToken()
   }, [token, verifyEmail]);
 
 
-  if (loading) return <div className="flex justify-center items-center w-screen h-screen"><Loading message="Verifying your account"/></div>
-  if (error) return <div className="flex justify-center items-center w-screen h-screen"><Error message="Invalid or Expired Link"/></div>
-  if (!loading && !error) return <div className="flex justify-center items-center w-screen h-screen">
-    <Success message="Email Verified Successfully, proceed to log-in"/>
-    </div>
+  if (verifyEmailLoading) return (
+    <div className="flex justify-center items-center w-screen h-screen">
+      <Loading message="Verifying your account"/>
+    </div>)
+
+  if (verificationSuccess === false) return (
+    <div className="flex justify-center items-center w-screen h-screen">
+      <Error message={message}/>
+    </div>)
+    
+  if (verificationSuccess) return (
+    <div className="flex justify-center items-center w-screen h-screen">
+      <Success message={message}/>
+    </div>)
 
 }
 

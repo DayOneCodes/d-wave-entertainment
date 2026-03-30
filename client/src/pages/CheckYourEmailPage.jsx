@@ -1,4 +1,8 @@
+import { useAuth } from "../contexts/AuthContext.jsx";
+
 const CheckYourEmailPage = () => {
+  const { resendVerificationMail } = useAuth();
+
   return (
       <div className="flex-grow flex items-center justify-center relative px-6 hero-gradient overflow-hidden">
 
@@ -36,10 +40,12 @@ const CheckYourEmailPage = () => {
               <p className="text-[10px] uppercase tracking-[0.15rem] text-on-surface-variant/60">
                 Didn't receive the email? Please check your spam folder or{" "}
                 <a
-                  className="text-primary hover:underline underline-offset-4"
-                  href="#"
+                  className="text-primary font-bold underline underline-offset-4"
+                  href={
+                    () => resendVerificationMail()
+                  }
                 >
-                  try again
+                  resend email
                 </a>.
               </p>
             </div>
